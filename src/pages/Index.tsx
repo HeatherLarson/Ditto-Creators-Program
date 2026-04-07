@@ -1073,6 +1073,170 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Case Study - Abel James */}
+      <section className="py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              <span style={{ color: currentTheme.accent }}>60 Real Fans</span>
+              {' '}Beat{' '}
+              <span className="text-red-400">28,000 Followers</span>
+            </h2>
+          </div>
+
+          {/* Case Study Card */}
+          <div 
+            className="rounded-2xl overflow-hidden"
+            style={{ 
+              background: `${currentTheme.accent}08`,
+              border: `1px solid ${currentTheme.accent}20`,
+              boxShadow: `0 0 60px ${currentTheme.accent}10`
+            }}
+          >
+            {/* Header with profile info */}
+            <div 
+              className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
+              style={{ 
+                background: `${currentTheme.accent}12`,
+                borderBottom: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <img 
+                src="https://ik.imagekit.io/pnbizia3c/nostr/profiles/npub1ucgf8qyuxpqrkap_26jRmH0H5t"
+                alt="Abel James"
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
+                style={{ border: `3px solid ${currentTheme.accent}` }}
+              />
+              <div className="text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">Abel James</h3>
+                <p className="opacity-70 mb-3">NY Times bestselling author, podcaster & blues musician in Austin, TX</p>
+                <a 
+                  href="https://ditto.pub/npub1ucgf8qyuxpqrkape9mqc20qmcs9nxe8axy069edfr8hkcl5tlhssueflfw"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
+                  style={{ 
+                    background: currentTheme.accent,
+                    color: '#fff'
+                  }}
+                >
+                  Follow on Ditto
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Stats comparison */}
+            <div className="grid md:grid-cols-2">
+              <div 
+                className="p-8 text-center"
+                style={{ borderRight: `1px solid ${currentTheme.accent}15` }}
+              >
+                <div className="text-red-400 text-sm font-medium mb-2 uppercase tracking-wider">Twitter Post</div>
+                <div className="text-5xl md:text-6xl font-bold text-red-400 mb-2">12</div>
+                <div className="opacity-60">likes from 28,000 followers</div>
+              </div>
+              <div className="p-8 text-center">
+                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Nostr Post</div>
+                <div className="text-5xl md:text-6xl font-bold mb-2" style={{ color: currentTheme.accent }}>20+</div>
+                <div className="opacity-60">reposts, zaps & real conversation from 60 followers</div>
+              </div>
+            </div>
+
+            {/* Story content */}
+            <div className="p-6 md:p-8 space-y-6">
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Background</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Abel played 100 to 150 shows a year for years before burning out. He eventually realized that 
+                  putting his music on the internet through his podcast reached more people with less grind than 
+                  holding down residencies he could never leave. When value-for-value came up in his orbit, he was skeptical. 
+                  Then he uploaded a song on a whim and everything changed.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Moment</h4>
+                <p className="opacity-80 leading-relaxed">
+                  "Swamp Thing" — a New Orleans-style blues track he co-wrote with Denny Hemmingson, lead musician for the Tim McGraw band — 
+                  was uploaded to Wavlake with no promotion, no newsletter blast, no social push. A few days later, 
+                  friends sent screenshots: <strong style={{ color: currentTheme.accent }}>Swamp Thing was sitting at #2 on the Wavlake top 40.</strong> 
+                  He had no idea there was a top 40.
+                </p>
+              </div>
+
+              <blockquote 
+                className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                  borderLeft: `4px solid ${currentTheme.accent}`
+                }}
+              >
+                "60 real people who actually see your posts beat 28,000 followers on a platform that buries your content."
+              </blockquote>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: 'rgba(255,50,50,0.08)' }}
+              >
+                <h4 className="font-bold text-lg mb-3 text-red-400">The Wall</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Abel ran into the wall that every value-for-value artist eventually hits with legacy platforms. 
+                  When he shared a Fountain link on Facebook, <strong className="text-red-400">the post was removed as spam.</strong> 
+                  A Universal Music Group licensing deal with Meta is almost certainly why. 
+                  Wavlake links went untouched, but that window won't stay open forever.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Ripple Effect</h4>
+                <p className="opacity-80 leading-relaxed mb-4">
+                  Abel's most useful contribution may be onboarding other artists. He got Stacey from SOB and the Dangs 
+                  to upload her music to Wavlake while she was still uncertain about the Bitcoin angle.
+                </p>
+                <ul className="space-y-3 opacity-80">
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span>Two of her songs hit the top 40 quickly</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span>She learned to use her wallet</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span>She immediately started boosting other artists</span>
+                  </li>
+                </ul>
+                <p className="opacity-80 leading-relaxed mt-4">
+                  Abel describes that moment as the thing working exactly as it should: a new artist finds the platform, 
+                  gets paid directly, discovers new music, and spreads it around — <strong>without anyone in the middle taking a cut or controlling what she sees.</strong>
+                </p>
+              </div>
+
+              <div className="text-center pt-4">
+                <p className="text-lg opacity-70 mb-4">
+                  Abel has made more from Wavlake and Fountain in a few months than Spotify and Apple Music paid him in years.
+                </p>
+                <div className="text-2xl font-bold">
+                  "The math already works. It just needs{' '}
+                  <span style={{ color: currentTheme.accent }}>more people</span>."
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Grid */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
