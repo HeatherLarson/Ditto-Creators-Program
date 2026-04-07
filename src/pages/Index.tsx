@@ -739,6 +739,158 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Case Study - Sara Jade */}
+      <section className="py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              "I made more money{' '}
+              <span className="text-red-400">complaining about Spotify</span>
+              <br />
+              than I ever made{' '}
+              <span style={{ color: currentTheme.accent }}>on Spotify</span>"
+            </h2>
+          </div>
+
+          {/* Case Study Card */}
+          <div 
+            className="rounded-2xl overflow-hidden"
+            style={{ 
+              background: `${currentTheme.accent}08`,
+              border: `1px solid ${currentTheme.accent}20`,
+              boxShadow: `0 0 60px ${currentTheme.accent}10`
+            }}
+          >
+            {/* Header with artist info */}
+            <div 
+              className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
+              style={{ 
+                background: `${currentTheme.accent}12`,
+                borderBottom: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <img 
+                src="https://image.nostr.build/1e2a2960ca5c6631922969a0df17bb9364c8846ca91695da7d5f71190e04ff50.jpg"
+                alt="Sara Jade"
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
+                style={{ border: `3px solid ${currentTheme.accent}` }}
+              />
+              <div className="text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">Sara Jade</h3>
+                <p className="opacity-70 mb-3">Independent singer-songwriter, San Diego</p>
+                <a 
+                  href="https://ditto.pub/npub17yemy3hswcelmcdgjsfn4sns4wr4q5ptvj5h08qt4s7fy2qe3hdqsczs99"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
+                  style={{ 
+                    background: currentTheme.accent,
+                    color: '#fff'
+                  }}
+                >
+                  Follow on Ditto
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Stats row */}
+            <div className="grid md:grid-cols-3">
+              <div 
+                className="p-6 text-center"
+                style={{ borderRight: `1px solid ${currentTheme.accent}15` }}
+              >
+                <div className="text-red-400 text-sm font-medium mb-2 uppercase tracking-wider">PRO Royalty Check</div>
+                <div className="text-4xl md:text-5xl font-bold text-red-400 mb-1">$1.27</div>
+                <div className="text-sm opacity-50">Her only check ever</div>
+              </div>
+              <div 
+                className="p-6 text-center"
+                style={{ borderRight: `1px solid ${currentTheme.accent}15` }}
+              >
+                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>30-Min Live Stream</div>
+                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: currentTheme.accent }}>$700</div>
+                <div className="text-sm opacity-50">Nostr Phoenix show on Toonstr</div>
+              </div>
+              <div className="p-6 text-center">
+                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Post-Nashville Growth</div>
+                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: currentTheme.accent }}>+600%</div>
+                <div className="text-sm opacity-50">Apple Music plays</div>
+              </div>
+            </div>
+
+            {/* Story content */}
+            <div className="p-6 md:p-8 space-y-6">
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: 'rgba(255,50,50,0.08)' }}
+              >
+                <h4 className="font-bold text-lg mb-3 text-red-400">The De-Platforming</h4>
+                <p className="opacity-80 leading-relaxed">
+                  In June 2024, Spotify removed Sara's single "Never Knew" for alleged artificial streams. 
+                  She had never bought fake plays. The only promotion she used was SubmitHub and Groover — services Spotify considers legitimate. 
+                  <strong className="text-red-400"> Spotify gave no evidence, no specifics, and no way to appeal.</strong> The song was just gone.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Response</h4>
+                <p className="opacity-80 leading-relaxed">
+                  She posted about it on Nostr. The zaps came flooding in. By the end of the day she told her husband: 
+                  "I think I just made more money complaining about Spotify than I ever made on Spotify." 
+                  She repeated that line on a panel at the Bands of Bitcoin showcase in Nashville, and the quote spread through the value-for-value community immediately.
+                </p>
+              </div>
+
+              <blockquote 
+                className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                  borderLeft: `4px solid ${currentTheme.accent}`
+                }}
+              >
+                "$700 for a 30-minute set — more than most independent artists make for a full three-hour bar gig. 
+                My father, a working musician for decades, told me bar pay hasn't gone up in 30 years."
+              </blockquote>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Ripple Effect</h4>
+                <ul className="space-y-3 opacity-80">
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span>After the Phoenix stream, a stranger in Palm Springs recognized her name at a hotel bar</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span>After Nashville, Apple Music plays jumped <strong>600%</strong> with listeners spread across the country</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span>Measurable audience growth in cities and states where she has never performed</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="text-center pt-4">
+                <p className="text-lg opacity-70 mb-4">
+                  Sara still uses DistroKid. She still plays local gigs. But she describes the value-for-value ecosystem as:
+                </p>
+                <div className="text-2xl font-bold">
+                  "The first part of my business plan that has{' '}
+                  <span style={{ color: currentTheme.accent }}>actually changed the math</span>."
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Grid */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
