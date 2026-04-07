@@ -642,7 +642,6 @@ const Index = () => {
               />
               <div className="p-4">
                 <h3 className="font-bold text-lg mb-1">Antone's, Austin TX</h3>
-                <p className="text-sm opacity-60">Where legends play - now with Bitcoin zaps</p>
               </div>
             </div>
           </div>
