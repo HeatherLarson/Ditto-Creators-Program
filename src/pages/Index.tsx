@@ -1,23 +1,26 @@
 import { useSeoMeta } from '@unhead/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   Music2, 
-  Shield, 
   Zap, 
-  Users, 
   DollarSign, 
-  MessageSquare,
-  ChevronDown,
   ExternalLink,
   Check,
   Sparkles,
-  Radio,
-  Mic2,
-  Heart
+  X,
+  Minus,
+  Square,
+  ChevronRight,
+  Volume2,
+  Play,
+  Heart,
+  MessageCircle,
+  Repeat2,
+  MoreHorizontal,
+  Palette
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import {
   Accordion,
   AccordionContent,
@@ -27,503 +30,784 @@ import {
 
 import { CreatorApplicationForm } from '@/components/CreatorApplicationForm';
 
+// Theme definitions
+const themes = [
+  { 
+    name: 'Neon', 
+    bg: 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%)', 
+    accent: '#a855f7',
+    text: '#fff',
+    font: 'Space Grotesk Variable'
+  },
+  { 
+    name: 'Grunge', 
+    bg: 'linear-gradient(135deg, #1a1612 0%, #2d2420 100%)', 
+    accent: '#c4a574',
+    text: '#e8dcc8',
+    font: 'Space Grotesk Variable'
+  },
+  { 
+    name: 'Vapor', 
+    bg: 'linear-gradient(135deg, #1a0a2e 0%, #0f1a2e 100%)', 
+    accent: '#ff6ec7',
+    text: '#7fdbff',
+    font: 'Space Grotesk Variable'
+  },
+  { 
+    name: 'Punk', 
+    bg: 'linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 100%)', 
+    accent: '#ff3366',
+    text: '#fff',
+    font: 'Space Grotesk Variable'
+  },
+];
+
+// Fake music posts for the mockup
+const fakePosts = [
+  {
+    artist: 'Luna',
+    handle: '@lunabeats',
+    avatar: 'https://api.dicebear.com/9.x/notionists/svg?seed=luna-music',
+    content: 'Just dropped my new single "Midnight Protocol" - no labels, no gatekeepers, just pure sound. Listen now on Ditto.',
+    hasAudio: true,
+    stats: { replies: 47, reposts: 128, likes: 892, zaps: '12.4k' }
+  },
+  {
+    artist: 'BASS_DROP',
+    handle: '@bassdrop',
+    avatar: 'https://api.dicebear.com/9.x/notionists/svg?seed=bass-drop',
+    content: 'YouTube took down my remix for the 3rd time. Meanwhile on Ditto? 50k plays and counting. This is the future.',
+    stats: { replies: 156, reposts: 342, likes: 2147, zaps: '45.2k' }
+  },
+  {
+    artist: 'Aria',
+    handle: '@ariamusic',
+    avatar: 'https://api.dicebear.com/9.x/notionists/svg?seed=aria-singer',
+    content: 'Live streaming my studio session in 10 mins. Tips go directly to me - no 30% platform cut. See you there!',
+    isLive: true,
+    stats: { replies: 89, reposts: 67, likes: 541, zaps: '8.9k' }
+  },
+];
+
 const Index = () => {
+  const [activeTheme, setActiveTheme] = useState(0);
   const [showForm, setShowForm] = useState(false);
+  const [isThemePickerOpen, setIsThemePickerOpen] = useState(false);
 
   useSeoMeta({
     title: 'Ditto Creators Program | For Musicians',
     description: 'Join the Ditto Creators Program. Get early access, shape the future of decentralized music, and earn from the Ditto Creators Fund. No gatekeepers. No algorithms. Just your music.',
   });
 
-  const scrollToForm = () => {
-    setShowForm(true);
-    setTimeout(() => {
-      document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-  };
+  // Auto-rotate themes
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!isThemePickerOpen) {
+        setActiveTheme((prev) => (prev + 1) % themes.length);
+      }
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isThemePickerOpen]);
+
+  const currentTheme = themes[activeTheme];
 
   return (
-    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
-      {/* Background grid */}
-      <div className="fixed inset-0 bg-grid opacity-50 pointer-events-none" />
-      
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center isolate">
-        {/* Hero background image */}
-        <div 
-          className="absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: 'url(/images/hero-bg.jpg)' }}
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/60 via-background/80 to-background" />
+    <div 
+      className="min-h-screen transition-all duration-700"
+      style={{ 
+        background: currentTheme.bg,
+        fontFamily: currentTheme.font,
+        color: currentTheme.text 
+      }}
+    >
+      {/* Theme Picker */}
+      <div className="fixed top-4 right-4 z-50">
+        <button
+          onClick={() => setIsThemePickerOpen(!isThemePickerOpen)}
+          className="p-3 rounded-full backdrop-blur-md transition-all hover:scale-110"
+          style={{ 
+            background: `${currentTheme.accent}20`,
+            border: `1px solid ${currentTheme.accent}40`
+          }}
+          aria-label="Open theme picker"
+        >
+          <Palette className="w-5 h-5" style={{ color: currentTheme.accent }} />
+        </button>
         
-        <div className="container relative z-10 px-4 py-24 md:py-32">
-          {/* Logo / Brand */}
-          <div className="flex items-center justify-center mb-8">
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-              <Music2 className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium text-primary">Ditto Creators Program</span>
-            </div>
-          </div>
-
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
-              <span className="gradient-text">Your Music.</span>
-              <br />
-              <span className="text-foreground">Your Rules.</span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-              Tired of algorithms burying your content? Tired of platforms that don't pay? 
-              Join the leading edge of decentralized music on Ditto.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button 
-                size="lg" 
-                className="text-lg px-8 py-6 glow-purple hover:glow-purple-strong transition-all duration-300"
-                onClick={scrollToForm}
+        {isThemePickerOpen && (
+          <div 
+            className="absolute top-14 right-0 p-2 rounded-xl backdrop-blur-md"
+            style={{ 
+              background: `${currentTheme.accent}10`,
+              border: `1px solid ${currentTheme.accent}30`
+            }}
+          >
+            {themes.map((theme, i) => (
+              <button
+                key={theme.name}
+                onClick={() => {
+                  setActiveTheme(i);
+                  setIsThemePickerOpen(false);
+                }}
+                className={`block w-full px-4 py-2 text-left rounded-lg transition-all ${
+                  i === activeTheme ? 'opacity-100' : 'opacity-60 hover:opacity-100'
+                }`}
+                style={{ 
+                  background: i === activeTheme ? `${theme.accent}30` : 'transparent'
+                }}
               >
-                Apply to Join
-                <Sparkles className="ml-2 w-5 h-5" />
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="text-lg px-8 py-6 border-muted-foreground/30 hover:border-primary/50 transition-all duration-300"
-                asChild
-              >
-                <a href="https://ditto.pub" target="_blank" rel="noopener noreferrer">
-                  Explore Ditto
-                  <ExternalLink className="ml-2 w-5 h-5" />
-                </a>
-              </Button>
+                <span className="flex items-center gap-2">
+                  <span 
+                    className="w-3 h-3 rounded-full"
+                    style={{ background: theme.accent }}
+                  />
+                  {theme.name}
+                </span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Hero Section with Retro Window Frame */}
+      <section className="min-h-screen flex items-center justify-center p-4 md:p-8">
+        <div className="w-full max-w-6xl">
+          {/* Retro Window Frame */}
+          <div 
+            className="rounded-xl overflow-hidden shadow-2xl"
+            style={{ 
+              background: `${currentTheme.accent}10`,
+              border: `1px solid ${currentTheme.accent}30`,
+              boxShadow: `0 0 60px ${currentTheme.accent}20`
+            }}
+          >
+            {/* Window Title Bar */}
+            <div 
+              className="flex items-center justify-between px-4 py-2"
+              style={{ 
+                background: `${currentTheme.accent}15`,
+                borderBottom: `1px solid ${currentTheme.accent}20`
+              }}
+            >
+              <div className="flex items-center gap-3">
+                <Music2 className="w-4 h-4" style={{ color: currentTheme.accent }} />
+                <span className="text-sm opacity-70">Ditto Creators Program</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <button className="p-1 rounded hover:bg-white/10 transition-colors">
+                  <Minus className="w-3 h-3 opacity-50" />
+                </button>
+                <button className="p-1 rounded hover:bg-white/10 transition-colors">
+                  <Square className="w-3 h-3 opacity-50" />
+                </button>
+                <button className="p-1 rounded hover:bg-white/10 transition-colors">
+                  <X className="w-3 h-3 opacity-50" />
+                </button>
+              </div>
             </div>
 
-            {/* Social proof */}
-            <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-primary" />
-                <span>100% Free to Join</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-primary" />
-                <span>Shape the Platform</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-primary" />
-                <span>Earn from Creators Fund</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Scroll indicator */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-            <ChevronDown className="w-8 h-8 text-muted-foreground/50" />
-          </div>
-        </div>
-      </section>
-
-      {/* Pain Points Section */}
-      <section className="relative py-24 md:py-32">
-        <div className="container px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-bold text-center mb-6">
-              Aren't You <span className="gradient-text">Tired</span> of This?
-            </h2>
-            <p className="text-center text-muted-foreground text-lg mb-16 max-w-2xl mx-auto">
-              The platforms that were supposed to help artists have become the biggest obstacles.
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {[
-                {
-                  title: "Jumping through hoops for monetization",
-                  description: "1,000 subscribers? 4,000 watch hours? 10,000 followers? Why should your art have arbitrary gatekeeping?"
-                },
-                {
-                  title: "Content taken down without warning",
-                  description: "One copyright claim, one \"community guidelines\" violation, and years of work can vanish overnight."
-                },
-                {
-                  title: "De-platformed with no recourse",
-                  description: "Banned for speaking your mind? Good luck appealing to a faceless algorithm. Your audience? Gone."
-                },
-                {
-                  title: "Building on someone else's backyard",
-                  description: "You're a tenant on Big Tech's property. They change the rules, raise the rent, or kick you out whenever they want."
-                }
-              ].map((pain, i) => (
-                <Card 
-                  key={i} 
-                  className="bg-destructive/5 border-destructive/20 hover:border-destructive/40 transition-all duration-300"
+            {/* Window Content */}
+            <div className="p-8 md:p-12 lg:p-16">
+              {/* Logo */}
+              <div className="flex justify-center mb-8">
+                <div 
+                  className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full"
+                  style={{ 
+                    background: `${currentTheme.accent}20`,
+                    border: `1px solid ${currentTheme.accent}40`
+                  }}
                 >
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold mb-3 text-destructive/90">{pain.title}</h3>
-                    <p className="text-muted-foreground">{pain.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+                  <Music2 className="w-5 h-5" style={{ color: currentTheme.accent }} />
+                  <span className="font-semibold" style={{ color: currentTheme.accent }}>
+                    For Musicians
+                  </span>
+                </div>
+              </div>
 
-      {/* Freedom Section */}
-      <section className="relative py-24 md:py-32 overflow-hidden isolate">
-        <div 
-          className="absolute inset-0 -z-10 opacity-30 bg-cover bg-center"
-          style={{ backgroundImage: 'url(/images/freedom.jpg)' }}
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background via-background/95 to-background" />
-        
-        <div className="container px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-5xl font-bold mb-6">
-                What if You Could <span className="gradient-text">Own</span> Your Audience?
-              </h2>
-              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Ditto is built on Nostr, a decentralized protocol that puts <strong className="text-foreground">you</strong> in control. 
-                Your followers? They're yours forever. Your content? Uncensorable. Your identity? 
-                Portable across any app that supports the protocol.
+              {/* Main Headline */}
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-center mb-6 tracking-tight">
+                <span 
+                  className="block"
+                  style={{ 
+                    background: `linear-gradient(135deg, ${currentTheme.accent}, ${currentTheme.text})`,
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent'
+                  }}
+                >
+                  Your Music.
+                </span>
+                <span className="block">Your Platform.</span>
+              </h1>
+
+              <p className="text-xl md:text-2xl text-center max-w-2xl mx-auto mb-10 opacity-70 leading-relaxed">
+                Tired of algorithms burying your sound? Tired of platforms that don't pay? 
+                Join the leading edge of decentralized music.
               </p>
-              
-              <div className="space-y-4">
-                {[
-                  "No algorithm deciding who sees your music",
-                  "No platform can ban you or delete your content",
-                  "Take your audience with you, anywhere",
-                  "Get paid directly via Bitcoin Lightning",
-                  "Connect with fans on your terms"
-                ].map((benefit, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                      <Check className="w-4 h-4 text-primary" />
-                    </div>
-                    <span className="text-foreground">{benefit}</span>
-                  </div>
-                ))}
+
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <Button 
+                  size="lg" 
+                  className="text-lg px-8 py-6 transition-all hover:scale-105"
+                  style={{ 
+                    background: currentTheme.accent,
+                    color: '#fff',
+                    boxShadow: `0 0 30px ${currentTheme.accent}50`
+                  }}
+                  onClick={() => {
+                    setShowForm(true);
+                    setTimeout(() => {
+                      document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                  }}
+                >
+                  Apply to Join
+                  <Sparkles className="ml-2 w-5 h-5" />
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="text-lg px-8 py-6 transition-all hover:scale-105"
+                  style={{ 
+                    borderColor: `${currentTheme.accent}50`,
+                    color: currentTheme.text
+                  }}
+                  asChild
+                >
+                  <a href="https://ditto.pub" target="_blank" rel="noopener noreferrer">
+                    Explore Ditto
+                    <ExternalLink className="ml-2 w-5 h-5" />
+                  </a>
+                </Button>
+              </div>
+
+              {/* Social proof */}
+              <div className="flex flex-wrap items-center justify-center gap-6 text-sm opacity-60">
+                <div className="flex items-center gap-2">
+                  <Check className="w-4 h-4" style={{ color: currentTheme.accent }} />
+                  <span>100% Free</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Check className="w-4 h-4" style={{ color: currentTheme.accent }} />
+                  <span>Shape the Platform</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Check className="w-4 h-4" style={{ color: currentTheme.accent }} />
+                  <span>Creators Fund</span>
+                </div>
               </div>
             </div>
+          </div>
 
-            <div className="relative">
-              <div className="gradient-border rounded-2xl p-1">
-                <Card className="bg-card/80 backdrop-blur border-0">
-                  <CardContent className="p-8">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-blue-500 flex items-center justify-center">
-                        <Shield className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-lg">True Ownership</h3>
-                        <p className="text-sm text-muted-foreground">Your keys, your content</p>
-                      </div>
-                    </div>
-                    <p className="text-muted-foreground leading-relaxed">
-                      On Nostr, you hold cryptographic keys that prove your identity. 
-                      No company can impersonate you, no platform can silence you. 
-                      This is what digital freedom looks like.
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-              
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-3xl" />
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl" />
+          {/* Scroll hint */}
+          <div className="flex justify-center mt-8">
+            <div 
+              className="animate-bounce p-2 rounded-full"
+              style={{ background: `${currentTheme.accent}20` }}
+            >
+              <ChevronRight className="w-6 h-6 rotate-90" style={{ color: currentTheme.accent }} />
             </div>
           </div>
         </div>
       </section>
 
-      {/* What is Ditto Section */}
-      <section className="relative py-24 md:py-32">
-        <div className="container px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              What is <span className="gradient-text">Ditto</span>?
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              A social platform for people who want to have fun, not feed the Big Tech machine. 
-              Open source, decentralized, and entirely yours to customize.
-            </p>
-          </div>
+      {/* Pain Points - Scattered Cards */}
+      <section className="py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-6xl font-bold text-center mb-6">
+            Aren't You{' '}
+            <span style={{ color: currentTheme.accent }}>Tired</span>{' '}
+            of This?
+          </h2>
+          <p className="text-center opacity-60 text-lg mb-16 max-w-xl mx-auto">
+            The platforms that were supposed to help artists have become the biggest obstacles.
+          </p>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              {
-                icon: Music2,
-                title: "Music Tracks & Playlists",
-                description: "Upload your music and create playlists. Get discovered through a feed that respects your art, not an algorithm's agenda."
+              { 
+                title: "Jumping through hoops", 
+                desc: "1,000 subscribers? 4,000 watch hours? Why should your art have arbitrary gatekeeping?",
+                rotate: '-1deg'
               },
-              {
-                icon: Radio,
-                title: "Live Streaming",
-                description: "Go live with your performances. Connect directly with fans. Get tipped in Bitcoin Lightning in real-time."
+              { 
+                title: "Content taken down", 
+                desc: "One copyright claim and years of work vanish overnight. No warning. No appeal.",
+                rotate: '1.5deg'
               },
-              {
-                icon: Mic2,
-                title: "Podcasts & Voice",
-                description: "Share your podcast episodes, voice messages, and audio content. Build your audio empire without gatekeepers."
+              { 
+                title: "De-platformed", 
+                desc: "Banned for speaking your mind? Good luck appealing to a faceless algorithm.",
+                rotate: '-0.5deg'
               },
-              {
-                icon: Zap,
-                title: "Instant Payments",
-                description: "Receive Bitcoin tips (zaps) directly from fans. No middleman taking 30%. No waiting weeks for payouts."
+              { 
+                title: "Building on rented land", 
+                desc: "You're a tenant on Big Tech's property. They can evict you whenever they want.",
+                rotate: '1deg'
               },
-              {
-                icon: Users,
-                title: "Community Building",
-                description: "Comments, reactions, and discussions. Build a real community around your music, not just passive followers."
-              },
-              {
-                icon: Heart,
-                title: "Custom Themes",
-                description: "Express yourself with fully customizable profiles. Colors, backgrounds, fonts. Make your page truly yours."
-              }
-            ].map((feature, i) => (
-              <Card 
-                key={i} 
-                className="bg-card/50 border-border/50 hover:border-primary/30 hover:bg-card/80 transition-all duration-300 group"
+            ].map((pain, i) => (
+              <div
+                key={i}
+                className="p-6 rounded-xl transition-all hover:scale-[1.02]"
+                style={{ 
+                  background: 'rgba(255,50,50,0.1)',
+                  border: '1px solid rgba(255,50,50,0.2)',
+                  transform: `rotate(${pain.rotate})`
+                }}
               >
-                <CardContent className="p-6">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                    <feature.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
-                </CardContent>
-              </Card>
+                <h3 className="text-xl font-bold mb-2 text-red-400">{pain.title}</h3>
+                <p className="opacity-70">{pain.desc}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Creators Program Benefits */}
-      <section className="relative py-24 md:py-32 bg-gradient-to-b from-primary/5 to-transparent">
-        <div className="container px-4">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Limited Beta Access</span>
+      {/* Fake Ditto UI Mockup */}
+      <section className="py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-6xl font-bold text-center mb-6">
+            What if There Was a{' '}
+            <span style={{ color: currentTheme.accent }}>Better Way</span>?
+          </h2>
+          <p className="text-center opacity-60 text-lg mb-16 max-w-xl mx-auto">
+            Ditto is a social platform where musicians actually thrive. No gatekeepers. Direct payments. Your audience, forever.
+          </p>
+
+          {/* Fake Ditto Window */}
+          <div 
+            className="rounded-xl overflow-hidden shadow-2xl"
+            style={{ 
+              background: `${currentTheme.accent}08`,
+              border: `1px solid ${currentTheme.accent}20`,
+              boxShadow: `0 0 80px ${currentTheme.accent}15`
+            }}
+          >
+            {/* Window Chrome */}
+            <div 
+              className="flex items-center justify-between px-4 py-3"
+              style={{ 
+                background: `${currentTheme.accent}10`,
+                borderBottom: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-500/70" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
+                <div className="w-3 h-3 rounded-full bg-green-500/70" />
+              </div>
+              <span className="text-sm opacity-50">ditto.pub/music</span>
+              <div className="w-16" />
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              The <span className="gradient-text">Ditto Creators</span> Program
+
+            <div className="flex">
+              {/* Sidebar */}
+              <div 
+                className="hidden md:block w-64 p-4 border-r"
+                style={{ borderColor: `${currentTheme.accent}15` }}
+              >
+                <div className="flex items-center gap-3 mb-6 p-2">
+                  <div 
+                    className="w-10 h-10 rounded-full flex items-center justify-center text-xl"
+                    style={{ background: `${currentTheme.accent}30` }}
+                  >
+                    <Music2 className="w-5 h-5" style={{ color: currentTheme.accent }} />
+                  </div>
+                  <div>
+                    <div className="font-semibold">You</div>
+                    <div className="text-xs opacity-50">@you@ditto.pub</div>
+                  </div>
+                </div>
+
+                <nav className="space-y-1">
+                  {[
+                    { icon: '🎵', label: 'Music', active: true },
+                    { icon: '🔥', label: 'Feed' },
+                    { icon: '📡', label: 'Streams' },
+                    { icon: '🎙️', label: 'Podcasts' },
+                    { icon: '💰', label: 'Earnings' },
+                    { icon: '👤', label: 'Profile' },
+                  ].map((item) => (
+                    <div 
+                      key={item.label}
+                      className="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors"
+                      style={{ 
+                        background: item.active ? `${currentTheme.accent}20` : 'transparent'
+                      }}
+                    >
+                      <span>{item.icon}</span>
+                      <span className={item.active ? 'font-semibold' : 'opacity-70'}>
+                        {item.label}
+                      </span>
+                    </div>
+                  ))}
+                </nav>
+              </div>
+
+              {/* Main Content */}
+              <div className="flex-1 p-4 md:p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-xl font-bold">Music Feed</h3>
+                  <div className="flex gap-2">
+                    <span 
+                      className="px-3 py-1 rounded-full text-sm"
+                      style={{ background: `${currentTheme.accent}30` }}
+                    >
+                      Following
+                    </span>
+                    <span className="px-3 py-1 rounded-full text-sm opacity-50">Discover</span>
+                  </div>
+                </div>
+
+                {/* Fake Posts */}
+                <div className="space-y-4">
+                  {fakePosts.map((post, i) => (
+                    <div 
+                      key={i}
+                      className="p-4 rounded-xl transition-all hover:scale-[1.01]"
+                      style={{ 
+                        background: `${currentTheme.accent}08`,
+                        border: `1px solid ${currentTheme.accent}10`
+                      }}
+                    >
+                      <div className="flex items-start gap-3">
+                        <img 
+                          src={post.avatar} 
+                          alt={post.artist}
+                          className="w-12 h-12 rounded-full"
+                          style={{ background: `${currentTheme.accent}20` }}
+                        />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="font-semibold">{post.artist}</span>
+                            <span className="text-sm opacity-50">{post.handle}</span>
+                            {post.isLive && (
+                              <span 
+                                className="px-2 py-0.5 rounded text-xs font-bold animate-pulse"
+                                style={{ background: '#f00', color: '#fff' }}
+                              >
+                                LIVE
+                              </span>
+                            )}
+                          </div>
+                          <p className="mb-3 opacity-90">{post.content}</p>
+                          
+                          {post.hasAudio && (
+                            <div 
+                              className="flex items-center gap-3 p-3 rounded-lg mb-3"
+                              style={{ background: `${currentTheme.accent}15` }}
+                            >
+                              <button 
+                                className="w-10 h-10 rounded-full flex items-center justify-center"
+                                style={{ background: currentTheme.accent }}
+                              >
+                                <Play className="w-5 h-5 text-white ml-0.5" />
+                              </button>
+                              <div className="flex-1">
+                                <div 
+                                  className="h-1 rounded-full"
+                                  style={{ background: `${currentTheme.accent}30` }}
+                                >
+                                  <div 
+                                    className="h-full rounded-full w-1/3"
+                                    style={{ background: currentTheme.accent }}
+                                  />
+                                </div>
+                              </div>
+                              <Volume2 className="w-4 h-4 opacity-50" />
+                            </div>
+                          )}
+
+                          <div className="flex items-center gap-6 text-sm opacity-60">
+                            <span className="flex items-center gap-1 hover:opacity-100 cursor-pointer">
+                              <MessageCircle className="w-4 h-4" />
+                              {post.stats.replies}
+                            </span>
+                            <span className="flex items-center gap-1 hover:opacity-100 cursor-pointer">
+                              <Repeat2 className="w-4 h-4" />
+                              {post.stats.reposts}
+                            </span>
+                            <span className="flex items-center gap-1 hover:opacity-100 cursor-pointer">
+                              <Heart className="w-4 h-4" />
+                              {post.stats.likes}
+                            </span>
+                            <span 
+                              className="flex items-center gap-1 hover:opacity-100 cursor-pointer"
+                              style={{ color: currentTheme.accent }}
+                            >
+                              <Zap className="w-4 h-4" />
+                              {post.stats.zaps}
+                            </span>
+                            <span className="flex items-center gap-1 hover:opacity-100 cursor-pointer ml-auto">
+                              <MoreHorizontal className="w-4 h-4" />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-center mt-8">
+            <a 
+              href="https://ditto.pub" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all hover:scale-105"
+              style={{ 
+                background: currentTheme.accent,
+                color: '#fff',
+                boxShadow: `0 0 30px ${currentTheme.accent}40`
+              }}
+            >
+              Try Ditto Now
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Grid */}
+      <section className="py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <div 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+              style={{ 
+                background: `${currentTheme.accent}20`,
+                border: `1px solid ${currentTheme.accent}30`
+              }}
+            >
+              <Sparkles className="w-4 h-4" style={{ color: currentTheme.accent }} />
+              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+                Limited Beta Access
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+              The{' '}
+              <span style={{ color: currentTheme.accent }}>Creators Program</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Be among the first musicians to shape the future of decentralized music. 
-              Your feedback directly influences how Ditto evolves.
+            <p className="text-lg opacity-60 max-w-xl mx-auto">
+              Be among the first musicians to shape decentralized music. Your feedback directly influences Ditto.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="gradient-border bg-card/80 backdrop-blur">
-              <CardContent className="p-8">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center mb-6">
-                  <DollarSign className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Creators Fund</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  The best music on Ditto gets rewarded from our Creators Fund. 
-                  Quality content deserves compensation, not just clout.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="gradient-border bg-card/80 backdrop-blur">
-              <CardContent className="p-8">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-6">
-                  <MessageSquare className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Direct Feedback</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Your voice matters. Work directly with the Ditto team to shape features 
-                  that actually help musicians succeed.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="gradient-border bg-card/80 backdrop-blur">
-              <CardContent className="p-8">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center mb-6">
-                  <Users className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Pioneer Status</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Be recognized as a founding creator. Early adopters who help build 
-                  the community will be remembered.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Additional benefits list */}
-          <div className="mt-16 max-w-3xl mx-auto">
-            <div className="grid sm:grid-cols-2 gap-4">
-              {[
-                "100% free to participate",
-                "No follower requirements",
-                "Early access to new features",
-                "Priority support from the team",
-                "Community of like-minded artists",
-                "Uncensorable platform"
-              ].map((benefit, i) => (
-                <div key={i} className="flex items-center gap-3 p-4 rounded-lg bg-card/30">
-                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span>{benefit}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="relative py-24 md:py-32">
-        <div className="container px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-bold text-center mb-16">
-              Frequently Asked <span className="gradient-text">Questions</span>
-            </h2>
-
-            <Accordion type="single" collapsible className="space-y-4">
-              {[
-                {
-                  question: "What is Nostr and why does it matter?",
-                  answer: "Nostr is a decentralized protocol for social networking. Unlike Twitter or Instagram, no single company controls Nostr. Your identity is yours forever, your content can't be deleted by a platform, and you can move between apps seamlessly. Think of it like email, your Gmail address works with any email client."
-                },
-                {
-                  question: "Do I need to know anything about crypto or Bitcoin?",
-                  answer: "Not at all! You can use Ditto just like any other social platform. Bitcoin Lightning payments are optional, they're just an amazing way for fans to support you directly without fees. If you're curious, we'll help you get set up."
-                },
-                {
-                  question: "What kind of music content can I post?",
-                  answer: "Everything! Full tracks, clips, demos, live performances, podcasts, voice messages, and more. Ditto supports multiple content types including music tracks, playlists, videos, short-form content (like Reels/TikTok), live streams, and long-form articles."
-                },
-                {
-                  question: "How does the Creators Fund work?",
-                  answer: "The Ditto Creators Fund rewards outstanding music content on the platform. Selection is based on quality, engagement, and contribution to the community. There are no subscriber thresholds or watch-time requirements, just great music."
-                },
-                {
-                  question: "Can I still use other platforms?",
-                  answer: "Absolutely! Many creators use Ditto alongside traditional platforms. In fact, Ditto can bridge to Bluesky and Mastodon, expanding your reach. Think of Ditto as your uncensorable home base."
-                },
-                {
-                  question: "Is this really free?",
-                  answer: "Yes. The Ditto Creators Program is completely free. We're building the future of social media and we want passionate creators to help shape it. No hidden costs, no premium tiers for basic features."
-                },
-                {
-                  question: "When does the program start?",
-                  answer: "We're accepting applications now for our beta program. Selected creators will get early access to new music-focused features and direct communication with the development team."
-                }
-              ].map((faq, i) => (
-                <AccordionItem 
-                  key={i} 
-                  value={`item-${i}`}
-                  className="border border-border/50 rounded-lg px-6 data-[state=open]:border-primary/30 transition-colors"
-                >
-                  <AccordionTrigger className="text-left hover:no-underline py-6">
-                    <span className="text-lg font-medium">{faq.question}</span>
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pb-6 leading-relaxed">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </div>
-      </section>
-
-      {/* Application Form Section */}
-      <section id="apply" className="relative py-24 md:py-32 bg-gradient-to-b from-transparent via-primary/5 to-transparent">
-        <div className="container px-4">
-          <div className="max-w-2xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-5xl font-bold mb-6">
-                Ready to <span className="gradient-text">Join</span>?
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Fill out the form below to apply for the Ditto Creators Program. 
-                We'll be in touch soon!
-              </p>
-            </div>
-
-            {showForm ? (
-              <CreatorApplicationForm />
-            ) : (
-              <div className="text-center">
-                <Card className="gradient-border bg-card/80 backdrop-blur p-12">
-                  <CardContent className="p-0">
-                    <Music2 className="w-16 h-16 text-primary mx-auto mb-6" />
-                    <h3 className="text-2xl font-bold mb-4">Musicians Only (For Now)</h3>
-                    <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-                      We're starting with musicians and expanding to more creator types soon. 
-                      Ready to be a pioneer?
-                    </p>
-                    <Button 
-                      size="lg" 
-                      className="text-lg px-8 py-6 glow-purple hover:glow-purple-strong transition-all duration-300"
-                      onClick={() => setShowForm(true)}
-                    >
-                      Start Application
-                      <Sparkles className="ml-2 w-5 h-5" />
-                    </Button>
-                  </CardContent>
-                </Card>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: DollarSign,
+                title: 'Creators Fund',
+                desc: 'The best music gets rewarded. Quality over follower counts.',
+                gradient: `linear-gradient(135deg, ${currentTheme.accent}30, transparent)`
+              },
+              {
+                icon: MessageCircle,
+                title: 'Direct Feedback',
+                desc: 'Work directly with the team to shape features for musicians.',
+                gradient: `linear-gradient(135deg, #3b82f630, transparent)`
+              },
+              {
+                icon: Sparkles,
+                title: 'Pioneer Status',
+                desc: 'Be recognized as a founding creator. Early adopters are remembered.',
+                gradient: `linear-gradient(135deg, #22c55e30, transparent)`
+              },
+            ].map((benefit, i) => (
+              <div
+                key={i}
+                className="p-8 rounded-2xl transition-all hover:scale-[1.02]"
+                style={{ 
+                  background: benefit.gradient,
+                  border: `1px solid ${currentTheme.accent}20`
+                }}
+              >
+                <benefit.icon 
+                  className="w-12 h-12 mb-4" 
+                  style={{ color: currentTheme.accent }} 
+                />
+                <h3 className="text-2xl font-bold mb-3">{benefit.title}</h3>
+                <p className="opacity-70">{benefit.desc}</p>
               </div>
-            )}
+            ))}
           </div>
+
+          {/* Bonus perks */}
+          <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              '100% free to participate',
+              'No follower requirements',
+              'Early access to features',
+              'Priority support',
+              'Community of artists',
+              'Uncensorable platform'
+            ].map((perk, i) => (
+              <div 
+                key={i}
+                className="flex items-center gap-3 p-4 rounded-xl"
+                style={{ background: `${currentTheme.accent}10` }}
+              >
+                <Check className="w-5 h-5 flex-shrink-0" style={{ color: currentTheme.accent }} />
+                <span>{perk}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-24 px-4">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
+            Questions?{' '}
+            <span style={{ color: currentTheme.accent }}>Answers.</span>
+          </h2>
+
+          <Accordion type="single" collapsible className="space-y-4">
+            {[
+              {
+                q: "What is Nostr and why should I care?",
+                a: "Nostr is a decentralized protocol, think of it like email but for social media. No single company controls it. Your identity is yours forever, your content can't be deleted by a platform, and you can move between apps seamlessly."
+              },
+              {
+                q: "Do I need to understand Bitcoin or crypto?",
+                a: "Nope! You can use Ditto just like any other platform. Bitcoin Lightning payments are optional - they're just an amazing way for fans to tip you directly without fees. We'll help you set it up if you're interested."
+              },
+              {
+                q: "What content can I post?",
+                a: "Everything! Full tracks, clips, demos, live performances, podcasts, voice messages. Ditto supports music tracks, playlists, videos, short-form content, live streams, and articles."
+              },
+              {
+                q: "How does the Creators Fund work?",
+                a: "We reward outstanding music on the platform. Selection is based on quality, engagement, and community contribution. No subscriber thresholds or watch-time requirements."
+              },
+              {
+                q: "Can I still use YouTube/Spotify/etc?",
+                a: "Absolutely! Many creators use Ditto alongside traditional platforms. Think of Ditto as your uncensorable home base where you truly own your audience."
+              },
+              {
+                q: "Is this actually free?",
+                a: "Yes. The Ditto Creators Program is completely free. We're building the future of social media and want passionate creators to help shape it."
+              },
+            ].map((faq, i) => (
+              <AccordionItem 
+                key={i} 
+                value={`item-${i}`}
+                className="rounded-xl px-6 transition-colors"
+                style={{ 
+                  background: `${currentTheme.accent}08`,
+                  border: `1px solid ${currentTheme.accent}15`
+                }}
+              >
+                <AccordionTrigger className="text-left hover:no-underline py-6">
+                  <span className="text-lg font-medium">{faq.q}</span>
+                </AccordionTrigger>
+                <AccordionContent className="pb-6 opacity-70 leading-relaxed">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      {/* Application Form */}
+      <section id="apply" className="py-24 px-4">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Ready to{' '}
+              <span style={{ color: currentTheme.accent }}>Join</span>?
+            </h2>
+            <p className="text-lg opacity-60">
+              Fill out the form below. We'll be in touch soon.
+            </p>
+          </div>
+
+          {showForm ? (
+            <CreatorApplicationForm accentColor={currentTheme.accent} />
+          ) : (
+            <div 
+              className="rounded-2xl p-12 text-center"
+              style={{ 
+                background: `${currentTheme.accent}10`,
+                border: `1px solid ${currentTheme.accent}20`
+              }}
+            >
+              <Music2 className="w-16 h-16 mx-auto mb-6" style={{ color: currentTheme.accent }} />
+              <h3 className="text-2xl font-bold mb-4">Musicians Only (For Now)</h3>
+              <p className="opacity-60 mb-8 max-w-md mx-auto">
+                We're starting with musicians and expanding to more creator types soon. Ready to be a pioneer?
+              </p>
+              <Button 
+                size="lg" 
+                className="text-lg px-8 py-6 transition-all hover:scale-105"
+                style={{ 
+                  background: currentTheme.accent,
+                  color: '#fff',
+                  boxShadow: `0 0 30px ${currentTheme.accent}50`
+                }}
+                onClick={() => setShowForm(true)}
+              >
+                Start Application
+                <Sparkles className="ml-2 w-5 h-5" />
+              </Button>
+            </div>
+          )}
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="relative py-12 border-t border-border/30">
-        <div className="container px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <Music2 className="w-6 h-6 text-primary" />
-              <span className="font-semibold">Ditto Creators Program</span>
-            </div>
-            
-            <div className="flex items-center gap-6 text-sm text-muted-foreground">
-              <a 
-                href="https://ditto.pub" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:text-primary transition-colors"
-              >
-                Ditto.pub
-              </a>
-              <a 
-                href="https://soapbox.pub" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:text-primary transition-colors"
-              >
-                Soapbox
-              </a>
-              <a 
-                href="https://about.ditto.pub" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:text-primary transition-colors"
-              >
-                About Ditto
-              </a>
-            </div>
+      <footer 
+        className="py-12 px-4"
+        style={{ borderTop: `1px solid ${currentTheme.accent}15` }}
+      >
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-3">
+            <Music2 className="w-6 h-6" style={{ color: currentTheme.accent }} />
+            <span className="font-semibold">Ditto Creators Program</span>
+          </div>
+          
+          <div className="flex items-center gap-6 text-sm opacity-60">
+            <a 
+              href="https://ditto.pub" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:opacity-100 transition-opacity"
+            >
+              Ditto.pub
+            </a>
+            <a 
+              href="https://soapbox.pub" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:opacity-100 transition-opacity"
+            >
+              Soapbox
+            </a>
+            <a 
+              href="https://about.ditto.pub" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:opacity-100 transition-opacity"
+            >
+              About
+            </a>
+          </div>
 
-            <div className="text-sm text-muted-foreground">
-              Vibed with{' '}
-              <a 
-                href="https://shakespeare.diy" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-primary hover:underline"
-              >
-                Shakespeare
-              </a>
-            </div>
+          <div className="text-sm opacity-60">
+            Vibed with{' '}
+            <a 
+              href="https://shakespeare.diy" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:opacity-100 transition-opacity"
+              style={{ color: currentTheme.accent }}
+            >
+              Shakespeare
+            </a>
           </div>
         </div>
       </footer>
