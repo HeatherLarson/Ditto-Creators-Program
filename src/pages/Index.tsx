@@ -17,7 +17,10 @@ import {
   MessageCircle,
   Repeat2,
   MoreHorizontal,
-  Palette
+  Palette,
+  Users,
+  Star,
+  Headphones
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -761,25 +764,43 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                icon: DollarSign,
-                title: 'Creators Fund',
-                desc: 'The best music gets rewarded. Quality over follower counts.',
+                icon: Headphones,
+                title: 'Personalized Onboarding',
+                desc: 'Get 1-on-1 guidance to set up your profile, upload music, and connect your wallet. We\'ll make sure you hit the ground running.',
                 gradient: `linear-gradient(135deg, ${currentTheme.accent}30, transparent)`
               },
               {
-                icon: MessageCircle,
-                title: 'Direct Feedback',
-                desc: 'Work directly with the team to shape features for musicians.',
+                icon: Users,
+                title: 'Regular Community Calls',
+                desc: 'Join fellow creators for regular calls where you can share feedback, learn tips, and connect with the Ditto team directly.',
                 gradient: `linear-gradient(135deg, #3b82f630, transparent)`
+              },
+              {
+                icon: Star,
+                title: 'Featured on Ditto.pub',
+                desc: 'Stand-out creators get featured placement on the platform. Your music in front of the entire Ditto community.',
+                gradient: `linear-gradient(135deg, #f59e0b30, transparent)`
+              },
+              {
+                icon: DollarSign,
+                title: 'Creators Fund',
+                desc: 'The best music gets rewarded from our fund. Quality over follower counts.',
+                gradient: `linear-gradient(135deg, #22c55e30, transparent)`
+              },
+              {
+                icon: MessageCircle,
+                title: 'Direct Feedback Loop',
+                desc: 'Your input shapes the product. Tell us what musicians need and watch it get built.',
+                gradient: `linear-gradient(135deg, #ec489930, transparent)`
               },
               {
                 icon: Sparkles,
                 title: 'Pioneer Status',
                 desc: 'Be recognized as a founding creator. Early adopters are remembered.',
-                gradient: `linear-gradient(135deg, #22c55e30, transparent)`
+                gradient: `linear-gradient(135deg, #8b5cf630, transparent)`
               },
             ].map((benefit, i) => (
               <div
@@ -805,9 +826,9 @@ const Index = () => {
             {[
               '100% free to participate',
               'No follower requirements',
-              'Early access to features',
-              'Priority support',
-              'Community of artists',
+              'Early access to new features',
+              'Priority support from the team',
+              'Community of like-minded artists',
               'Uncensorable platform'
             ].map((perk, i) => (
               <div 
