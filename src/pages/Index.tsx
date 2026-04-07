@@ -598,6 +598,110 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Live Events Section */}
+      <section className="py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+              style={{ 
+                background: `${currentTheme.accent}20`,
+                border: `1px solid ${currentTheme.accent}30`
+              }}
+            >
+              <Music2 className="w-4 h-4" style={{ color: currentTheme.accent }} />
+              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+                Real Events, Real Artists
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+              We're Not Just{' '}
+              <span style={{ color: currentTheme.accent }}>Talking</span>
+              <br />
+              About It
+            </h2>
+            <p className="text-lg opacity-60 max-w-2xl mx-auto">
+              Our team has been on the ground at music venues across the country, 
+              connecting artists with the value-for-value ecosystem.
+            </p>
+          </div>
+
+          {/* Media Grid */}
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Video */}
+            <div 
+              className="rounded-2xl overflow-hidden relative group"
+              style={{ 
+                background: `${currentTheme.accent}10`,
+                border: `1px solid ${currentTheme.accent}20`
+              }}
+            >
+              <video 
+                className="w-full aspect-video object-cover"
+                controls
+                playsInline
+                poster="https://blossom.dreamith.to/20e1a31d51e72c1abb579638035cf96990f3f0d6601423500a2beb81dfa58c8f.jpeg"
+              >
+                <source 
+                  src="https://blossom.dreamith.to/5681aa05b6bb5ac83904256b1794a446835e5e6dea4494188fdad269714b1222.qt" 
+                  type="video/quicktime" 
+                />
+                Your browser does not support the video tag.
+              </video>
+              <div className="p-4">
+                <h3 className="font-bold text-lg mb-1">Live Music Event</h3>
+                <p className="text-sm opacity-60">Value-for-value in action</p>
+              </div>
+            </div>
+
+            {/* Image */}
+            <div 
+              className="rounded-2xl overflow-hidden"
+              style={{ 
+                background: `${currentTheme.accent}10`,
+                border: `1px solid ${currentTheme.accent}20`
+              }}
+            >
+              <img 
+                src="https://blossom.dreamith.to/20e1a31d51e72c1abb579638035cf96990f3f0d6601423500a2beb81dfa58c8f.jpeg"
+                alt="Live performance at Antone's"
+                className="w-full aspect-video object-cover"
+              />
+              <div className="p-4">
+                <h3 className="font-bold text-lg mb-1">Antone's, Austin TX</h3>
+                <p className="text-sm opacity-60">Where legends play - now with Bitcoin zaps</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats bar */}
+          <div 
+            className="mt-8 p-6 rounded-2xl grid grid-cols-2 md:grid-cols-4 gap-6 text-center"
+            style={{ 
+              background: `${currentTheme.accent}08`,
+              border: `1px solid ${currentTheme.accent}15`
+            }}
+          >
+            <div>
+              <div className="text-3xl font-bold" style={{ color: currentTheme.accent }}>Nashville</div>
+              <div className="text-sm opacity-60">Music Row</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold" style={{ color: currentTheme.accent }}>Austin</div>
+              <div className="text-sm opacity-60">Live Music Capital</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold" style={{ color: currentTheme.accent }}>Phoenix</div>
+              <div className="text-sm opacity-60">Culture Shock</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold" style={{ color: currentTheme.accent }}>Minneapolis</div>
+              <div className="text-sm opacity-60">Vinyl Lounge</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Case Study - Ainsley Costello */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
