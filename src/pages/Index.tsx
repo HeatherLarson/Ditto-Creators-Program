@@ -570,6 +570,172 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Case Study - Ainsley Costello */}
+      <section className="py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+              style={{ 
+                background: `${currentTheme.accent}20`,
+                border: `1px solid ${currentTheme.accent}30`
+              }}
+            >
+              <Zap className="w-4 h-4" style={{ color: currentTheme.accent }} />
+              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+                Real Results
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+              From{' '}
+              <span className="text-red-400">$700 in Five Years</span>
+              <br />
+              to{' '}
+              <span style={{ color: currentTheme.accent }}>$10,000 in One</span>
+            </h2>
+          </div>
+
+          {/* Case Study Card */}
+          <div 
+            className="rounded-2xl overflow-hidden"
+            style={{ 
+              background: `${currentTheme.accent}08`,
+              border: `1px solid ${currentTheme.accent}20`,
+              boxShadow: `0 0 60px ${currentTheme.accent}10`
+            }}
+          >
+            {/* Header with artist info */}
+            <div 
+              className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
+              style={{ 
+                background: `${currentTheme.accent}12`,
+                borderBottom: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <img 
+                src="https://image.nostr.build/a85501489341e6e0e6497eda76d5d7a8a378e9403da1e10f53d264ce877f3a6e.jpg"
+                alt="Ainsley Costello"
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
+                style={{ border: `3px solid ${currentTheme.accent}` }}
+              />
+              <div className="text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">Ainsley Costello</h3>
+                <p className="opacity-70 mb-3">Nashville-based indie singer-songwriter, Berklee College of Music graduate</p>
+                <a 
+                  href="https://ditto.pub/npub13qrrw2h4z52m7jh0spefrwtysl4psfkfv6j4j672se5hkhvtyw7qu0almy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
+                  style={{ 
+                    background: currentTheme.accent,
+                    color: '#fff'
+                  }}
+                >
+                  Follow on Ditto
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Stats comparison */}
+            <div className="grid md:grid-cols-2">
+              <div 
+                className="p-8 text-center"
+                style={{ borderRight: `1px solid ${currentTheme.accent}15` }}
+              >
+                <div className="text-red-400 text-sm font-medium mb-2 uppercase tracking-wider">Traditional Platforms</div>
+                <div className="text-5xl md:text-6xl font-bold text-red-400 mb-2">$700</div>
+                <div className="opacity-60">across 5 years</div>
+                <div className="text-sm opacity-50 mt-2">25 songs on Spotify, Apple Music, Amazon</div>
+              </div>
+              <div className="p-8 text-center">
+                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Bitcoin + Lightning</div>
+                <div className="text-5xl md:text-6xl font-bold mb-2" style={{ color: currentTheme.accent }}>$10,000+</div>
+                <div className="opacity-60">in just 1 year</div>
+                <div className="text-sm opacity-50 mt-2">Via Wavlake, Fountain, and value-for-value</div>
+              </div>
+            </div>
+
+            {/* Story content */}
+            <div className="p-6 md:p-8 space-y-6">
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Breaking Point</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Ainsley did everything the traditional industry told her to do. Posted on TikTok three times a day. 
+                  Released new songs every six weeks. Had 25 songs in distribution and written over 300. 
+                  The result? Approximately $700-800 in <em>total</em> streaming royalties across five years. 
+                  Sometimes as little as 20 cents at a time.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Turning Point</h4>
+                <p className="opacity-80 leading-relaxed">
+                  In July 2023, Ainsley attended a Wavlake demo at Bitcoin Park in Nashville. 
+                  She uploaded "Cherry on Top" - a song that had been out for months on traditional platforms with no traction. 
+                  Within days, it spread through the Bitcoin community. Adam Curry featured it on his podcast. 
+                  It became the <strong>first song on Wavlake to reach one million sats</strong> in listener payments.
+                </p>
+              </div>
+
+              <blockquote 
+                className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                  borderLeft: `4px solid ${currentTheme.accent}`
+                }}
+              >
+                "Every zap is a direct signal from a listener who chose to send value because they felt they received value."
+              </blockquote>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>What Changed</h4>
+                <ul className="space-y-3 opacity-80">
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span><strong>Direct payments</strong> - No label taking a cut, no playlist gatekeepers with undisclosed relationships</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span><strong>Real community</strong> - Fans who actually care, not algorithm-driven passive listeners</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span><strong>Complete artistic control</strong> - No label telling her what to look like or how to be marketed</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span><strong>Portable relationships</strong> - If a platform disappears, the zaps are in her wallet, the connections remain</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="text-center pt-4">
+                <p className="text-lg opacity-70 mb-6">
+                  The traditional industry told Ainsley she was the problem. The Bitcoin community told her the <em>system</em> was broken.
+                  <br />One year later, she's a full-time musician with more conviction than ever before.
+                </p>
+                <div className="text-2xl font-bold">
+                  Five years, $700. One year,{' '}
+                  <span style={{ color: currentTheme.accent }}>$10,000</span>.
+                  <br />
+                  <span className="text-lg opacity-70 font-normal">That's what value for value looks like.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Grid */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
