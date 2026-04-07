@@ -683,7 +683,7 @@ const Index = () => {
                   In July 2023, Ainsley attended a Wavlake demo at Bitcoin Park in Nashville. 
                   She uploaded "Cherry on Top" - a song that had been out for months on traditional platforms with no traction. 
                   Within days, it spread through the Bitcoin community. Adam Curry featured it on his podcast. 
-                  It became the <strong>first song on Wavlake to reach one million sats</strong> in listener payments.
+                  It became the <strong>first song on Wavlake to reach one million sats (~$300 at the time)</strong> in listener payments.
                 </p>
               </div>
 
@@ -973,12 +973,12 @@ const Index = () => {
               >
                 <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Nashville Week</div>
                 <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: currentTheme.accent }}>4M</div>
-                <div className="text-sm opacity-50">sats across the event</div>
+                <div className="text-sm opacity-50">sats across the event (~$1,680)</div>
               </div>
               <div className="p-6 text-center">
                 <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Monday Night Average</div>
                 <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: currentTheme.accent }}>450-780K</div>
-                <div className="text-sm opacity-50">sats at Vinyl Lounge</div>
+                <div className="text-sm opacity-50">sats at Vinyl Lounge (~$189-$328)</div>
               </div>
             </div>
 
