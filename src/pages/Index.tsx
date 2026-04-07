@@ -1041,7 +1041,7 @@ const Index = () => {
               />
               <div className="text-center md:text-left">
                 <h3 className="text-2xl md:text-3xl font-bold mb-2">OpenMike</h3>
-                <p className="opacity-70 mb-3">CFO of independent music company (6 stages, 5 venues) in Minneapolis. Builder of Tunestr.</p>
+                <p className="opacity-70 mb-3">CFO of independent music company (6 stages, 5 venues) in Minneapolis. Founder of Tunestr.</p>
                 <a 
                   href="https://ditto.pub/npub1a6c3jcdj23ptzcuflek8a04f4hc2cdkat95pd6n3r8jjrwyzrw0q43lfrr"
                   target="_blank"
@@ -1513,6 +1513,177 @@ const Index = () => {
                   <span style={{ color: currentTheme.accent }}>building anyway</span>.
                   <br />
                   <span className="text-lg opacity-70 font-normal">That's the whole point.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Case Study - Ivy Lumi */}
+      <section className="py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+              style={{ 
+                background: `${currentTheme.accent}20`,
+                border: `1px solid ${currentTheme.accent}30`
+              }}
+            >
+              <Sparkles className="w-4 h-4" style={{ color: currentTheme.accent }} />
+              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+                Bitcoin-Native Artist
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              How Bitcoin{' '}
+              <span style={{ color: currentTheme.accent }}>Unlocked a Musician</span>
+              <br />
+              Who Didn't Know She Was One
+            </h2>
+          </div>
+
+          {/* Case Study Card */}
+          <div 
+            className="rounded-2xl overflow-hidden"
+            style={{ 
+              background: `${currentTheme.accent}08`,
+              border: `1px solid ${currentTheme.accent}20`,
+              boxShadow: `0 0 60px ${currentTheme.accent}10`
+            }}
+          >
+            {/* Header with profile info */}
+            <div 
+              className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
+              style={{ 
+                background: `${currentTheme.accent}12`,
+                borderBottom: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <img 
+                src="https://blossom.primal.net/cfb660cca6a624c03a59aa7e03fb5896095263d5e583f898023694dcc8d11f69.jpg"
+                alt="Ivy Lumi"
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
+                style={{ border: `3px solid ${currentTheme.accent}` }}
+              />
+              <div className="text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">Ivy Lumi</h3>
+                <p className="opacity-70 mb-3">Singer-songwriter, podcast host, event producer. "Love is the cure."</p>
+                <a 
+                  href="https://ditto.pub/npub1syazeldyn2yqrcsma57z8q88smayett48hg4kxh3ngm6s92hj4usvagmnw"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
+                  style={{ 
+                    background: currentTheme.accent,
+                    color: '#fff'
+                  }}
+                >
+                  Follow on Ditto
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Story content */}
+            <div className="p-6 md:p-8 space-y-6">
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Origin</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Ivy didn't come to Bitcoin as a musician. She came as an employee, landing a job in the industry without prior knowledge 
+                  and getting orange-pilled within three to six months. For years she worked in Bitcoin as a podcaster, interviewing guests, 
+                  building community, traveling to conferences. Music was not part of the plan.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: 'rgba(255,50,50,0.08)' }}
+              >
+                <h4 className="font-bold text-lg mb-3 text-red-400">The Collapse</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Then, within the span of two months, her long-term relationship ended, her mother got seriously ill, and she lost her job. 
+                  Out of that collapse, she started writing songs. She describes the period of unemployment as the best she had looked in years — 
+                  she cooked every day, went to the gym, took walks, and rested. The songs came from that process of rebuilding.
+                </p>
+              </div>
+
+              <blockquote 
+                className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                  borderLeft: `4px solid ${currentTheme.accent}`
+                }}
+              >
+                "She had melodies in her head she would rush to write down before forgetting them. 
+                She had never thought of herself as someone who would release music. She did anyway."
+              </blockquote>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The EP: Cure</h4>
+                <p className="opacity-80 leading-relaxed mb-4">
+                  Each song on her EP draws from a different period of travel for work: <strong>Berlin, Amsterdam, Madeira, Prague</strong>. 
+                  She describes them as time capsules. If you've been to those cities for Bitcoin conferences, she says, 
+                  she hopes you can hear something of each place in the songs.
+                </p>
+                <p className="opacity-80 leading-relaxed">
+                  The pin collection she released alongside the EP takes this further — six collectible pins, each designed to capture 
+                  the essence of a specific song. The pin with a clock where every number is replaced by the word "now" comes from 
+                  "Follow the Wise Rabbit," written after Prague, with the clock face modeled on the city's historical astronomical clock. 
+                  <strong style={{ color: currentTheme.accent }}> These aren't merchandise. They're artifacts of a creative process.</strong>
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Geyser Fund Campaign</h4>
+                <ul className="space-y-3 opacity-80">
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span>Asked for 500,000 sats (~$357 at the time) — intentionally small and transparent</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span>Contributors received pins, the CD, and a Nostr badge</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span>Kept music on traditional platforms too — "not interested in purity tests"</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Built by the Community</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Her creative director is AvZero, a Bitcoiner. Her collaborators are people from the Bitcoin community. 
+                  The music video for "Wawawa," her first ever, was shot in Hong Kong after Bitcoin Asia and built around a storyboard 
+                  she developed with AvZero and another Bitcoiner named Zazawawa. 
+                  <strong> Everything she has made came from the community she was already in.</strong>
+                </p>
+              </div>
+
+              <div className="text-center pt-4">
+                <p className="text-lg opacity-70 mb-4">
+                  What she describes as most valuable about Nostr and Fountain isn't the technology — it's the directness. 
+                  She knows who is listening. She can interact with supporters. The signal is clear in a way that follower counts never were.
+                </p>
+                <div className="text-2xl font-bold">
+                  She didn't bring a music career into Bitcoin.
+                  <br />
+                  <span style={{ color: currentTheme.accent }}>Bitcoin gave her the conditions to become a musician.</span>
                 </div>
               </div>
             </div>
