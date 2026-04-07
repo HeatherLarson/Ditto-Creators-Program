@@ -1340,6 +1340,186 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Case Study - Kathryn */}
+      <section className="py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+              style={{ 
+                background: `${currentTheme.accent}20`,
+                border: `1px solid ${currentTheme.accent}30`
+              }}
+            >
+              <Zap className="w-4 h-4" style={{ color: currentTheme.accent }} />
+              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+                Gen Z Artist
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              <span style={{ color: currentTheme.accent }}>$40 in Four Days</span>
+              <br />
+              And Her Producer Got Half
+            </h2>
+          </div>
+
+          {/* Case Study Card */}
+          <div 
+            className="rounded-2xl overflow-hidden"
+            style={{ 
+              background: `${currentTheme.accent}08`,
+              border: `1px solid ${currentTheme.accent}20`,
+              boxShadow: `0 0 60px ${currentTheme.accent}10`
+            }}
+          >
+            {/* Header with profile info */}
+            <div 
+              className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
+              style={{ 
+                background: `${currentTheme.accent}12`,
+                borderBottom: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <img 
+                src="https://image.nostr.build/31e231245a511101817e4e861e6280e90d2994ae23d6c69fe4d45e46231af24c.jpg"
+                alt="Kathryn"
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
+                style={{ border: `3px solid ${currentTheme.accent}` }}
+              />
+              <div className="text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">Kathryn</h3>
+                <p className="opacity-70 mb-3">Nashville R&B Artist, Belmont grad, 23 years old</p>
+                <a 
+                  href="https://ditto.pub/npub13j8h4ce4d07tp0lh4vg6c6wjdtdc02caj98kg70sv3th2za437gspmvtxl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
+                  style={{ 
+                    background: currentTheme.accent,
+                    color: '#fff'
+                  }}
+                >
+                  Follow on Ditto
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Stats */}
+            <div className="grid md:grid-cols-3">
+              <div 
+                className="p-6 text-center"
+                style={{ borderRight: `1px solid ${currentTheme.accent}15` }}
+              >
+                <div className="text-red-400 text-sm font-medium mb-2 uppercase tracking-wider">Traditional Streaming</div>
+                <div className="text-4xl md:text-5xl font-bold text-red-400 mb-1">$0</div>
+                <div className="text-sm opacity-50">Nothing close to value-for-value</div>
+              </div>
+              <div 
+                className="p-6 text-center"
+                style={{ borderRight: `1px solid ${currentTheme.accent}15` }}
+              >
+                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Fountain FM</div>
+                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: currentTheme.accent }}>~$40</div>
+                <div className="text-sm opacity-50">In just 4 days</div>
+              </div>
+              <div className="p-6 text-center">
+                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Producer Split</div>
+                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: currentTheme.accent }}>50%</div>
+                <div className="text-sm opacity-50">Automatic, real-time</div>
+              </div>
+            </div>
+
+            {/* Story content */}
+            <div className="p-6 md:p-8 space-y-6">
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: 'rgba(255,50,50,0.08)' }}
+              >
+                <h4 className="font-bold text-lg mb-3 text-red-400">The Wall</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Kathryn graduated from Belmont University with a music business degree, spent four years networking in Nashville's 
+                  most competitive pipeline, released music on Spotify and Apple Music, played writers rounds, attended every event — 
+                  and hit a wall. Not because she did anything wrong. 
+                  <strong className="text-red-400"> Because that's what the traditional music industry does to independent artists who do everything right.</strong>
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Discovery</h4>
+                <p className="opacity-80 leading-relaxed">
+                  She came to value-for-value through someone she trusted. She had been doing social media content for Ainsley Costello, 
+                  volunteering her time to get a foot in the door, when she overheard Ainsley and her mother talking about Bitcoin and sats and zaps. 
+                  The language was alien enough to make her curious. She got walked through how it worked without being made to feel like an idiot 
+                  for not already knowing, and decided to try it.
+                </p>
+              </div>
+
+              <blockquote 
+                className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                  borderLeft: `4px solid ${currentTheme.accent}`
+                }}
+              >
+                "Everybody eats." — She set the wallet split to 50/50 when she uploaded the song. 
+                Every payment goes directly to both her and her producer in real time.
+              </blockquote>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Why It's Different</h4>
+                <ul className="space-y-3 opacity-80">
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span>No label, no distributor, no ASCAP filing, no check in the mail six months later</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span>Her first song hit the Fountain trending charts within days — with zero promotion</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span>On Spotify, 150 songs get released every minute and the algorithm decides who exists. On Fountain, people are actively looking for something new.</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Gen Z Perspective</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Her read on why more Gen Z artists haven't made the jump: <strong>it's a marketing problem, not an ideology problem.</strong> 
+                  Gen Z is already punk, already skeptical of centralized institutions, already inclined toward owning their own tools and money. 
+                  The values align. The onboarding doesn't. The path from curious musician to active participant is still too long, 
+                  and the events where it all clicks happen in person, quietly, with no on-ramp for people who weren't already in the room.
+                </p>
+              </div>
+
+              <div className="text-center pt-4">
+                <p className="text-lg opacity-70 mb-4">
+                  She is 23. She still waitresses to support her music career. But she now has 7 songs on Fountain, 
+                  records weekly in Nashville, and is treating the value-for-value ecosystem as the model that eventually replaces the waitressing shift.
+                </p>
+                <div className="text-2xl font-bold">
+                  She is{' '}
+                  <span style={{ color: currentTheme.accent }}>building anyway</span>.
+                  <br />
+                  <span className="text-lg opacity-70 font-normal">That's the whole point.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Grid */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
