@@ -1644,11 +1644,15 @@ const Index = () => {
                 className="p-6 rounded-xl"
                 style={{ background: `${currentTheme.accent}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Geyser Fund Campaign</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The <a href="https://geyser.fund/" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">Geyser Fund</a> Campaign</h4>
                 <ul className="space-y-3 opacity-80">
                   <li className="flex items-start gap-3">
                     <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
                     <span>Asked for 500,000 sats (~$357 at the time) — intentionally small and transparent</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span>Met and exceeded her goal through her fan base and her appearance on the <a href="https://fountain.fm/show/IgdKDWtHpDc67T0wqqoO" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">Radio Detox "V4V" podcast</a></span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
