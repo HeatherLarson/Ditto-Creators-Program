@@ -963,8 +963,9 @@ const Index = () => {
                 style={{ borderRight: `1px solid ${currentTheme.accent}15` }}
               >
                 <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Debut Tunestr Show</div>
-                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: currentTheme.accent }}>20M</div>
-                <div className="text-sm opacity-50">sats over two nights</div>
+                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: currentTheme.accent }}>20M*</div>
+                <div className="text-sm opacity-50">sats over two nights (~$8,400)</div>
+                <div className="text-xs opacity-40 mt-1">*BTC price ~$42K at time</div>
               </div>
               <div 
                 className="p-6 text-center"
