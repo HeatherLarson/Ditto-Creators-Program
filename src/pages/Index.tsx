@@ -210,9 +210,25 @@ const Index = () => {
             </div>
 
             {/* Window Content */}
-            <div className="p-8 md:p-12 lg:p-16">
+            <div className="p-8 md:p-12 lg:p-16 relative overflow-hidden">
+              {/* Animated Equalizer Background */}
+              <div className="absolute inset-0 flex items-end justify-center gap-1 opacity-10 pointer-events-none pb-20">
+                {[...Array(40)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="w-2 rounded-t"
+                    style={{
+                      background: currentTheme.accent,
+                      height: `${20 + Math.sin(i * 0.5) * 15 + Math.random() * 30}%`,
+                      animation: `equalizer ${0.5 + Math.random() * 0.5}s ease-in-out infinite alternate`,
+                      animationDelay: `${i * 0.05}s`
+                    }}
+                  />
+                ))}
+              </div>
+
               {/* Logo */}
-              <div className="flex justify-center mb-8">
+              <div className="flex justify-center mb-8 relative z-10">
                 <div 
                   className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full"
                   style={{ 
@@ -220,7 +236,20 @@ const Index = () => {
                     border: `1px solid ${currentTheme.accent}40`
                   }}
                 >
-                  <Music2 className="w-5 h-5" style={{ color: currentTheme.accent }} />
+                  {/* Mini equalizer in badge */}
+                  <div className="flex items-end gap-0.5 h-4">
+                    {[...Array(4)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="w-1 rounded-sm"
+                        style={{
+                          background: currentTheme.accent,
+                          height: `${40 + i * 15}%`,
+                          animation: `equalizer ${0.3 + i * 0.1}s ease-in-out infinite alternate`
+                        }}
+                      />
+                    ))}
+                  </div>
                   <span className="font-semibold" style={{ color: currentTheme.accent }}>
                     For Musicians
                   </span>
@@ -228,27 +257,23 @@ const Index = () => {
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-center mb-6 tracking-tight">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-center mb-6 tracking-tight relative z-10">
                 <span 
                   className="block"
-                  style={{ 
-                    background: `linear-gradient(135deg, ${currentTheme.accent}, ${currentTheme.text})`,
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent'
-                  }}
+                  style={{ color: currentTheme.accent }}
                 >
                   Your Music.
                 </span>
                 <span className="block">Your Platform.</span>
               </h1>
 
-              <p className="text-xl md:text-2xl text-center max-w-2xl mx-auto mb-10 opacity-70 leading-relaxed">
+              <p className="text-xl md:text-2xl text-center max-w-2xl mx-auto mb-10 opacity-70 leading-relaxed relative z-10">
                 Tired of algorithms burying your sound? Tired of platforms that don't pay? 
                 Join the leading edge of decentralized music.
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 relative z-10">
                 <Button 
                   size="lg" 
                   className="text-lg px-8 py-6 transition-all hover:scale-105"
@@ -285,7 +310,7 @@ const Index = () => {
               </div>
 
               {/* Social proof */}
-              <div className="flex flex-wrap items-center justify-center gap-6 text-sm opacity-60">
+              <div className="flex flex-wrap items-center justify-center gap-6 text-sm opacity-60 relative z-10">
                 <div className="flex items-center gap-2">
                   <Check className="w-4 h-4" style={{ color: currentTheme.accent }} />
                   <span>100% Free</span>
