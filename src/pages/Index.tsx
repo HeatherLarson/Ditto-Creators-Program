@@ -626,35 +626,8 @@ const Index = () => {
             </p>
           </div>
 
-          {/* Media Grid */}
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Video */}
-            <div 
-              className="rounded-2xl overflow-hidden relative group"
-              style={{ 
-                background: `${currentTheme.accent}10`,
-                border: `1px solid ${currentTheme.accent}20`
-              }}
-            >
-              <video 
-                className="w-full aspect-video object-cover"
-                controls
-                playsInline
-                poster="https://blossom.dreamith.to/20e1a31d51e72c1abb579638035cf96990f3f0d6601423500a2beb81dfa58c8f.jpeg"
-              >
-                <source 
-                  src="https://blossom.dreamith.to/5681aa05b6bb5ac83904256b1794a446835e5e6dea4494188fdad269714b1222.qt" 
-                  type="video/quicktime" 
-                />
-                Your browser does not support the video tag.
-              </video>
-              <div className="p-4">
-                <h3 className="font-bold text-lg mb-1">Live Music Event</h3>
-                <p className="text-sm opacity-60">Value-for-value in action</p>
-              </div>
-            </div>
-
-            {/* Image */}
+          {/* Image */}
+          <div className="max-w-3xl mx-auto">
             <div 
               className="rounded-2xl overflow-hidden"
               style={{ 
