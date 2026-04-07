@@ -1663,6 +1663,18 @@ const Index = () => {
                     <span>Kept music on traditional platforms too — "not interested in purity tests"</span>
                   </li>
                 </ul>
+                <a 
+                  href="https://x.com/ivylumi/status/2037019096706138598?s=20"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block mt-6 rounded-xl overflow-hidden transition-all hover:scale-[1.02] hover:shadow-lg"
+                >
+                  <img 
+                    src="https://blossom.primal.net/8b13dcf306ca695eaa3e0b1f144bd90fd0c6b5263e0b147ddb6baf5fdaf3d35f.png"
+                    alt="Ivy Lumi's tweet celebrating exceeding her Geyser Fund goal"
+                    className="w-full max-w-lg mx-auto"
+                  />
+                </a>
               </div>
 
               <div 
