@@ -665,7 +665,7 @@ const Index = () => {
             </div>
             <div>
               <div className="text-3xl font-bold" style={{ color: currentTheme.accent }}>Phoenix</div>
-              <div className="text-sm opacity-60">Culture Shock</div>
+              <div className="text-sm opacity-60">Culture Shock at Hello, Lincoln</div>
             </div>
             <div>
               <div className="text-3xl font-bold" style={{ color: currentTheme.accent }}>Minneapolis</div>
