@@ -657,7 +657,7 @@ const Index = () => {
           >
             <div>
               <div className="text-3xl font-bold" style={{ color: currentTheme.accent }}>Nashville</div>
-              <div className="text-sm opacity-60">Music Row</div>
+              <div className="text-sm opacity-60">Music Row & Vinyl Lounge</div>
             </div>
             <div>
               <div className="text-3xl font-bold" style={{ color: currentTheme.accent }}>Austin</div>
@@ -669,7 +669,7 @@ const Index = () => {
             </div>
             <div>
               <div className="text-3xl font-bold" style={{ color: currentTheme.accent }}>Minneapolis</div>
-              <div className="text-sm opacity-60">Vinyl Lounge</div>
+              <div className="text-sm opacity-60">Indie Venues</div>
             </div>
           </div>
         </div>
