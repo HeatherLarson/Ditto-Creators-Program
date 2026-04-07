@@ -1881,7 +1881,8 @@ const Index = () => {
               <Music2 className="w-16 h-16 mx-auto mb-6" style={{ color: currentTheme.accent }} />
               <h3 className="text-2xl font-bold mb-4">Musicians Only (For Now)</h3>
               <p className="opacity-60 mb-8 max-w-md mx-auto">
-                We're starting with musicians and expanding to more creator types soon. Ready to be a pioneer?
+                We're starting with musicians and expanding to more creator types soon. 
+                We're accepting applications and contacting those accepted on a rolling basis. Ready to be a pioneer?
               </p>
               <Button 
                 size="lg" 
