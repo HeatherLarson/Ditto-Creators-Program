@@ -616,7 +616,7 @@ const Index = () => {
               }}
             >
               <img 
-                src="https://image.nostr.build/a85501489341e6e0e6497eda76d5d7a8a378e9403da1e10f53d264ce877f3a6e.jpg"
+                src="https://blossom.primal.net/509972f9fdd371b7348f8dcf23876f49ef4fb5b71e0e8c270fecf508abc7b684.png"
                 alt="Ainsley Costello"
                 className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
                 style={{ border: `3px solid ${currentTheme.accent}` }}
@@ -770,7 +770,7 @@ const Index = () => {
               }}
             >
               <img 
-                src="https://image.nostr.build/1e2a2960ca5c6631922969a0df17bb9364c8846ca91695da7d5f71190e04ff50.jpg"
+                src="https://blossom.primal.net/7cba8d3f7c74855b83800b36e107997dbfaca14501ad494ac49eb33e7864fe41.jpg"
                 alt="Sara Jade"
                 className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
                 style={{ border: `3px solid ${currentTheme.accent}` }}
