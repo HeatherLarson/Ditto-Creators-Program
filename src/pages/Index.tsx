@@ -891,6 +891,188 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Case Study - OpenMike */}
+      <section className="py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+              style={{ 
+                background: `${currentTheme.accent}20`,
+                border: `1px solid ${currentTheme.accent}30`
+              }}
+            >
+              <Zap className="w-4 h-4" style={{ color: currentTheme.accent }} />
+              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+                Industry Insider
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              What Happens When a Venue CFO{' '}
+              <br />
+              <span style={{ color: currentTheme.accent }}>Goes All-In on Value-for-Value</span>
+            </h2>
+          </div>
+
+          {/* Case Study Card */}
+          <div 
+            className="rounded-2xl overflow-hidden"
+            style={{ 
+              background: `${currentTheme.accent}08`,
+              border: `1px solid ${currentTheme.accent}20`,
+              boxShadow: `0 0 60px ${currentTheme.accent}10`
+            }}
+          >
+            {/* Header with profile info */}
+            <div 
+              className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
+              style={{ 
+                background: `${currentTheme.accent}12`,
+                borderBottom: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <img 
+                src="https://image.nostr.build/eba711a14a30726d5dd454b802d343bb17d8b0db7e477eed9eef7d4b8d65ef7a.jpg"
+                alt="OpenMike"
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
+                style={{ border: `3px solid ${currentTheme.accent}` }}
+              />
+              <div className="text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">OpenMike</h3>
+                <p className="opacity-70 mb-3">CFO of independent music company (6 stages, 5 venues) in Minneapolis. Builder of Tunestr.</p>
+                <a 
+                  href="https://ditto.pub/npub1a6c3jcdj23ptzcuflek8a04f4hc2cdkat95pd6n3r8jjrwyzrw0q43lfrr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
+                  style={{ 
+                    background: currentTheme.accent,
+                    color: '#fff'
+                  }}
+                >
+                  Follow on Ditto
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Stats row */}
+            <div className="grid md:grid-cols-3">
+              <div 
+                className="p-6 text-center"
+                style={{ borderRight: `1px solid ${currentTheme.accent}15` }}
+              >
+                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Debut Tunestr Show</div>
+                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: currentTheme.accent }}>20M</div>
+                <div className="text-sm opacity-50">sats over two nights</div>
+              </div>
+              <div 
+                className="p-6 text-center"
+                style={{ borderRight: `1px solid ${currentTheme.accent}15` }}
+              >
+                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Nashville Week</div>
+                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: currentTheme.accent }}>4M</div>
+                <div className="text-sm opacity-50">sats across the event</div>
+              </div>
+              <div className="p-6 text-center">
+                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Monday Night Average</div>
+                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: currentTheme.accent }}>450-780K</div>
+                <div className="text-sm opacity-50">sats at Vinyl Lounge</div>
+              </div>
+            </div>
+
+            {/* Story content */}
+            <div className="p-6 md:p-8 space-y-6">
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Insight</h4>
+                <p className="opacity-80 leading-relaxed">
+                  OpenMike spent more than a decade watching the economics of independent music from the inside. 
+                  He became convinced that the problems in music and the problems in money were the same problem: 
+                  <strong> centralization, gatekeepers, and systems designed to extract value from creators rather than deliver it to them.</strong>
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>What He Built</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Tunestr is a live streaming platform forked from ZapStream, built specifically for musicians and artists. 
+                  Every show streams live to a Nostr audience that can send Bitcoin micropayments directly to the artists performing in real time. 
+                  <strong style={{ color: currentTheme.accent }}> OpenMike takes none of it.</strong> He has not accepted a single sat from any zap that has come through Tunestr. 
+                  Every penny goes to the artists.
+                </p>
+              </div>
+
+              <blockquote 
+                className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                  borderLeft: `4px solid ${currentTheme.accent}`
+                }}
+              >
+                "When artists at the Vinyl Lounge watched zaps come in on a big screen during the Bands of Bitcoin residency, 
+                every single one of them asked what was happening and how to sign up."
+              </blockquote>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Strategy</h4>
+                <p className="opacity-80 leading-relaxed mb-4">
+                  His approach for getting musicians to care is simple: <strong>don't lead with Bitcoin. Bury it.</strong> Show artists a streaming setup, 
+                  a live audience, and money appearing in real time while they play. Then show them how to get a wallet.
+                </p>
+                <p className="opacity-80 leading-relaxed">
+                  His competitive advantage is that Tunestr doesn't need to make money — his day job funds it. 
+                  That lets him make a promise to artists that no platform with investors or payroll can make: 
+                  <strong style={{ color: currentTheme.accent }}> every penny of what the audience sends goes to whoever was on stage when it arrived.</strong>
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Pitch to Venues</h4>
+                <ul className="space-y-3 opacity-80">
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span>If value-for-value streaming makes an independent venue more attractive to artists, the venue wins</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span>If artists earn more at an independent venue than a corporate one, the decision makes itself</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <span>Live Nation will never offer this. They have no reason to. Independent venues do.</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="text-center pt-4">
+                <p className="text-lg opacity-70 mb-4">
+                  To make Nashville look professional enough to take the traditional music world seriously, 
+                  OpenMike bought a soundboard, video board, and three additional 4K cameras out of pocket, 
+                  then drove from Minneapolis to Nashville to install them a month early.
+                </p>
+                <div className="text-2xl font-bold">
+                  This is what{' '}
+                  <span style={{ color: currentTheme.accent }}>infrastructure for independent music</span>{' '}
+                  looks like.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Grid */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
