@@ -1884,6 +1884,253 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Case Study - Sam Sethi */}
+      <section className="py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+              style={{ 
+                background: `${currentTheme.accent}20`,
+                border: `1px solid ${currentTheme.accent}30`
+              }}
+            >
+              <Zap className="w-4 h-4" style={{ color: currentTheme.accent }} />
+              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+                Podcasting 2.0 Pioneer
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              The Man Who Watched{' '}
+              <span style={{ color: currentTheme.accent }}>Microsoft Win</span>
+              <br />
+              Is Not Making the Same Mistake Twice
+            </h2>
+          </div>
+
+          {/* Case Study Card */}
+          <div 
+            className="rounded-2xl overflow-hidden"
+            style={{ 
+              background: `${currentTheme.accent}08`,
+              border: `1px solid ${currentTheme.accent}20`,
+              boxShadow: `0 0 60px ${currentTheme.accent}10`
+            }}
+          >
+            {/* Header with profile info */}
+            <div 
+              className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
+              style={{ 
+                background: `${currentTheme.accent}12`,
+                borderBottom: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <img 
+                src="https://cdn.masto.host/podcastindexsocial/accounts/avatars/000/003/709/original/081f4d3c40f34d24.jpeg"
+                alt="Sam Sethi"
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
+                style={{ border: `3px solid ${currentTheme.accent}` }}
+              />
+              <div className="text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">Sam Sethi</h3>
+                <p className="opacity-70 mb-3">CEO of TrueFans.fm, co-host of Pod News Weekly, former Netscape product manager.</p>
+                <a 
+                  href="https://ditto.pub/npub1axp4n6rvpytle39f3vcvsz34u0a5pe35ez6sl2uvyxxh4snchyhs86vrf0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
+                  style={{ 
+                    background: currentTheme.accent,
+                    color: '#fff'
+                  }}
+                >
+                  Follow on Ditto
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Story content */}
+            <div className="p-6 md:p-8 space-y-6">
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Browser Wars Survivor</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Sam Sethi was the product manager at Netscape. He was there when the browser wars happened, when the floppy disks from AOL 
+                  and CompuServe arrived in the mail, when getting online meant loading TCP/IP manually and hunting for pages because search 
+                  engines did not exist yet. He watched Netscape, the innovative company, lose to Microsoft, the company that bundled Internet 
+                  Explorer into the operating system and built MSN as a curated front page. <strong>Innovation did not win. Simplicity won. 
+                  One click won.</strong>
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>TrueFans.fm</h4>
+                <p className="opacity-80 leading-relaxed">
+                  He is the CEO of <a href="https://truefans.fm" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">TrueFans.fm</a>, 
+                  a podcasting 2.0 RSS marketplace for podcasts, music, audiobooks, courses, films, and live events, where fans support creators 
+                  with micropayments in sats. And the most important decision he made was to <strong>hide the thing he is building on</strong>.
+                </p>
+              </div>
+
+              <blockquote 
+                className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                  borderLeft: `4px solid ${currentTheme.accent}`
+                }}
+              >
+                "When you sign up for TrueFans, it asks you to top up your wallet in dollars. There is no mention of Bitcoin. 
+                There is no Lightning address setup. You put money in. You give it to people you like."
+              </blockquote>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Strategic Simplicity</h4>
+                <p className="opacity-80 leading-relaxed">
+                  There is no KYC onboarding quiz, which Sam attempted on Strike and failed despite knowing more about Bitcoin than almost anyone. 
+                  There is no explanation of what a sat is. Sam nearly went further and called them TrueFans tokens to strip out the word Bitcoin 
+                  entirely, because for a significant portion of the population, <strong>Bitcoin reads as scam and stops the conversation before 
+                  it starts</strong>. He held the line at wallet, but just barely.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Desktop-First Was Not a Mistake</h4>
+                <p className="opacity-80 leading-relaxed">
+                  TrueFans was built desktop-first, which sounds like a mistake and was not. Building on a small screen while simultaneously 
+                  figuring out wallet switching, live item tags, boost architecture, and remote payment splits would have slowed everything down 
+                  and required App Store approval for every iteration. On desktop, the team could move fast, test unfamiliar technology at actual 
+                  size, and ship. The industry noticed. When wallet switching worked on TrueFans, others paid attention.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Platform Play</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Now TrueFans is in the middle of a mobile-first UI rebuild. After that, the plan is to follow Spotify's distribution model: 
+                  web, mobile, iOS, Android, CarPlay, Android Auto, Apple Watch, TV. Because TrueFans is a progressive web app, it already works 
+                  across all screen sizes without a code change. Sam demonstrated this on a triple-fold Huawei phone. Closed, it was a mobile app. 
+                  One fold, an iPad. Fully open, a desktop. <strong>No reload.</strong>
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Wallet Switching</h4>
+                <p className="opacity-80 leading-relaxed">
+                  The technology underneath TrueFans does something that did not exist before podcasting 2.0. When a listener streams to a show 
+                  like Radio Detox, their sats flow to the host. The moment a song plays, <strong>the wallet switches and the sats flow to the 
+                  artist</strong>. This is called wallet switching, and its implications are still unfolding. A show can carry a remote audio clip 
+                  from another podcast and automatically split the payment back to the originating creator. An artist's trailer can be replaced 
+                  by the full track when it drops, and subscribers to the feed do not need to resubscribe.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Ainsley Costello Model</h4>
+                <p className="opacity-80 leading-relaxed">
+                  The Ainsley Costello X-List album release worked this way. Fans subscribed to a feed of trailers and received the album one 
+                  track at a time as each one dropped, with sats flowing to Ainsley at every play.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: 'rgba(255,200,50,0.08)' }}
+              >
+                <h4 className="font-bold text-lg mb-3 text-yellow-400">Reversing the Flow: Advertisers Pay Listeners</h4>
+                <p className="opacity-80 leading-relaxed">
+                  The newest model Sam is building reverses the flow entirely. Instead of listeners paying creators, <strong>advertisers pay 
+                  listeners to hear ads</strong>. The moment an ad plays, the advertiser's wallet starts streaming sats to the listener. If 
+                  the listener skips, the payment stops. The advertiser now has precise, first-party data: exactly how long each person listened, 
+                  and which listeners stayed through the entire ad. No more trust-based download metrics. No more 90 percent skip rates treated 
+                  as full listens. No more paying for impressions that never happened. The listener gets compensated for their time. The podcaster 
+                  gets a split. The advertiser gets the only thing they actually wanted: <strong>proof that someone heard the message</strong>.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The First Sat</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Sam co-hosts <a href="https://weekly.podnews.net" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">Pod News Weekly</a> with 
+                  James Cridland. He remembers the first sat they received. Someone sent one sat and typed: <em>"did you get it"</em>. 
+                  That was the message. The disbelief was the point. It worked, and then the numbers got bigger. He has watched Ainsley Costello's 
+                  mother Julie go from asking what a wallet is to speaking fluent podcasting 2.0 terminology for thirty minutes straight without noticing.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Mainstream Moment</h4>
+                <p className="opacity-80 leading-relaxed">
+                  He has watched the Forbes article land on October 1, 2024 naming Ainsley, Joe Martin, RSS Blue, Manlike Quex, Domus, and Primal. 
+                  He knows what early adoption looks like from the inside, and he knows what it takes to cross the line into mainstream. His read 
+                  is that it will take a Joe Rogan, or an Apple. Not another innovative company doing it right. <strong>Someone with distribution, 
+                  bundling it, making it one click.</strong>
+                </p>
+              </div>
+
+              <blockquote 
+                className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                  borderLeft: `4px solid ${currentTheme.accent}`
+                }}
+              >
+                "Jack Dorsey built micropayments into Twitter and Elon Musk deprecated them. Apple Pay proved the infrastructure for 
+                device-native micropayments already exists and Apple chooses not to use it. Sam is not waiting for permission."
+              </blockquote>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>London: The Center of Gravity</h4>
+                <p className="opacity-80 leading-relaxed">
+                  TrueFans.fm is based in London. So is Fountain. So is Oscar Merry, who built the other major podcasting 2.0 app independently, 
+                  without coordinating with Sam. <strong>London is, as of this recording, the center of gravity for podcasting 2.0 infrastructure.</strong>
+                </p>
+              </div>
+
+              <div className="text-center pt-4">
+                <p className="text-lg opacity-70 mb-4">
+                  He is building the thing that will be ready when whoever goes first brings the audience with them.
+                </p>
+                <div className="text-2xl font-bold">
+                  He has been this early before.
+                  <br />
+                  <span style={{ color: currentTheme.accent }}>He knows how it ends.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Grid */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
