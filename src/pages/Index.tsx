@@ -2131,6 +2131,238 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Case Study - Man Like Kweks */}
+      <section className="py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+              style={{ 
+                background: `${currentTheme.accent}20`,
+                border: `1px solid ${currentTheme.accent}30`
+              }}
+            >
+              <Music2 className="w-4 h-4" style={{ color: currentTheme.accent }} />
+              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+                Bitcoin Music from Tanzania
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              <span style={{ color: currentTheme.accent }}>Zapped</span> to the Top
+              <br />
+              of Kilimanjaro
+            </h2>
+          </div>
+
+          {/* Case Study Card */}
+          <div 
+            className="rounded-2xl overflow-hidden"
+            style={{ 
+              background: `${currentTheme.accent}08`,
+              border: `1px solid ${currentTheme.accent}20`,
+              boxShadow: `0 0 60px ${currentTheme.accent}10`
+            }}
+          >
+            {/* Header with profile info */}
+            <div 
+              className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
+              style={{ 
+                background: `${currentTheme.accent}12`,
+                borderBottom: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <img 
+                src="https://cdn.nostrcheck.me/4ce6abbd68dab6e9fdf6e8e9912a8e12f9b539e078c634c55a9bff2994a514dd/611e8b1949f67548d63c77fe65d889a2da14b02d9fa9eeff1db26a65c25fa030.webp"
+                alt="Man Like Kweks"
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
+                style={{ border: `3px solid ${currentTheme.accent}` }}
+              />
+              <div className="text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">Man Like Kweks</h3>
+                <p className="opacity-70 mb-3">Bitcoin musician from Arusha, Tanzania. Founder of Proof of Work Academy. 60+ tracks and counting.</p>
+                <a 
+                  href="https://ditto.pub/npub1fnn2h0tgm2mwnl0kar5ez25wztum2w0q0rrrf326n0ljn999znwsqf4xnx"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
+                  style={{ 
+                    background: currentTheme.accent,
+                    color: '#fff'
+                  }}
+                >
+                  Follow on Ditto
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Story content */}
+            <div className="p-6 md:p-8 space-y-6">
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Origin</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Man Like Kweks did not set out to be a musician. He set out to help Tanzania. When he moved back to Arusha in September 2013 
+                  after growing up in the UK, he was trying to figure out how Bitcoin could benefit his community in practical terms: wallets, 
+                  on-ramps, off-ramps, the infrastructure that gets Bitcoin into people's hands. He assumed the people who could make that 
+                  difference were developers. <strong>He was not a developer. So he made a song instead.</strong>
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>DCA to BTC</h4>
+                <p className="opacity-80 leading-relaxed">
+                  That first song was <strong>DCA to BTC</strong>. He shared it with the Bitcoin community on Twitter, where it bounced its way 
+                  to a weekly show called Bitcoin Beats run by Phil at Neat Creations. Phil played it live, asked questions, and encouraged him 
+                  to make another one. He did. By now, he has 60+ tracks across Fountain and Wavlake, all of them made in a four-hour window 
+                  between when his children fall asleep and midnight. He learned to record on his iPhone from his nephew Rene.
+                </p>
+              </div>
+
+              <blockquote 
+                className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                  borderLeft: `4px solid ${currentTheme.accent}`
+                }}
+              >
+                "He used sats to pay his electricity bill. His monthly electric bill in Arusha runs about 100,000 Tanzanian shillings, 
+                just under $30. A single song zap event covered it."
+              </blockquote>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Tanzanian Shilling Context</h4>
+                <p className="opacity-80 leading-relaxed">
+                  When Kweks moved back in 2013, one US dollar bought 1,500 shillings. By 2024 it bought 2,700. His mother bought a piece of land 
+                  in the 1980s for 30,000 shillings, which was roughly $10 at the time. That same land is now worth approximately 200 million shillings, 
+                  over $100,000, because the city grew around it. That is how he explains Bitcoin to Tanzanians: <strong>divisible property, mobile 
+                  property, the thing that does what land did for your parents but fits in your phone and can travel instantly to someone in Arizona 
+                  or Manchester.</strong>
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Mobile Money Infrastructure</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Tanzania already has mobile money infrastructure that makes this intuitive. Through services like M-Pesa, a phone number is a wallet. 
+                  You can send money to someone's number and they can walk to a corner shop called a Wakala and cash it out. Kweks does not need to 
+                  teach the concept of a mobile payment wallet. He needs someone to build a <strong>Lightning-to-mobile-money off-ramp</strong> so that 
+                  when a listener sends him sats, he can convert them to shillings at a Wakala without a bank account or KYC.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Songs for Specific Communities</h4>
+                <p className="opacity-80 leading-relaxed">
+                  His songs are not about Bitcoin in the abstract. They are about specific people and specific communities. <strong>Bitcoin Dada</strong> 
+                  (which means Bitcoin Sister in Swahili) was written for Marcel Guantai's women's Bitcoin education project in Nairobi. 
+                  <strong> Gorilla Sats</strong> was written for Brendan's Bitcoin community in Kampala, Uganda, built on a beat that Sam Mains of 
+                  Wavlake sent him cold via Nostr DM. Brendan zaps the song every single week without fail. <strong>Nostr City</strong> was built around 
+                  a beat from Believe, a producer based somewhere in Arizona, after Kweks found Believe's track on Wavlake, zapped it, and sent a DM.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: 'rgba(255,200,50,0.08)' }}
+              >
+                <h4 className="font-bold text-lg mb-3 text-yellow-400">Tokyo Citadel: The Quintessential Bitcoin Nostr Song</h4>
+                <p className="opacity-80 leading-relaxed">
+                  <strong>Tokyo Citadel</strong> started as a song for a Bitcoin podcast community in Tokyo, was posted to Stemster, and Real Richard 
+                  took the vocal stems and built the version that became what most people mean when they say <em>the quintessential Bitcoin Nostr song</em>.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Relay Rider</h4>
+                <p className="opacity-80 leading-relaxed">
+                  <strong>Relay Rider</strong> came out of a four-hour window at night, recorded on an iPhone using an app his nephew told him about. 
+                  Joe Martin heard the hook idea, went into a studio two days before a tour, and sent back harmonies and multiple versions in the morning. 
+                  Kweks woke up to it.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Dance Battle Festival</h4>
+                <p className="opacity-80 leading-relaxed">
+                  The Dance Battle Festival in Arusha came from the same logic as everything else: he saw what OpenMike built with Tunestr, asked 
+                  whether he could apply it to his community, and found a colleague named Amani who had been running a local dance competition where 
+                  performers were sometimes paid nothing and sometimes split $30 six ways. They filmed the auditions and published them on Tunestr so 
+                  that <strong>the global Nostr community could stream and zap the dancers in real time while watching them perform</strong>. Kweks's plan 
+                  is to walk the dancers through what just happened: you received Bitcoin, here is what that means, here is the story of what you now hold.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: 'rgba(50,200,50,0.08)' }}
+              >
+                <h4 className="font-bold text-lg mb-3 text-green-400">Proof of Work Academy</h4>
+                <p className="opacity-80 leading-relaxed">
+                  <strong>Proof of Work Academy</strong> is the physical space in Arusha where this education happens. He raised the funds to complete it 
+                  by climbing Kilimanjaro and posting the campaign on Geyser Fund. <strong>People zapped him to the top.</strong> The space is now up and 
+                  running and hosts both Bitcoin education events and the dancers from the competition.
+                </p>
+              </div>
+
+              <blockquote 
+                className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                  borderLeft: `4px solid ${currentTheme.accent}`
+                }}
+              >
+                "He works full-time at an international school in Arusha. He stopped drinking in December 2022. He has a wife and young children. 
+                The music happens between 8pm and midnight, which is the window he has."
+              </blockquote>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Network</h4>
+                <p className="opacity-80 leading-relaxed">
+                  In under two years of that window, he built a catalog of more than 60 tracks, a Bitcoin education space, a dance competition on a 
+                  Bitcoin payment rail, and a network that runs from <strong>Tanzania to Uganda to Kenya to Manchester to Arizona</strong>, all of it 
+                  connected through Nostr and all of it funded by people who heard the music and decided it was worth something.
+                </p>
+              </div>
+
+              <div className="text-center pt-4">
+                <p className="text-lg opacity-70 mb-4">
+                  He still thinks about how to get Bitcoin into the hands of Tanzanians in practical ways.
+                </p>
+                <div className="text-2xl font-bold">
+                  He just found out he didn't need to be a developer to do it.
+                  <br />
+                  <span style={{ color: currentTheme.accent }}>He made a song instead.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Grid */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
