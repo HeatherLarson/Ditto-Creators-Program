@@ -2824,6 +2824,153 @@ const Index = () => {
         </div>
       </section>
 
+      {/* HBIC Section - Heather Larson */}
+      <section className="py-24 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              Who's in charge around here?{' '}
+              <span style={{ color: currentTheme.accent }}>YOU ARE.</span>
+            </h2>
+            <p className="text-lg opacity-70">
+              But we also have someone running the program. Learn more about Ditto Music's HBIC.
+            </p>
+          </div>
+
+          <div 
+            className="rounded-2xl overflow-hidden"
+            style={{ 
+              background: `${currentTheme.accent}08`,
+              border: `1px solid ${currentTheme.accent}20`,
+              boxShadow: `0 0 60px ${currentTheme.accent}10`
+            }}
+          >
+            {/* Header with profile info */}
+            <div 
+              className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
+              style={{ 
+                background: `${currentTheme.accent}12`,
+                borderBottom: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <img 
+                src="https://blossom.dreamith.to/158492b76b461a445ce7a2b58805fc10f94d90fedaca52443464775d1e4d606d.jpeg"
+                alt="Heather Larson"
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
+                style={{ border: `3px solid ${currentTheme.accent}` }}
+              />
+              <div className="text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">Heather Larson</h3>
+                <p className="opacity-70 mb-3">HBIC of Ditto Music. Radio veteran. Host of Radio Detox & Soapbox Sessions. Yoga teacher who taught the first class on Nostr.</p>
+                <a 
+                  href="https://ditto.pub/npub1nl8r463jkdtr0qu0k3dht03jt9t59cttk0j8gtxg9wea2russlnq2zf9d0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
+                  style={{ 
+                    background: currentTheme.accent,
+                    color: '#fff'
+                  }}
+                >
+                  Follow on Ditto
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Bio content */}
+            <div className="p-6 md:p-8 space-y-6">
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Radio Years</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Heather Larson is the HBIC of Ditto Music, the independent musicians' program at Ditto, Soapbox's Nostr-native everything app. 
+                  She started in radio in the late 1990s and spent decades doing what the industry always claimed to care about: 
+                  <strong> bringing music directly to the fans</strong>. In that time she called Greg Kihn and Alice Cooper her coworkers, 
+                  interviewed Jennifer Lopez and Nelly Furtado, covered American Idol Seasons 1 and 2 as a reporter, and produced concerts at 
+                  racetracks, intimate rooms, and live on-air studio sessions. She sat front row to review Mana and watched Brother Ali sweat 
+                  it out in 115-degree Phoenix heat. She was there, always on the side of the music and the people who needed to hear it.
+                </p>
+              </div>
+
+              <blockquote 
+                className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                  borderLeft: `4px solid ${currentTheme.accent}`
+                }}
+              >
+                "She left traditional broadcasting after watching it fail artists, audiences, and itself in sequence. 
+                She now does what radio always claimed to do without actually doing it."
+              </blockquote>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Radio Detox & Soapbox Sessions</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Since 2024, Heather has hosted <a href="https://fountain.fm/show/IgdKDWtHpDc67T0wqqoO" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">Radio Detox</a>, 
+                  a podcast that highlights independent artists & builders in the "value-for-value" music ecosystem, an innovative, open source 
+                  answer to corporate podcasts, radio, and tech. She also hosts <a href="https://sessions.soapbox.pub/" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">Soapbox Sessions</a>, 
+                  covering the culture and economics of the value-for-value world. She has interviewed artists, developers, and platform builders 
+                  across the space and documented what is actually working for independent musicians who earn directly from their audience with 
+                  no algorithm in between.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>In the Space</h4>
+                <p className="opacity-80 leading-relaxed">
+                  She has been active in the Bitcoin and Nostr space for more than two years, a Bitcoiner since 2020, and has established 
+                  relationships at Wavlake, Fountain, Tunestr, Epoch Music, and more. She has spoken at Nostr Valley on Nostr for Content Creators, 
+                  spoken at Sats by SW in Austin, and participated in Culture Shock Phoenix, NosVegas 1 in 2025, and NosVegas 2 in 2026. 
+                  She has been a part of in-person events in <strong>Phoenix, Washington DC, Austin, Nashville, and Las Vegas</strong>.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: 'rgba(255,200,50,0.08)' }}
+              >
+                <h4 className="font-bold text-lg mb-3 text-yellow-400">Why Ditto Music</h4>
+                <p className="opacity-80 leading-relaxed">
+                  She started Ditto Music to bring independent musicians to Nostr through Ditto, with a direct path to music discovery, 
+                  day-one monetization, and an audience that chooses to harness emerging tech innovations to empower artists and fans.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>First Yoga Class on Nostr</h4>
+                <p className="opacity-80 leading-relaxed">
+                  She is also, somewhat improbably, the person who taught the first yoga class on Nostr. This allowed her to experience "V4V" 
+                  in action despite the fact that she can hardly carry a tune as a singer.
+                </p>
+              </div>
+
+              <div className="text-center pt-4">
+                <p className="text-lg opacity-70 mb-4">
+                  She's here to help by harnessing the power of the Soapbox dev team, the coolest group of nerds you'll ever meet.
+                </p>
+                <div className="text-xl font-bold">
+                  She'll even roadie for you, work a nightclub door,
+                  <br />
+                  <span style={{ color: currentTheme.accent }}>and tell you what year she played that old ass song on the radio.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer 
         className="py-12 px-4"
