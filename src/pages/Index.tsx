@@ -20,7 +20,8 @@ import {
   Palette,
   Users,
   Star,
-  Headphones
+  Headphones,
+  MapPin
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -1699,6 +1700,183 @@ const Index = () => {
                   She didn't bring a music career into Bitcoin.
                   <br />
                   <span style={{ color: currentTheme.accent }}>Bitcoin gave her the conditions to become a musician.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Case Study - Chris Wenske */}
+      <section className="py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+              style={{ 
+                background: `${currentTheme.accent}20`,
+                border: `1px solid ${currentTheme.accent}30`
+              }}
+            >
+              <MapPin className="w-4 h-4" style={{ color: currentTheme.accent }} />
+              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+                Community Builder
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              The Bitcoin Party{' '}
+              <span style={{ color: currentTheme.accent }}>That Crossed</span>
+              <br />
+              State Lines
+            </h2>
+          </div>
+
+          {/* Case Study Card */}
+          <div 
+            className="rounded-2xl overflow-hidden"
+            style={{ 
+              background: `${currentTheme.accent}08`,
+              border: `1px solid ${currentTheme.accent}20`,
+              boxShadow: `0 0 60px ${currentTheme.accent}10`
+            }}
+          >
+            {/* Header with profile info */}
+            <div 
+              className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
+              style={{ 
+                background: `${currentTheme.accent}12`,
+                borderBottom: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <img 
+                src="https://blossom.primal.net/7e35f562debf108194b91cec389e4a52138f6ea6e6e4224b3cf3e5d19826e007.jpg"
+                alt="Chris Wenske"
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
+                style={{ border: `3px solid ${currentTheme.accent}` }}
+              />
+              <div className="text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">Chris Wenske</h3>
+                <p className="opacity-70 mb-3">Working musician, Bitcoin Party KC founder, Kansas City Bitcoin Summit organizer.</p>
+                <a 
+                  href="https://ditto.pub/npub1ctrsduxssdgthmmx7lz7erhqt2hjgj99tzkt22g2uyvayhxd9asq3xsd73"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
+                  style={{ 
+                    background: currentTheme.accent,
+                    color: '#fff'
+                  }}
+                >
+                  Follow on Ditto
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Story content */}
+            <div className="p-6 md:p-8 space-y-6">
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Breaking Point</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Chris Wenske did not start Bitcoin Party KC because he was a Bitcoin ideologue. He started it because Spotify owes him money 
+                  he will never see, DistroKid trapped him in a $5.99 monthly fee he cannot cancel without pulling all his music from every platform, 
+                  and the traditional royalty system handed his earnings to ASCAP, BMI, and a dark fund of unclaimed royalties that platforms 
+                  quietly absorb after a few years of inactivity.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Music</h4>
+                <p className="opacity-80 leading-relaxed">
+                  He is a working musician from Kansas City, Missouri, ten blocks from the Kansas state line. His songs include 
+                  <strong> Burning Down the Cornfield</strong>, which is exactly as Kansas as it sounds, a double entendre about burning fields 
+                  to return nutrients to the soil and about something harder to name. <strong>You Belong</strong> came out of a conversation 
+                  with a pastor during a rough stretch. <strong>Cheaters Never Win</strong> was co-written with folk songwriter Tom Tipton 
+                  through a Heartland Song Network program and started as a card game metaphor before becoming something about what happens 
+                  when the people you counted on let you down.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Technical Problem</h4>
+                <p className="opacity-80 leading-relaxed">
+                  What pulled him into Bitcoin was a specific technical problem: <strong>he wanted to split royalty payments automatically 
+                  between co-writers</strong>. He found Ibex Pay before it was forced out of the United States by regulatory pressure, started 
+                  using it to run betting splits at Bitcoin bowling nights, and helped onboard merchants to their platform. When Ibex left, 
+                  he found someone in the KC Bitcoiners group and inspired him to build a JavaScript splitter from scratch. That person 
+                  eventually abandoned the project. Chris moved on to BTC Pay Server, which he now runs through a hosted node service, and 
+                  considers it the most functional solution he has found for self-hosting music files and splitting payments.
+                </p>
+              </div>
+
+              <blockquote 
+                className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                  borderLeft: `4px solid ${currentTheme.accent}`
+                }}
+              >
+                "Someone in Africa can send him whatever a song is worth to them, directly, with no mechanical royalty rate governing the 
+                transaction, no platform deciding whether the number is too small to process, no six-month wait for a check."
+              </blockquote>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Bitcoin Party KC</h4>
+                <p className="opacity-80 leading-relaxed mb-4">
+                  Bitcoin Party KC grew out of that same frustration channeled into community. He has organized four Bitcoin block parties 
+                  in Kansas City, the first of which was <strong>Bitcoin only, no other currency accepted</strong>. They used Phoenix, Blue Wallet, 
+                  and Moon Wallet. It worked. The fifth block party is planned for April. A Kansas City Bitcoin conference is planned for September, 
+                  and he is looking for an OG sponsor to make it happen.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>South by Southwest Export</h4>
+                <p className="opacity-80 leading-relaxed">
+                  The South by Southwest export party was the next logical move. He played a show Friday night at Austin Body Works on 6th Street, 
+                  then the following afternoon ran a Bitcoin education event at Licha's Cantina at 1306 East 6th Street. The lineup included 
+                  <strong> Supertestnet flying in from Guatemala</strong> to present on coin pools, Austin Kelsey from Pleb Labs, and Jonathan Barrios 
+                  from Unchained Capital doing a Bitcoin 101 session. He drove a 55-inch TV screen to Austin in the back of his car, set it up on 
+                  a stand with a wireless microphone, and made it work. He paid for lodging in Bitcoin through AirBTC. He found a steakhouse in 
+                  Austin that accepts Bitcoin by posting a question on Twitter and following up on the answer.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Real Point</h4>
+                <p className="opacity-80 leading-relaxed">
+                  The thing he keeps coming back to is not ideology. It is the practical reality of peer-to-peer value. He is not against 
+                  DistroKid or Spotify as companies. He is tired of features that cannot be undone, dark funds that accrue from inactivity, 
+                  and a system designed so that <strong>the further downstream you are as an artist, the less you see</strong>.
+                </p>
+              </div>
+
+              <div className="text-center pt-4">
+                <p className="text-lg opacity-70 mb-4">
+                  His music is on Wavlake. His events are documented in a physical newsletter that doubles as a QR code to the Bitcoin Party KC membership page.
+                </p>
+                <div className="text-2xl font-bold">
+                  He didn't wait for the music industry to change.
+                  <br />
+                  <span style={{ color: currentTheme.accent }}>He threw a party and built his own.</span>
                 </div>
               </div>
             </div>
