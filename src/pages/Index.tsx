@@ -99,8 +99,8 @@ const Index = () => {
   const [isThemePickerOpen, setIsThemePickerOpen] = useState(false);
 
   useSeoMeta({
-    title: 'Ditto Creators Program | For Musicians',
-    description: 'Join the Ditto Creators Program. Get early access, shape the future of decentralized music, and earn from the Ditto Creators Fund. No gatekeepers. No algorithms. Just your music.',
+    title: 'Ditto Music | For Musicians',
+    description: 'Join Ditto Music. Get early access, shape the future of decentralized music, and earn from the Ditto Creators Fund. No gatekeepers. No algorithms. Just your music.',
   });
 
   // Auto-rotate themes
@@ -195,7 +195,7 @@ const Index = () => {
             >
               <div className="flex items-center gap-3">
                 <Music2 className="w-4 h-4" style={{ color: currentTheme.accent }} />
-                <span className="text-sm opacity-70">Ditto Creators Program</span>
+                <span className="text-sm opacity-70">Ditto Music</span>
               </div>
               <div className="flex items-center gap-2">
                 <button className="p-1 rounded hover:bg-white/10 transition-colors">
@@ -1901,8 +1901,7 @@ const Index = () => {
               </span>
             </div>
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              The{' '}
-              <span style={{ color: currentTheme.accent }}>Creators Program</span>
+              <span style={{ color: currentTheme.accent }}>Ditto Music</span>
             </h2>
             <p className="text-lg opacity-60 max-w-xl mx-auto">
               Be among the first musicians to shape decentralized music. Your feedback directly influences Ditto.
@@ -2021,7 +2020,7 @@ const Index = () => {
               },
               {
                 q: "Is this actually free?",
-                a: "Yes. The Ditto Creators Program is completely free. We're building the future of social media and want passionate creators to help shape it."
+                a: "Yes. Ditto Music is completely free. We're building the future of social media and want passionate creators to help shape it."
               },
             ].map((faq, i) => (
               <AccordionItem 
@@ -2100,7 +2099,7 @@ const Index = () => {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <Music2 className="w-6 h-6" style={{ color: currentTheme.accent }} />
-            <span className="font-semibold">Ditto Creators Program</span>
+            <span className="font-semibold">Ditto Music</span>
           </div>
           
           <div className="flex items-center gap-6 text-sm opacity-60">

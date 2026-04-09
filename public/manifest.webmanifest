@@ -1,7 +1,7 @@
 {
-  "name": "Ditto Creators Program",
-  "short_name": "Ditto Creators",
-  "description": "Join the Ditto Creators Program. Get early access, shape the future of decentralized music, and earn from the Ditto Creators Fund.",
+  "name": "Ditto Music",
+  "short_name": "Ditto Music",
+  "description": "Join Ditto Music. Get early access, shape the future of decentralized music, and earn from the Ditto Creators Fund.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0a0f",

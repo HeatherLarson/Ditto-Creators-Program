@@ -85,9 +85,9 @@ export function CreatorApplicationForm({ accentColor = '#a855f7' }: CreatorAppli
         // This allows the Ditto team to easily find applications
         await publishEvent({
           kind: 1,
-          content: `[Ditto Creators Program Application]\n\nArtist: ${formData.artistName}\nGenre: ${formData.genre || 'Not specified'}\n\n${formData.about}\n\nWhy I want to join:\n${formData.whyJoin}\n\nMusic: ${formData.musicLinks || 'Will share later'}\n\n#DittoCreators #MusicianApplication`,
+          content: `[Ditto Music Application]\n\nArtist: ${formData.artistName}\nGenre: ${formData.genre || 'Not specified'}\n\n${formData.about}\n\nWhy I want to join:\n${formData.whyJoin}\n\nMusic: ${formData.musicLinks || 'Will share later'}\n\n#DittoMusic #MusicianApplication`,
           tags: [
-            ['t', 'dittocreators'],
+            ['t', 'dittomusic'],
             ['t', 'musicianapplication'],
             ['application', applicationContent],
           ],
@@ -136,7 +136,7 @@ export function CreatorApplicationForm({ accentColor = '#a855f7' }: CreatorAppli
         </div>
         <h3 className="text-2xl font-bold mb-4">You're In!</h3>
         <p className="opacity-60 mb-6 max-w-md mx-auto">
-          Thanks for applying to the Ditto Creators Program! We've received your application 
+          Thanks for applying to Ditto Music! We've received your application 
           and will be in touch soon. In the meantime...
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -291,7 +291,7 @@ export function CreatorApplicationForm({ accentColor = '#a855f7' }: CreatorAppli
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="whyJoin">Why Do You Want to Join the Ditto Creators Program?</Label>
+          <Label htmlFor="whyJoin">Why Do You Want to Join Ditto Music?</Label>
           <Textarea
             id="whyJoin"
             name="whyJoin"
@@ -348,7 +348,7 @@ export function CreatorApplicationForm({ accentColor = '#a855f7' }: CreatorAppli
 
         <p className="text-xs text-center opacity-50">
           By submitting, you agree to participate in beta testing and provide feedback. 
-          Your information will only be used for the Ditto Creators Program.
+          Your information will only be used for Ditto Music.
         </p>
       </form>
     </div>
