@@ -2630,93 +2630,167 @@ const Index = () => {
             >
               <Sparkles className="w-4 h-4" style={{ color: currentTheme.accent }} />
               <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
-                Limited Beta Access
+                Join the Community
               </span>
             </div>
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
+              Benefits of Joining{' '}
               <span style={{ color: currentTheme.accent }}>Ditto Music</span>
             </h2>
-            <p className="text-lg opacity-60 max-w-xl mx-auto">
-              Be among the first musicians to shape decentralized music. Your feedback directly influences Ditto.
-            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="space-y-4">
             {[
               {
-                icon: Headphones,
-                title: 'Personalized Onboarding',
-                desc: 'Get 1-on-1 guidance to set up your profile, upload music, and connect your wallet. We\'ll make sure you hit the ground running.',
-                gradient: `linear-gradient(135deg, ${currentTheme.accent}30, transparent)`
+                icon: DollarSign,
+                title: 'Earn More Than Spotify',
+                desc: "You'll earn more than you will on Spotify & reach a new audience without the drawbacks of algorithms or waiting to be monetized.",
+              },
+              {
+                icon: Zap,
+                title: 'Day One Monetization',
+                desc: 'Monetization of your music is available on day one. No milestones to hit. No gatekeepers. No middlemen like Stripe.',
+              },
+              {
+                icon: Star,
+                title: 'Get Featured',
+                desc: "Participants will be featured in our newsletter; the most successful from our first cohort will be prominently featured on our blog and Soapbox Sessions Podcast.",
+              },
+              {
+                icon: MessageCircle,
+                title: 'Signal Chat Support',
+                desc: "Signal chat for feedback and tech help; we're with you every step of the way to support you.",
               },
               {
                 icon: Users,
                 title: 'Regular Community Calls',
-                desc: 'Join fellow creators for regular calls where you can share feedback, learn tips, and connect with the Ditto team directly.',
-                gradient: `linear-gradient(135deg, #3b82f630, transparent)`
+                desc: 'Regular community calls (2-3 a month in different time zones on weekdays, a midday, an evening, and a morning call).',
               },
               {
-                icon: Star,
-                title: 'Featured on Ditto.pub',
-                desc: 'Stand-out creators get featured placement on the platform. Your music in front of the entire Ditto community.',
-                gradient: `linear-gradient(135deg, #f59e0b30, transparent)`
+                icon: MapPin,
+                title: 'International Program',
+                desc: 'Not limited to US musicians; the program is international.',
               },
               {
-                icon: DollarSign,
-                title: 'Creators Fund',
-                desc: 'The best music gets rewarded from our fund. Quality over follower counts.',
-                gradient: `linear-gradient(135deg, #22c55e30, transparent)`
-              },
-              {
-                icon: MessageCircle,
-                title: 'Direct Feedback Loop',
-                desc: 'Your input shapes the product. Tell us what musicians need and watch it get built.',
-                gradient: `linear-gradient(135deg, #ec489930, transparent)`
+                icon: Heart,
+                title: 'Monetary Rewards',
+                desc: 'Monetary reward for posting your music and interacting on Ditto!',
               },
               {
                 icon: Sparkles,
                 title: 'Pioneer Status',
-                desc: 'Be recognized as a founding creator. Early adopters are remembered.',
-                gradient: `linear-gradient(135deg, #8b5cf630, transparent)`
+                desc: "You'll be one of the first to embrace this new and emerging tech and help create a revolution for music artists worldwide.",
               },
             ].map((benefit, i) => (
               <div
                 key={i}
-                className="p-8 rounded-2xl transition-all hover:scale-[1.02]"
+                className="flex items-start gap-4 p-6 rounded-xl transition-all hover:scale-[1.01]"
                 style={{ 
-                  background: benefit.gradient,
-                  border: `1px solid ${currentTheme.accent}20`
+                  background: `${currentTheme.accent}08`,
+                  border: `1px solid ${currentTheme.accent}15`
                 }}
               >
                 <benefit.icon 
-                  className="w-12 h-12 mb-4" 
+                  className="w-8 h-8 flex-shrink-0 mt-1" 
                   style={{ color: currentTheme.accent }} 
                 />
-                <h3 className="text-2xl font-bold mb-3">{benefit.title}</h3>
-                <p className="opacity-70">{benefit.desc}</p>
+                <div>
+                  <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
+                  <p className="opacity-70">{benefit.desc}</p>
+                </div>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Bonus perks */}
-          <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              '100% free to participate',
-              'No follower requirements',
-              'Early access to new features',
-              'Priority support from the team',
-              'Community of like-minded artists',
-              'Uncensorable platform'
-            ].map((perk, i) => (
-              <div 
-                key={i}
-                className="flex items-center gap-3 p-4 rounded-xl"
-                style={{ background: `${currentTheme.accent}10` }}
-              >
-                <Check className="w-5 h-5 flex-shrink-0" style={{ color: currentTheme.accent }} />
-                <span>{perk}</span>
-              </div>
-            ))}
+      {/* Why Join Us */}
+      <section className="py-24 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Why{' '}
+              <span style={{ color: currentTheme.accent }}>Join Us?</span>
+            </h2>
+          </div>
+
+          <div className="space-y-6">
+            <div 
+              className="p-6 rounded-xl"
+              style={{ background: `${currentTheme.accent}08` }}
+            >
+              <p className="opacity-80 leading-relaxed text-lg">
+                You'll be onboarded to Ditto for the purpose of music discovery; we want to populate this new form of Internet with 
+                <strong> GREAT content</strong> that is new to people. Indie music is perfect for that. We also believe good music will earn 
+                attention on its own without algorithms, ads, or making silly dances on video that have nothing to do with your music. 
+                <strong> This is something we want to reward.</strong>
+              </p>
+            </div>
+
+            <div 
+              className="p-6 rounded-xl"
+              style={{ background: `${currentTheme.accent}08` }}
+            >
+              <p className="opacity-80 leading-relaxed text-lg">
+                We're not going to tell you what to do to succeed; that is up to you! We are here for feedback so we can create the features 
+                you want in Ditto. We're also here to teach you as much as you want to learn about the tech under the hood if you wish. 
+                If you don't, that's fine, too. <strong>You can dive as deeply as you have bandwidth for.</strong>
+              </p>
+            </div>
+
+            <div 
+              className="p-6 rounded-xl"
+              style={{ background: `${currentTheme.accent}08` }}
+            >
+              <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Our Partners & Community</h4>
+              <p className="opacity-80 leading-relaxed">
+                If you want to learn more about putting your music onto indie platforms that harness Bitcoin & Nostr, we will refer you to our 
+                partners at <strong>Wavlake, Fountain, Tunestr, & Epoch Music (Phantom Power Music)</strong>, where we've been building trust 
+                in our community for more than two years. Our staff has been known to lead in-person events in markets like Phoenix, DC, Austin, 
+                Nashville, and Las Vegas as well as international markets like Riga, Latvia and Belgrade, Serbia. These events were also 
+                live-streamed across the Nostr ecosystem. Livestreams play across all Nostr apps including Ditto, Tunestr, Epoch Music, Nostur, 
+                Primal, and Zap.Stream, allowing your streams to reach a larger audience.
+              </p>
+            </div>
+
+            <div 
+              className="p-6 rounded-xl"
+              style={{ background: `${currentTheme.accent}08` }}
+            >
+              <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>What You Can Do on Ditto</h4>
+              <p className="opacity-80 leading-relaxed">
+                The Ditto platform is where you'll be able to promote your music, tour, events, lives, and more. If a way to promote it the way 
+                you want to doesn't exist, we want to know so we can explore building it for you. We want to help you with posting video, podcasts, 
+                music tracks, events, ticketing, live streams, and more on Ditto. For example, we have an events platform called Plektos, and there 
+                is also one in the ecosystem called Satlantis. While these will get the word out to the Nostr community, they don't have the network 
+                effect of Big Tech platforms like Meetup, EventBrite, or Luma.
+              </p>
+            </div>
+
+            <div 
+              className="p-6 rounded-xl"
+              style={{ background: 'rgba(255,200,50,0.08)' }}
+            >
+              <h4 className="font-bold text-lg mb-3 text-yellow-400">A Note on Expectations</h4>
+              <p className="opacity-80 leading-relaxed">
+                Please know it's not time to quit traditional legacy platforms just yet. Ditto is a growing platform that <em>can</em> replace 
+                the legacy platforms you probably dislike, but it's not there yet. What we're doing here on Ditto can augment what you've got 
+                going with Bandcamp, Spotify, Apple Music, SoundCloud, and others. But it's not going to replace all that yet. You may earn more 
+                money from your music than you will through Spotify, that much is true. But it's easy to replace $1.27 checks from them. 
+                <strong> What's tougher is using this to pay rent and replace a day job and we want to be transparent about that.</strong>
+              </p>
+            </div>
+
+            <blockquote 
+              className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+              style={{ 
+                background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                borderLeft: `4px solid ${currentTheme.accent}`
+              }}
+            >
+              The Ditto audience LOVES music and staying off Big Tech, closed source, controlled platforms. 
+              If your music is good and you show up consistently, they will love you.
+            </blockquote>
           </div>
         </div>
       </section>
