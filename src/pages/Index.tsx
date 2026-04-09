@@ -1671,7 +1671,7 @@ const Index = () => {
                   className="block mt-6 rounded-xl overflow-hidden transition-all hover:scale-[1.02] hover:shadow-lg"
                 >
                   <img 
-                    src="https://blossom.primal.net/8b13dcf306ca695eaa3e0b1f144bd90fd0c6b5263e0b147ddb6baf5fdaf3d35f.png"
+                    src="https://image.nostr.build/b23b9dffbd5295088e576f0920818f7b847c2af801b738bf3d80eea3999268d5.png"
                     alt="Ivy Lumi's tweet celebrating exceeding her Geyser Fund goal"
                     className="w-full max-w-lg mx-auto"
                   />
