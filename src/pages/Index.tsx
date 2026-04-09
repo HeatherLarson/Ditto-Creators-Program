@@ -2363,6 +2363,260 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Case Study - Annonymal */}
+      <section className="py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+              style={{ 
+                background: `${currentTheme.accent}20`,
+                border: `1px solid ${currentTheme.accent}30`
+              }}
+            >
+              <Volume2 className="w-4 h-4" style={{ color: currentTheme.accent }} />
+              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+                Anonymous Heavy Metal
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              How Can I Be{' '}
+              <span style={{ color: currentTheme.accent }}>Scarce?</span>
+            </h2>
+          </div>
+
+          {/* Case Study Card */}
+          <div 
+            className="rounded-2xl overflow-hidden"
+            style={{ 
+              background: `${currentTheme.accent}08`,
+              border: `1px solid ${currentTheme.accent}20`,
+              boxShadow: `0 0 60px ${currentTheme.accent}10`
+            }}
+          >
+            {/* Header with profile info */}
+            <div 
+              className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
+              style={{ 
+                background: `${currentTheme.accent}12`,
+                borderBottom: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <img 
+                src="https://pbs.twimg.com/profile_images/1540754363337039872/d5qySxbT_400x400.jpg"
+                alt="Annonymal"
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
+                style={{ border: `3px solid ${currentTheme.accent}` }}
+              />
+              <div className="text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">Annonymal</h3>
+                <p className="opacity-70 mb-3">Six-piece anonymous heavy metal band. Journalists by day. Bitcoin's soundtrack by night. #HornsUpForSatoshi</p>
+                <a 
+                  href="https://ditto.pub/npub1t3mef4r3zksmzvapjeea2u6xefy56dnn09zcmr5chuj2fx9tc34ss2hc9n"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
+                  style={{ 
+                    background: currentTheme.accent,
+                    color: '#fff'
+                  }}
+                >
+                  Follow on Ditto
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Story content */}
+            <div className="p-6 md:p-8 space-y-6">
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Question</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Annonymal is a six-piece heavy metal band whose members are anonymous. No names, no faces, no location disclosed. They are 
+                  journalists by trade, covering Bitcoin and blockchain as a day job. When they looked around at the Bitcoin space and saw people 
+                  who were better journalists than them, they asked a different question: <strong>how can I be scarce? How can I be unique?</strong> 
+                  The answer was that Bitcoin did not have a soundtrack yet, and heavy metal was the right one.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Why Metal</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Their reasoning is not aesthetic. Metal is the genre of anti-establishment aggression. Bitcoin is anti-establishment by design. 
+                  The aggression of punk gave way to metal, which gave way to a music industry that was deliberately defanged when it became 
+                  commercially inconvenient for the people controlling the media. <strong>MTV dropped rock and metal and turned to reality shows. 
+                  Not by accident. Because aggressive music makes people critical.</strong> Annonymal saw the same trajectory in Bitcoin that they 
+                  saw in that cultural shift, and decided to document it in the only genre built for it.
+                </p>
+              </div>
+
+              <blockquote 
+                className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                  borderLeft: `4px solid ${currentTheme.accent}`
+                }}
+              >
+                "They describe their first encounter as being possessed by the idea that Bitcoin is organizing a political riot."
+              </blockquote>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Discovery</h4>
+                <p className="opacity-80 leading-relaxed">
+                  They came to Bitcoin not through number go up or investment thesis but through a 10-minute YouTube video from a girl running an 
+                  Austrian economics channel who called it the money of the future. They consumed everything Andreas Antonopoulos ever said.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: 'rgba(255,50,50,0.08)' }}
+              >
+                <h4 className="font-bold text-lg mb-3 text-red-400">As Government Dies</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Their first song was <strong>As Government Dies</strong>. It opens with the Genesis block timestamp and Satoshi's inscription: 
+                  <em> Chancellor on brink of second bailout for banks</em>. That is how they introduced themselves to the world.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Catalog</h4>
+                <p className="opacity-80 leading-relaxed">
+                  <strong>War Strategy</strong> was written when Russia invaded Ukraine. It preaches against war and argues that Bitcoin is the solution, 
+                  that governments only seek power and control, that fixing the money makes war unaffordable. They have a song called 
+                  <strong> The Arrow of Time</strong> built around that exact phrase. They have a song called <strong>The Soul Behind the Mask</strong> 
+                  written in first person as Satoshi, asking what Satoshi would say if he picked up a guitar. The lead member is the primary composer 
+                  of every Annonymal song. The other members contribute lyrics, melodies, solos, and drum arrangements, but the compositional core 
+                  belongs to one person.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: 'rgba(255,200,50,0.08)' }}
+              >
+                <h4 className="font-bold text-lg mb-3 text-yellow-400">Wavlake Only</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Their first full album is available only on Wavlake. Not Spotify. Not Apple Music. The choice was intentional and it is a hard one 
+                  to explain to people who believe that if you are not on Spotify you do not exist. The album was made before ChatGPT existed, recorded 
+                  with guitars and basses and drums and keyboards, the old way. <strong>No AI.</strong> They have made a small number of covers, including 
+                  a version of Megadeth's <em>In My Darkest Hour</em> they are proud of, but the catalog is overwhelmingly original compositions.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>First Week on Nostr</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Annonymal was on Nostr in the first week. They launched a hashtag called <strong>#HornsUpForSatoshi</strong> and it was one of the 
+                  most used tags on the platform, which at the time had almost no one on it. They now have nearly 5,000 notes and almost 100 pieces 
+                  of media published. Their wallets run through GetAlbi as the primary, with Primal as a secondary interface.
+                </p>
+              </div>
+
+              <blockquote 
+                className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                  borderLeft: `4px solid ${currentTheme.accent}`
+                }}
+              >
+                "They prefer being shared to being zapped. A share means the music reached someone new. A zap means someone who already found 
+                them gave them money. Both matter, but the share is the vote that means more."
+              </blockquote>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>killswitch.gov.exe</h4>
+                <p className="opacity-80 leading-relaxed">
+                  They ran a Geyser Fund campaign asking for $7,000 to fund the recording of their second album. It did not reach the goal. 
+                  OpenMike donated. The album is being recorded anyway. It is called <strong>killswitch.gov.exe</strong>. An executable file. 
+                  To kill the government. The second album will not be entirely about Bitcoin. The first album was all Bitcoin, all the time, 
+                  and that felt right for an introduction. The second album reflects a more mature band that has things to say beyond one subject.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: 'rgba(50,200,50,0.08)' }}
+              >
+                <h4 className="font-bold text-lg mb-3 text-green-400">No Longer Afraid</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Before Bitcoin, they were afraid of losing their job, their income, of being poor. They describe themselves as still poor but 
+                  no longer afraid. The knowledge changed the relationship to the fear. They reference the scene in <em>V for Vendetta</em> where 
+                  V tortures Evey until she has nothing left to lose and walks out into the rain without fear. <strong>That is approximately where 
+                  they are now. Not because Bitcoin made them rich, but because understanding what money actually is and how it actually works 
+                  removed the power that the fear of losing it had over them.</strong>
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Live Show</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Their band has six members traveling together, which is expensive and logistically complicated. Their goal is to play Bitcoin 
+                  conferences. They have a live show recording in the can, approximately 40 minutes, about to be released. When they get to a 
+                  conference, they plan to show up exactly as their persona suggests, and you will recognize them.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Given Bitcoin, I Have a Metal Voice</h4>
+                <p className="opacity-80 leading-relaxed">
+                  They wrote an article about the band called <em>Given Bitcoin, I Have a Metal Voice</em>, which traces the lineage from the Beatles 
+                  through punk through metal and argues that the same anti-establishment impulse runs through all of it. Bitcoin, in their view, is 
+                  the current expression of that impulse and <strong>metal is its correct soundtrack</strong>.
+                </p>
+              </div>
+
+              <blockquote 
+                className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                  borderLeft: `4px solid ${currentTheme.accent}`
+                }}
+              >
+                "In an era when AI is uploading music by the thousands every day, only what is genuinely human and genuinely meaningful will 
+                hold attention. Make what you cannot help but make."
+              </blockquote>
+
+              <div className="text-center pt-4">
+                <p className="text-lg opacity-70 mb-4">
+                  Annonymal would be making music regardless of whether anyone listened or any money arrived. That is the standard they hold 
+                  themselves to and the one they recommend to everyone else.
+                </p>
+                <div className="text-2xl font-bold">
+                  Be true to yourself.
+                  <br />
+                  <span style={{ color: currentTheme.accent }}>The internal motivation is the only thing that survives.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Grid */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
