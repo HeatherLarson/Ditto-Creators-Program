@@ -104,7 +104,8 @@ const caseStudyNames = [
   'Chris Wenske',
   'Sam Sethi',
   'Man Like Kweks',
-  'Annonymal'
+  'Annonymal',
+  'Longy & Aaron'
 ];
 
 const Index = () => {
@@ -2698,6 +2699,229 @@ const Index = () => {
                   Be true to yourself.
                   <br />
                   <span style={{ color: currentTheme.accent }}>The internal motivation is the only thing that survives.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      )}
+
+      {/* Case Study - Longy & Aaron */}
+      {activeCaseStudy === 10 && (
+      <section className="pb-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+              style={{ 
+                background: `${currentTheme.accent}20`,
+                border: `1px solid ${currentTheme.accent}30`
+              }}
+            >
+              <Users className="w-4 h-4" style={{ color: currentTheme.accent }} />
+              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+                Radio Detox Case Study
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              How One Friendship{' '}
+              <span style={{ color: currentTheme.accent }}>Brought a British Musician</span>
+              <br />
+              into Value-for-Value
+            </h2>
+          </div>
+
+          {/* Case Study Card */}
+          <div 
+            className="rounded-2xl overflow-hidden"
+            style={{ 
+              background: `${currentTheme.accent}08`,
+              border: `1px solid ${currentTheme.accent}20`,
+              boxShadow: `0 0 60px ${currentTheme.accent}10`
+            }}
+          >
+            {/* Header with profile info - Two profiles */}
+            <div 
+              className="p-6 md:p-8"
+              style={{ 
+                background: `${currentTheme.accent}12`,
+                borderBottom: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+                <div className="flex flex-col items-center text-center">
+                  <img 
+                    src="https://image.nostr.build/a424d08de684200b7f6bbb270e0c3849219dd4afc926b2ae149d5038e0d7cb3f.jpg"
+                    alt="Longy"
+                    className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover mb-3"
+                    style={{ border: `3px solid ${currentTheme.accent}` }}
+                  />
+                  <h3 className="text-xl font-bold">Longy</h3>
+                  <p className="opacity-70 text-sm mb-2">International musical streetbrawler</p>
+                  <a 
+                    href="https://ditto.pub/npub19ppwxjrqckwl4n2a7j960fjsvhn8vrggcd0h092nmq7zcgcskjfsywp04j"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium transition-all hover:scale-105"
+                    style={{ 
+                      background: currentTheme.accent,
+                      color: '#fff'
+                    }}
+                  >
+                    Follow
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+                
+                <div className="text-3xl opacity-50">+</div>
+                
+                <div className="flex flex-col items-center text-center">
+                  <img 
+                    src="https://image.nostr.build/8b5334beac3710b9433371ffd95cc4a7b6829868b218861c8ec48631cb9bece6.jpg"
+                    alt="Aaron of Essex"
+                    className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover mb-3"
+                    style={{ border: `3px solid ${currentTheme.accent}` }}
+                  />
+                  <h3 className="text-xl font-bold">Aaron of Essex</h3>
+                  <p className="opacity-70 text-sm mb-2">Bitcoin advocate, Salonomics podcast</p>
+                  <a 
+                    href="https://ditto.pub/npub1ztzpz9xepmxsry7jqdhjc32dh5wtktpnn9kjq5eupdwdq06gdn6s0d7zxv"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium transition-all hover:scale-105"
+                    style={{ 
+                      background: currentTheme.accent,
+                      color: '#fff'
+                    }}
+                  >
+                    Follow
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              </div>
+              <p className="text-center opacity-70 mt-6 max-w-2xl mx-auto">
+                Longy is an independent musician from Southend, Essex. Aaron is a longtime friend, Bitcoin advocate, and creator of Salonomics. 
+                Together, their story illustrates what it actually takes to bring artists into the value-for-value music ecosystem.
+              </p>
+            </div>
+
+            {/* Story content */}
+            <div className="p-6 md:p-8 space-y-6">
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: 'rgba(255,50,50,0.08)' }}
+              >
+                <h4 className="font-bold text-lg mb-3 text-red-400">The Problem</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Independent artists like Longy have spent years generating music that ends up on Spotify, Apple Music, and similar platforms 
+                  where earnings are negligible. The traditional distribution model routes money through publishers, labels, and royalty agencies 
+                  before anything reaches the artist, if it reaches them at all. Discovery depends on the permission of major labels and centralized 
+                  radio programmers. <strong>A musician can have genuine talent and a real following and still earn almost nothing from streaming.</strong> 
+                  The value-for-value model exists to fix this, but getting artists to take it seriously has been the persistent challenge.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>How It Happened</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Aaron did not walk up to Longy with a Bitcoin pitch. He asked one question: <em>what do you know about Bitcoin?</em> When Longy 
+                  mentioned NFTs and Ethereum, Aaron redirected him away from that immediately and focused the conversation on Bitcoin specifically. 
+                  The approach worked because the foundation was already there. Longy is by nature skeptical of mainstream systems, resistant to 
+                  gatekeepers, and already thinking like a sovereign artist. Aaron recognized that. He said Longy was primed because his music 
+                  and his worldview both point in the same direction. <strong>The trust between them, built over years of friendship, meant Longy 
+                  was willing to listen without needing to be sold.</strong>
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: 'rgba(255,200,50,0.08)' }}
+              >
+                <h4 className="font-bold text-lg mb-3 text-yellow-400">The Turning Point</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Within a short time of getting his music on Wavlake, <strong>Adam Curry played one of Longy's songs on his podcast</strong>. 
+                  Longy woke up the next morning to hundreds of thousands of sats in his wallet. That moment changed things. It was not just the money. 
+                  It was the evidence. Real people had heard his music, decided it was worth something, and sent that value directly to him without 
+                  any middleman taking a cut. For an artist who had watched his work generate fractions of a cent on legacy platforms, that was a 
+                  different kind of proof.
+                </p>
+              </div>
+
+              <blockquote 
+                className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                  borderLeft: `4px solid ${currentTheme.accent}`
+                }}
+              >
+                "Fans sent boosts and zaps with messages attached, something that simply does not happen on Spotify. 
+                The engagement felt organic and real in a way that streaming numbers do not."
+              </blockquote>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: 'rgba(50,200,50,0.08)' }}
+              >
+                <h4 className="font-bold text-lg mb-3 text-green-400">What Changed</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Longy gained an American audience he would never have found otherwise. Podcasters in the value-for-value space began playing 
+                  his music. He also found himself part of a community of artists, developers, and fans who share a common goal: 
+                  <strong> get artists paid fairly and build something better than what exists now</strong>.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Ongoing Challenge</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Longy is still operating in two worlds. He still needs traditional distribution to reach the audience he already has in the fiat 
+                  music system. Other artists around him remain skeptical or afraid, some worried that mentioning Bitcoin publicly will trigger 
+                  algorithm penalties on Instagram or Spotify. The apps on Nostr are still rough. Wallet splits with collaborators and producers 
+                  require everyone to have a Bitcoin wallet, and not everyone is willing. Getting consistent on Wavlake and building presence there 
+                  takes time that most working musicians do not have after managing their day jobs, their families, and the actual work of writing 
+                  and recording.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>What the Case Study Demonstrates</h4>
+                <p className="opacity-80 leading-relaxed">
+                  <strong>Artists do not discover value-for-value through cold outreach or conference panels. They come in through people they trust.</strong> 
+                  Aaron reaching Longy directly, one conversation at a time, is how this ecosystem actually grows. The technology works. The community 
+                  is real. But the path to adoption runs through personal relationships and demonstrated results, not marketing campaigns. Every artist 
+                  who joins brings their own network and their own potential to pull someone else in. Longy is now looking at how to do for other 
+                  local artists what Aaron did for him.
+                </p>
+              </div>
+
+              <blockquote 
+                className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                  borderLeft: `4px solid ${currentTheme.accent}`
+                }}
+              >
+                "The value-for-value model is not a niche experiment anymore. It is a functioning alternative to a broken system, 
+                built by people who believe that artists deserve direct compensation for their work."
+              </blockquote>
+
+              <div className="text-center pt-4">
+                <p className="text-lg opacity-70 mb-4">
+                  Longy's story is one data point. The pattern it represents is the whole argument.
+                </p>
+                <div className="text-2xl font-bold">
+                  The path to adoption runs through personal relationships.
+                  <br />
+                  <span style={{ color: currentTheme.accent }}>One conversation at a time.</span>
                 </div>
               </div>
             </div>
