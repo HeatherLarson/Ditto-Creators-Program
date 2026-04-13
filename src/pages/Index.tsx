@@ -11,6 +11,7 @@ import {
   Minus,
   Square,
   ChevronRight,
+  ChevronLeft,
   Volume2,
   Play,
   Heart,
@@ -93,10 +94,24 @@ const fakePosts = [
   },
 ];
 
+const caseStudyNames = [
+  'Ainsley Costello',
+  'Sara Jade',
+  'OpenMike',
+  'Abel James',
+  'Kathryn',
+  'Ivy Lumi',
+  'Chris Wenske',
+  'Sam Sethi',
+  'Man Like Kweks',
+  'Annonymal'
+];
+
 const Index = () => {
   const [activeTheme, setActiveTheme] = useState(0);
   const [showForm, setShowForm] = useState(false);
   const [isThemePickerOpen, setIsThemePickerOpen] = useState(false);
+  const [activeCaseStudy, setActiveCaseStudy] = useState(0);
 
   useSeoMeta({
     title: 'Ditto Music | For Musicians',
@@ -675,8 +690,63 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Case Study - Ainsley Costello */}
+      {/* Case Studies Section with Pagination */}
       <section className="py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          {/* Case Study Navigation Header */}
+          <div className="flex items-center justify-between mb-8">
+            <button
+              onClick={() => setActiveCaseStudy(prev => Math.max(0, prev - 1))}
+              disabled={activeCaseStudy === 0}
+              className="flex items-center gap-2 px-4 py-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed hover:scale-105"
+              style={{ 
+                background: `${currentTheme.accent}20`,
+                border: `1px solid ${currentTheme.accent}30`
+              }}
+            >
+              <ChevronLeft className="w-5 h-5" style={{ color: currentTheme.accent }} />
+              <span className="hidden sm:inline" style={{ color: currentTheme.accent }}>Previous</span>
+            </button>
+            
+            <div className="text-center">
+              <div className="text-sm opacity-60 mb-1">Case Study {activeCaseStudy + 1} of {caseStudyNames.length}</div>
+              <div className="font-bold text-lg" style={{ color: currentTheme.accent }}>{caseStudyNames[activeCaseStudy]}</div>
+            </div>
+            
+            <button
+              onClick={() => setActiveCaseStudy(prev => Math.min(caseStudyNames.length - 1, prev + 1))}
+              disabled={activeCaseStudy === caseStudyNames.length - 1}
+              className="flex items-center gap-2 px-4 py-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed hover:scale-105"
+              style={{ 
+                background: `${currentTheme.accent}20`,
+                border: `1px solid ${currentTheme.accent}30`
+              }}
+            >
+              <span className="hidden sm:inline" style={{ color: currentTheme.accent }}>Next</span>
+              <ChevronRight className="w-5 h-5" style={{ color: currentTheme.accent }} />
+            </button>
+          </div>
+
+          {/* Dot Navigation */}
+          <div className="flex justify-center gap-2 mb-12">
+            {caseStudyNames.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveCaseStudy(index)}
+                className="w-3 h-3 rounded-full transition-all hover:scale-125"
+                style={{ 
+                  background: index === activeCaseStudy ? currentTheme.accent : `${currentTheme.accent}30`,
+                }}
+                aria-label={`Go to case study ${index + 1}: ${caseStudyNames[index]}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Case Study - Ainsley Costello */}
+      {activeCaseStudy === 0 && (
+      <section className="pb-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <div 
@@ -840,9 +910,11 @@ const Index = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* Case Study - Sara Jade */}
-      <section className="py-24 px-4">
+      {activeCaseStudy === 1 && (
+      <section className="pb-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
@@ -992,9 +1064,11 @@ const Index = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* Case Study - OpenMike */}
-      <section className="py-24 px-4">
+      {activeCaseStudy === 2 && (
+      <section className="pb-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <div 
@@ -1175,9 +1249,11 @@ const Index = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* Case Study - Abel James */}
-      <section className="py-24 px-4">
+      {activeCaseStudy === 3 && (
+      <section className="pb-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
@@ -1339,9 +1415,11 @@ const Index = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* Case Study - Kathryn */}
-      <section className="py-24 px-4">
+      {activeCaseStudy === 4 && (
+      <section className="pb-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <div 
@@ -1519,9 +1597,11 @@ const Index = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* Case Study - Ivy Lumi */}
-      <section className="py-24 px-4">
+      {activeCaseStudy === 5 && (
+      <section className="pb-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <div 
@@ -1706,9 +1786,11 @@ const Index = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* Case Study - Chris Wenske */}
-      <section className="py-24 px-4">
+      {activeCaseStudy === 6 && (
+      <section className="pb-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <div 
@@ -1883,9 +1965,11 @@ const Index = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* Case Study - Sam Sethi */}
-      <section className="py-24 px-4">
+      {activeCaseStudy === 7 && (
+      <section className="pb-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <div 
@@ -2130,9 +2214,11 @@ const Index = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* Case Study - Man Like Kweks */}
-      <section className="py-24 px-4">
+      {activeCaseStudy === 8 && (
+      <section className="pb-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <div 
@@ -2362,9 +2448,11 @@ const Index = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* Case Study - Annonymal */}
-      <section className="py-24 px-4">
+      {activeCaseStudy === 9 && (
+      <section className="pb-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <div 
@@ -2616,6 +2704,7 @@ const Index = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* Benefits Grid */}
       <section className="py-24 px-4">
