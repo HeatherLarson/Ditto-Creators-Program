@@ -301,8 +301,8 @@ const Index = () => {
                   }}
                   asChild
                 >
-                  <a href="https://ditto.pub" target="_blank" rel="noopener noreferrer">
-                    Join Ditto
+                  <a href="https://cal.com/heather-larson-3dswg4" target="_blank" rel="noopener noreferrer">
+                    Book a Call
                     <Sparkles className="ml-2 w-5 h-5" />
                   </a>
                 </Button>
@@ -316,8 +316,8 @@ const Index = () => {
                   }}
                   asChild
                 >
-                  <a href="https://about.ditto.pub" target="_blank" rel="noopener noreferrer">
-                    Learn More
+                  <a href="https://ditto.pub" target="_blank" rel="noopener noreferrer">
+                    Explore Ditto
                     <ExternalLink className="ml-2 w-5 h-5" />
                   </a>
                 </Button>
@@ -3311,19 +3311,35 @@ const Index = () => {
               <div className="text-center md:text-left">
                 <h3 className="text-2xl md:text-3xl font-bold mb-2">Heather Larson</h3>
                 <p className="opacity-70 mb-3">HBIC of Ditto Music. Radio veteran. Host of Radio Detox & Soapbox Sessions. Yoga teacher who taught the first class on Nostr.</p>
-                <a 
-                  href="https://ditto.pub/npub1nl8r463jkdtr0qu0k3dht03jt9t59cttk0j8gtxg9wea2russlnq2zf9d0"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
-                  style={{ 
-                    background: currentTheme.accent,
-                    color: '#fff'
-                  }}
-                >
-                  Follow on Ditto
-                  <ExternalLink className="w-4 h-4" />
-                </a>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+                  <a 
+                    href="https://cal.com/heather-larson-3dswg4"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
+                    style={{ 
+                      background: currentTheme.accent,
+                      color: '#fff'
+                    }}
+                  >
+                    Book a Call
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                  <a 
+                    href="https://ditto.pub/npub1nl8r463jkdtr0qu0k3dht03jt9t59cttk0j8gtxg9wea2russlnq2zf9d0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
+                    style={{ 
+                      background: `${currentTheme.accent}20`,
+                      color: currentTheme.accent,
+                      border: `1px solid ${currentTheme.accent}40`
+                    }}
+                  >
+                    Follow on Ditto
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -3416,6 +3432,43 @@ const Index = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Book a Call CTA */}
+      <section className="py-24 px-4">
+        <div className="max-w-2xl mx-auto">
+          <div 
+            className="rounded-2xl p-12 text-center"
+            style={{ 
+              background: `${currentTheme.accent}10`,
+              border: `1px solid ${currentTheme.accent}20`
+            }}
+          >
+            <Music2 className="w-16 h-16 mx-auto mb-6" style={{ color: currentTheme.accent }} />
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Ready to{' '}
+              <span style={{ color: currentTheme.accent }}>Get Started</span>?
+            </h2>
+            <p className="opacity-60 mb-8 max-w-md mx-auto">
+              Book a call with Heather to learn more about Ditto Music and how you can be part of the decentralized music revolution.
+            </p>
+            <Button 
+              size="lg" 
+              className="text-lg px-8 py-6 transition-all hover:scale-105"
+              style={{ 
+                background: currentTheme.accent,
+                color: '#fff',
+                boxShadow: `0 0 30px ${currentTheme.accent}50`
+              }}
+              asChild
+            >
+              <a href="https://cal.com/heather-larson-3dswg4" target="_blank" rel="noopener noreferrer">
+                Book a Call
+                <Sparkles className="ml-2 w-5 h-5" />
+              </a>
+            </Button>
           </div>
         </div>
       </section>
