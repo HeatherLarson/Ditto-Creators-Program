@@ -35,6 +35,7 @@ import {
 
 import { CreatorApplicationForm } from '@/components/CreatorApplicationForm';
 import { UpcomingEventsSection } from '@/components/UpcomingEventsSection';
+import { LiveStreamsSection } from '@/components/LiveStreamsSection';
 
 // Theme definitions
 const themes = [
@@ -615,6 +616,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Live Streams from Nostr (NIP-53) */}
+      <LiveStreamsSection accentColor={currentTheme.accent} textColor={currentTheme.text} />
 
       {/* Live Events Section */}
       <section className="py-24 px-4">
