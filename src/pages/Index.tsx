@@ -33,7 +33,6 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 
-import { CreatorApplicationForm } from '@/components/CreatorApplicationForm';
 import { UpcomingEventsSection } from '@/components/UpcomingEventsSection';
 import { LiveStreamsSection } from '@/components/LiveStreamsSection';
 
@@ -112,7 +111,6 @@ const caseStudyNames = [
 
 const Index = () => {
   const [activeTheme, setActiveTheme] = useState(0);
-  const [showForm, setShowForm] = useState(false);
   const [isThemePickerOpen, setIsThemePickerOpen] = useState(false);
   const [activeCaseStudy, setActiveCaseStudy] = useState(0);
 
@@ -301,15 +299,12 @@ const Index = () => {
                     color: '#fff',
                     boxShadow: `0 0 30px ${currentTheme.accent}50`
                   }}
-                  onClick={() => {
-                    setShowForm(true);
-                    setTimeout(() => {
-                      document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' });
-                    }, 100);
-                  }}
+                  asChild
                 >
-                  Apply to Join
-                  <Sparkles className="ml-2 w-5 h-5" />
+                  <a href="https://ditto.pub" target="_blank" rel="noopener noreferrer">
+                    Join Ditto
+                    <Sparkles className="ml-2 w-5 h-5" />
+                  </a>
                 </Button>
                 <Button 
                   variant="outline" 
@@ -321,8 +316,8 @@ const Index = () => {
                   }}
                   asChild
                 >
-                  <a href="https://ditto.pub" target="_blank" rel="noopener noreferrer">
-                    Explore Ditto
+                  <a href="https://about.ditto.pub" target="_blank" rel="noopener noreferrer">
+                    Learn More
                     <ExternalLink className="ml-2 w-5 h-5" />
                   </a>
                 </Button>
@@ -3191,53 +3186,6 @@ const Index = () => {
               </AccordionItem>
             ))}
           </Accordion>
-        </div>
-      </section>
-
-      {/* Application Form */}
-      <section id="apply" className="py-24 px-4">
-        <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Ready to{' '}
-              <span style={{ color: currentTheme.accent }}>Join</span>?
-            </h2>
-            <p className="text-lg opacity-60">
-              Fill out the form below. We'll be in touch soon.
-            </p>
-          </div>
-
-          {showForm ? (
-            <CreatorApplicationForm accentColor={currentTheme.accent} />
-          ) : (
-            <div 
-              className="rounded-2xl p-12 text-center"
-              style={{ 
-                background: `${currentTheme.accent}10`,
-                border: `1px solid ${currentTheme.accent}20`
-              }}
-            >
-              <Music2 className="w-16 h-16 mx-auto mb-6" style={{ color: currentTheme.accent }} />
-              <h3 className="text-2xl font-bold mb-4">Musicians Only (For Now)</h3>
-              <p className="opacity-60 mb-8 max-w-md mx-auto">
-                We're starting with musicians and expanding to more creator types soon. 
-                We're accepting applications and contacting those accepted on a rolling basis. Ready to be a pioneer?
-              </p>
-              <Button 
-                size="lg" 
-                className="text-lg px-8 py-6 transition-all hover:scale-105"
-                style={{ 
-                  background: currentTheme.accent,
-                  color: '#fff',
-                  boxShadow: `0 0 30px ${currentTheme.accent}50`
-                }}
-                onClick={() => setShowForm(true)}
-              >
-                Start Application
-                <Sparkles className="ml-2 w-5 h-5" />
-              </Button>
-            </div>
-          )}
         </div>
       </section>
 
