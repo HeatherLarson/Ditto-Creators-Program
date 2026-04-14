@@ -50,10 +50,10 @@ export function UpcomingEventsSection({ accentColor, textColor }: UpcomingEvents
           </div>
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             Upcoming{' '}
-            <span style={{ color: accentColor }}>Events</span>
+            <span style={{ color: accentColor }}>Music Events</span>
           </h2>
           <p className="text-lg opacity-60 max-w-2xl mx-auto">
-            Discover music events, meetups, and gatherings happening in the Nostr community. 
+            Discover live music events, concerts, and gatherings happening in the Nostr community. 
             All events are decentralized and published using NIP-52 calendar events.
           </p>
         </div>
@@ -132,9 +132,9 @@ export function UpcomingEventsSection({ accentColor, textColor }: UpcomingEvents
             }}
           >
             <Calendar className="w-16 h-16 mx-auto mb-6 opacity-50" style={{ color: accentColor }} />
-            <h3 className="text-2xl font-bold mb-4">No Upcoming Events</h3>
+            <h3 className="text-2xl font-bold mb-4">No Upcoming Music Events</h3>
             <p className="opacity-60 mb-8 max-w-md mx-auto">
-              There aren't any upcoming events posted right now. Be the first to create one on Plektos, 
+              There aren't any upcoming music events posted right now. Be the first to create one on Plektos, 
               the decentralized events platform built on Nostr!
             </p>
             <a

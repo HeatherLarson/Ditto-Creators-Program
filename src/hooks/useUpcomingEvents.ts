@@ -87,24 +87,23 @@ function parseCalendarEvent(event: NostrEvent): CalendarEvent {
 }
 
 /**
- * Hook to fetch upcoming calendar events from Nostr (NIP-52)
+ * Hook to fetch upcoming music calendar events from Nostr (NIP-52)
  * Queries events from Plektos and other NIP-52 compatible sources
+ * Filters to only show events tagged with "music" category
  */
 export function useUpcomingEvents(limit: number = 6) {
   const { nostr } = useNostr();
 
   return useQuery({
-    queryKey: ['upcoming-events', limit],
+    queryKey: ['upcoming-events', 'music', limit],
     queryFn: async () => {
-      const now = Math.floor(Date.now() / 1000);
-      const todayDate = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
-
       // Query both time-based (31923) and date-based (31922) calendar events
-      // that start from now into the future
+      // Filter at relay level for events with "music" tag
       const events = await nostr.query([
         {
           kinds: [31922, 31923],
-          limit: limit * 3, // Fetch more to filter down
+          '#t': ['music'],
+          limit: limit * 3, // Fetch more to filter down after date filtering
         },
       ]);
 
