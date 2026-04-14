@@ -87,18 +87,23 @@ function parseCalendarEvent(event: NostrEvent): CalendarEvent {
 }
 
 /**
- * Checks if an event has a music-related tag (case-insensitive)
+ * Music-related tags to filter events (case-insensitive matching)
  */
-function hasMusicTag(event: NostrEvent): boolean {
+const MUSIC_TAGS = ['music', 'livemusic', 'maggiemaes', 'austin'];
+
+/**
+ * Checks if an event has any music-related tag (case-insensitive)
+ */
+function hasMusicRelatedTag(event: NostrEvent): boolean {
   return event.tags.some(
-    ([name, value]) => name === 't' && value?.toLowerCase() === 'music'
+    ([name, value]) => name === 't' && MUSIC_TAGS.includes(value?.toLowerCase())
   );
 }
 
 /**
  * Hook to fetch upcoming music calendar events from Nostr (NIP-52)
  * Queries events from Plektos and other NIP-52 compatible sources
- * Filters to only show events tagged with "music" category (case-insensitive)
+ * Filters to show events tagged with music-related categories
  */
 export function useUpcomingEvents(limit: number = 6) {
   const { nostr } = useNostr();
@@ -107,7 +112,7 @@ export function useUpcomingEvents(limit: number = 6) {
     queryKey: ['upcoming-events', 'music', limit],
     queryFn: async () => {
       // Query both time-based (31923) and date-based (31922) calendar events
-      // Query for both "music" and "Music" variants since tag values are case-sensitive
+      // Query for all music-related tags (both lowercase and capitalized variants)
       const events = await nostr.query([
         {
           kinds: [31922, 31923],
@@ -119,12 +124,42 @@ export function useUpcomingEvents(limit: number = 6) {
           '#t': ['Music'],
           limit: limit * 3,
         },
+        {
+          kinds: [31922, 31923],
+          '#t': ['livemusic'],
+          limit: limit * 3,
+        },
+        {
+          kinds: [31922, 31923],
+          '#t': ['LiveMusic'],
+          limit: limit * 3,
+        },
+        {
+          kinds: [31922, 31923],
+          '#t': ['maggiemaes'],
+          limit: limit * 3,
+        },
+        {
+          kinds: [31922, 31923],
+          '#t': ['MaggieMaes'],
+          limit: limit * 3,
+        },
+        {
+          kinds: [31922, 31923],
+          '#t': ['austin'],
+          limit: limit * 3,
+        },
+        {
+          kinds: [31922, 31923],
+          '#t': ['Austin'],
+          limit: limit * 3,
+        },
       ]);
 
       // Validate and parse events
       const validEvents = events
         .filter(validateCalendarEvent)
-        .filter(hasMusicTag) // Double-check music tag (handles any other case variations)
+        .filter(hasMusicRelatedTag) // Verify event has a music-related tag
         .map(parseCalendarEvent)
         // Filter to only upcoming events
         .filter((event) => {
@@ -138,7 +173,7 @@ export function useUpcomingEvents(limit: number = 6) {
         })
         // Sort by start time
         .sort((a, b) => a.startTimestamp - b.startTimestamp)
-        // Remove duplicates (in case an event has both "music" and "Music" tags)
+        // Remove duplicates (in case an event has multiple matching tags)
         .filter((event, index, self) => 
           index === self.findIndex((e) => e.id === event.id)
         )
