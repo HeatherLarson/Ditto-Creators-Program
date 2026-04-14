@@ -2931,6 +2931,9 @@ const Index = () => {
       </section>
       )}
 
+      {/* Upcoming Events from Plektos */}
+      <UpcomingEventsSection accentColor={currentTheme.accent} textColor={currentTheme.text} />
+
       {/* Benefits Grid */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
@@ -3358,9 +3361,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      {/* Upcoming Events from Plektos */}
-      <UpcomingEventsSection accentColor={currentTheme.accent} textColor={currentTheme.text} />
 
       {/* Footer */}
       <footer 
