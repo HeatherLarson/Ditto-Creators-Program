@@ -353,6 +353,153 @@ const Index = () => {
         </div>
       </section>
 
+      {/* How It Works & Info Section */}
+      <section className="py-24 px-4">
+        <div className="max-w-4xl mx-auto">
+          {/* How It Works */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-12">
+              How It{' '}
+              <span style={{ color: currentTheme.accent }}>Works</span>
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div 
+                className="p-6 rounded-xl"
+                style={{ 
+                  background: `${currentTheme.accent}08`,
+                  border: `1px solid ${currentTheme.accent}15`
+                }}
+              >
+                <div 
+                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold"
+                  style={{ background: currentTheme.accent, color: '#fff' }}
+                >
+                  1
+                </div>
+                <p className="opacity-80">Create your Nostr profile (takes 5 minutes, no email required)</p>
+              </div>
+              <div 
+                className="p-6 rounded-xl"
+                style={{ 
+                  background: `${currentTheme.accent}08`,
+                  border: `1px solid ${currentTheme.accent}15`
+                }}
+              >
+                <div 
+                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold"
+                  style={{ background: currentTheme.accent, color: '#fff' }}
+                >
+                  2
+                </div>
+                <p className="opacity-80">Upload your music or stream live</p>
+              </div>
+              <div 
+                className="p-6 rounded-xl"
+                style={{ 
+                  background: `${currentTheme.accent}08`,
+                  border: `1px solid ${currentTheme.accent}15`
+                }}
+              >
+                <div 
+                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold"
+                  style={{ background: currentTheme.accent, color: '#fff' }}
+                >
+                  3
+                </div>
+                <p className="opacity-80">Fans send payments directly to you, instantly, with no platform taking a cut</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Info Cards */}
+          <div className="space-y-6">
+            {/* What is a zap? */}
+            <div 
+              className="p-6 rounded-xl"
+              style={{ 
+                background: `${currentTheme.accent}08`,
+                border: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <h3 className="text-xl font-bold mb-3" style={{ color: currentTheme.accent }}>What is a zap?</h3>
+              <p className="opacity-80 leading-relaxed">
+                A zap is a tip sent directly from a fan to you over the Bitcoin Lightning Network. It hits your wallet instantly. No minimums. No waiting. No middleman.
+              </p>
+            </div>
+
+            {/* Do I have to leave Spotify? */}
+            <div 
+              className="p-6 rounded-xl"
+              style={{ 
+                background: `${currentTheme.accent}08`,
+                border: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <h3 className="text-xl font-bold mb-3" style={{ color: currentTheme.accent }}>Do I have to leave Spotify?</h3>
+              <p className="opacity-80 leading-relaxed">
+                No. Keep everything you already have. This is additive. You can distribute on every platform you use today and also build here.
+              </p>
+            </div>
+
+            {/* No algorithms */}
+            <div 
+              className="p-6 rounded-xl"
+              style={{ 
+                background: `${currentTheme.accent}08`,
+                border: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <h3 className="text-xl font-bold mb-3" style={{ color: currentTheme.accent }}>No algorithms. No gatekeeping.</h3>
+              <p className="opacity-80 leading-relaxed">
+                Your music is not ranked, filtered, or buried based on engagement metrics. You are not competing for platform attention. Fans find you because other fans share you.
+              </p>
+            </div>
+
+            {/* We'll be honest */}
+            <div 
+              className="p-6 rounded-xl"
+              style={{ 
+                background: 'rgba(255,200,50,0.08)',
+                border: '1px solid rgba(255,200,50,0.15)'
+              }}
+            >
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">We'll be honest with you.</h3>
+              <p className="opacity-80 leading-relaxed">
+                This is new. There are no guaranteed earnings, no proven playbook, and no algorithm working in your favor. What there is: direct payments from fans, full control of your content, and a community building something different from the ground up. If you are looking for a sure thing, this is not it. If you are looking for a real alternative, you found it.
+              </p>
+            </div>
+
+            {/* Why join now? */}
+            <div 
+              className="p-6 rounded-xl"
+              style={{ 
+                background: `${currentTheme.accent}08`,
+                border: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <h3 className="text-xl font-bold mb-3" style={{ color: currentTheme.accent }}>Why join now?</h3>
+              <p className="opacity-80 leading-relaxed">
+                The artists who show up early are the ones who shape what this becomes. There are no legacy acts with a head start. No established algorithm favorites. Everyone here is starting from the same place.
+              </p>
+            </div>
+
+            {/* How you get paid */}
+            <div 
+              className="p-6 rounded-xl"
+              style={{ 
+                background: `${currentTheme.accent}08`,
+                border: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <h3 className="text-xl font-bold mb-3" style={{ color: currentTheme.accent }}>How you get paid.</h3>
+              <p className="opacity-80 leading-relaxed">
+                Fans send sats (small units of Bitcoin) directly to your wallet during streams, on your profile, or attached to a post. You receive them instantly. No payment processor. No 90-day delay. No minimum payout threshold.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Pain Points - Scattered Cards */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
