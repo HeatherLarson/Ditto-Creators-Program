@@ -3125,11 +3125,33 @@ const Index = () => {
           </h2>
 
           <Accordion type="single" collapsible className="space-y-4">
+            <AccordionItem 
+              value="item-0"
+              className="rounded-xl px-6 transition-colors"
+              style={{ 
+                background: `${currentTheme.accent}08`,
+                border: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <AccordionTrigger className="text-left hover:no-underline py-6">
+                <span className="text-lg font-medium">What is Nostr and why should I care?</span>
+              </AccordionTrigger>
+              <AccordionContent className="pb-6 opacity-70 leading-relaxed">
+                Nostr is a decentralized protocol, think of it like email but for social media. No single company controls it. Your identity is yours forever, your content can't be deleted by a platform, and you can move between apps seamlessly.
+                <br /><br />
+                <a 
+                  href="https://nostr-resources.surge.sh/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 hover:opacity-80 transition-opacity"
+                  style={{ color: currentTheme.accent }}
+                >
+                  Learn more about Nostr
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </AccordionContent>
+            </AccordionItem>
             {[
-              {
-                q: "What is Nostr and why should I care?",
-                a: "Nostr is a decentralized protocol, think of it like email but for social media. No single company controls it. Your identity is yours forever, your content can't be deleted by a platform, and you can move between apps seamlessly."
-              },
               {
                 q: "Do I need to understand Bitcoin or crypto?",
                 a: "Nope! You can use Ditto just like any other platform. Bitcoin Lightning payments are optional - they're just an amazing way for fans to tip you directly without fees. We'll help you set it up if you're interested."
@@ -3153,7 +3175,7 @@ const Index = () => {
             ].map((faq, i) => (
               <AccordionItem 
                 key={i} 
-                value={`item-${i}`}
+                value={`item-${i + 1}`}
                 className="rounded-xl px-6 transition-colors"
                 style={{ 
                   background: `${currentTheme.accent}08`,
