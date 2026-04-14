@@ -34,6 +34,7 @@ import {
 } from '@/components/ui/accordion';
 
 import { CreatorApplicationForm } from '@/components/CreatorApplicationForm';
+import { UpcomingEventsSection } from '@/components/UpcomingEventsSection';
 
 // Theme definitions
 const themes = [
@@ -690,6 +691,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Upcoming Events from Plektos */}
+      <UpcomingEventsSection accentColor={currentTheme.accent} textColor={currentTheme.text} />
 
       {/* Case Studies Section with Pagination */}
       <section className="py-24 px-4">
