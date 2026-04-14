@@ -87,9 +87,18 @@ function parseCalendarEvent(event: NostrEvent): CalendarEvent {
 }
 
 /**
+ * Checks if an event has a music-related tag (case-insensitive)
+ */
+function hasMusicTag(event: NostrEvent): boolean {
+  return event.tags.some(
+    ([name, value]) => name === 't' && value?.toLowerCase() === 'music'
+  );
+}
+
+/**
  * Hook to fetch upcoming music calendar events from Nostr (NIP-52)
  * Queries events from Plektos and other NIP-52 compatible sources
- * Filters to only show events tagged with "music" category
+ * Filters to only show events tagged with "music" category (case-insensitive)
  */
 export function useUpcomingEvents(limit: number = 6) {
   const { nostr } = useNostr();
@@ -98,18 +107,24 @@ export function useUpcomingEvents(limit: number = 6) {
     queryKey: ['upcoming-events', 'music', limit],
     queryFn: async () => {
       // Query both time-based (31923) and date-based (31922) calendar events
-      // Filter at relay level for events with "music" tag
+      // Query for both "music" and "Music" variants since tag values are case-sensitive
       const events = await nostr.query([
         {
           kinds: [31922, 31923],
           '#t': ['music'],
-          limit: limit * 3, // Fetch more to filter down after date filtering
+          limit: limit * 3,
+        },
+        {
+          kinds: [31922, 31923],
+          '#t': ['Music'],
+          limit: limit * 3,
         },
       ]);
 
       // Validate and parse events
       const validEvents = events
         .filter(validateCalendarEvent)
+        .filter(hasMusicTag) // Double-check music tag (handles any other case variations)
         .map(parseCalendarEvent)
         // Filter to only upcoming events
         .filter((event) => {
@@ -123,6 +138,10 @@ export function useUpcomingEvents(limit: number = 6) {
         })
         // Sort by start time
         .sort((a, b) => a.startTimestamp - b.startTimestamp)
+        // Remove duplicates (in case an event has both "music" and "Music" tags)
+        .filter((event, index, self) => 
+          index === self.findIndex((e) => e.id === event.id)
+        )
         // Limit results
         .slice(0, limit);
 
