@@ -3146,45 +3146,129 @@ const Index = () => {
                 </a>
               </AccordionContent>
             </AccordionItem>
-            {[
-              {
-                q: "Do I need to understand Bitcoin or crypto?",
-                a: "Nope! You can use Ditto just like any other platform. Bitcoin Lightning payments are optional - they're just an amazing way for fans to tip you directly without fees. We'll help you set it up if you're interested."
-              },
-              {
-                q: "What content can I post?",
-                a: "Everything! Full tracks, clips, demos, live performances, podcasts, voice messages. Ditto supports music tracks, playlists, videos, short-form content, live streams, and articles."
-              },
-              {
-                q: "How does the Creators Fund work?",
-                a: "We reward outstanding music on the platform. Selection is based on quality, engagement, and community contribution. No subscriber thresholds or watch-time requirements."
-              },
-              {
-                q: "Can I still use YouTube/Spotify/etc?",
-                a: "Absolutely! Many creators use Ditto alongside traditional platforms. Think of Ditto as your uncensorable home base where you truly own your audience."
-              },
-              {
-                q: "Is this actually free?",
-                a: "Yes. Ditto Music is completely free. We're building the future of social media and want passionate creators to help shape it."
-              },
-            ].map((faq, i) => (
-              <AccordionItem 
-                key={i} 
-                value={`item-${i + 1}`}
-                className="rounded-xl px-6 transition-colors"
-                style={{ 
-                  background: `${currentTheme.accent}08`,
-                  border: `1px solid ${currentTheme.accent}15`
-                }}
-              >
-                <AccordionTrigger className="text-left hover:no-underline py-6">
-                  <span className="text-lg font-medium">{faq.q}</span>
-                </AccordionTrigger>
-                <AccordionContent className="pb-6 opacity-70 leading-relaxed">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
+            <AccordionItem 
+              value="item-1"
+              className="rounded-xl px-6 transition-colors"
+              style={{ 
+                background: `${currentTheme.accent}08`,
+                border: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <AccordionTrigger className="text-left hover:no-underline py-6">
+                <span className="text-lg font-medium">Do I need to understand Bitcoin or crypto?</span>
+              </AccordionTrigger>
+              <AccordionContent className="pb-6 opacity-70 leading-relaxed">
+                Nope! You can use Ditto just like any other platform. Bitcoin Lightning payments are optional - they're just an amazing way for fans to tip you directly without fees. We'll help you set it up if you're interested.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem 
+              value="item-2"
+              className="rounded-xl px-6 transition-colors"
+              style={{ 
+                background: `${currentTheme.accent}08`,
+                border: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <AccordionTrigger className="text-left hover:no-underline py-6">
+                <span className="text-lg font-medium">What content can I post?</span>
+              </AccordionTrigger>
+              <AccordionContent className="pb-6 opacity-70 leading-relaxed">
+                Everything! Full tracks, clips, demos, live performances, podcasts, voice messages. Ditto supports music tracks, playlists, videos, short-form content, live streams, and articles.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem 
+              value="item-3"
+              className="rounded-xl px-6 transition-colors"
+              style={{ 
+                background: `${currentTheme.accent}08`,
+                border: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <AccordionTrigger className="text-left hover:no-underline py-6">
+                <span className="text-lg font-medium">Isn't Ditto just another social app?</span>
+              </AccordionTrigger>
+              <AccordionContent className="pb-6 leading-relaxed">
+                <p className="mb-4 opacity-70">
+                  No. Ditto is more than just another social app because it brings together all the content forms that make Nostr great into one simple place. Nostr is a protocol rather than a platform or a company. So there's no incentive to do anything but free you to unleash your creativity across an ecosystem of apps.
+                </p>
+                
+                <p className="mb-2 font-semibold" style={{ color: currentTheme.accent }}>Our Soapbox Ecosystem Includes:</p>
+                <ul className="list-disc list-inside space-y-1 mb-4 opacity-70">
+                  <li><a href="https://shakespeare.diy" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Shakespeare.diy</a> for GenAI</li>
+                  <li><a href="https://agora.space" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Agora.space</a> to allow activists to organize in countries with limited access to Internet and big name platforms like X (Twitter)</li>
+                  <li><a href="https://divine.video" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>diVine video</a> (reboot of Vine)</li>
+                  <li><a href="https://plektos.app" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Plektos</a> for events</li>
+                  <li><a href="https://zaplytics.ditto.pub" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Zaplytics</a> to see metrics on your Ditto earnings</li>
+                  <li><a href="https://linkbio.at" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>LinkBio</a> for a "link in bio" that's interoperable with Ditto</li>
+                  <li><a href="https://inkwell.social" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Inkwell</a> for long-form articles</li>
+                  <li><a href="https://letters.ditto.pub" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Letters</a> for fan DMs</li>
+                  <li><a href="https://blobbi.com" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Blobbi</a> for virtual pets online</li>
+                  <li><a href="https://bitchat.mesh" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Bitchat mesh</a> for off-grid communication</li>
+                  <li><a href="https://whitenoise.chat" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>WhiteNoise</a> for secure messaging</li>
+                </ul>
+
+                <p className="mb-2 font-semibold" style={{ color: currentTheme.accent }}>And other interesting apps like:</p>
+                <ul className="list-disc list-inside space-y-1 mb-4 opacity-70">
+                  <li><a href="https://espy.app" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Espy</a> for color moments</li>
+                  <li><a href="https://mi.soapbox.pub" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Mi</a> - backup your profile</li>
+                  <li><a href="https://treasures.app" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Treasures</a> for geocaching</li>
+                </ul>
+
+                <p className="opacity-70">
+                  There are dozens more apps outside of our ecosystem. This is an open source community above all else.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem 
+              value="item-4"
+              className="rounded-xl px-6 transition-colors"
+              style={{ 
+                background: `${currentTheme.accent}08`,
+                border: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <AccordionTrigger className="text-left hover:no-underline py-6">
+                <span className="text-lg font-medium">How does the Creators Fund work?</span>
+              </AccordionTrigger>
+              <AccordionContent className="pb-6 opacity-70 leading-relaxed">
+                We reward outstanding music on the platform. Selection is based on quality, engagement, and community contribution. No subscriber thresholds or watch-time requirements.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem 
+              value="item-5"
+              className="rounded-xl px-6 transition-colors"
+              style={{ 
+                background: `${currentTheme.accent}08`,
+                border: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <AccordionTrigger className="text-left hover:no-underline py-6">
+                <span className="text-lg font-medium">Can I still use YouTube/Spotify/etc?</span>
+              </AccordionTrigger>
+              <AccordionContent className="pb-6 opacity-70 leading-relaxed">
+                Absolutely! Many creators use Ditto alongside traditional platforms. Think of Ditto as your uncensorable home base where you truly own your audience.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem 
+              value="item-6"
+              className="rounded-xl px-6 transition-colors"
+              style={{ 
+                background: `${currentTheme.accent}08`,
+                border: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <AccordionTrigger className="text-left hover:no-underline py-6">
+                <span className="text-lg font-medium">Is this actually free?</span>
+              </AccordionTrigger>
+              <AccordionContent className="pb-6 opacity-70 leading-relaxed">
+                Yes. Ditto Music is completely free. We're building the future of social media and want passionate creators to help shape it.
+              </AccordionContent>
+            </AccordionItem>
           </Accordion>
         </div>
       </section>
