@@ -3093,13 +3093,19 @@ const Index = () => {
           >
             {/* Header with artist info */}
             <div 
-              className="p-6 md:p-8"
+              className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
               style={{ 
                 background: `${currentTheme.accent}12`,
                 borderBottom: `1px solid ${currentTheme.accent}15`
               }}
             >
-              <div className="text-center">
+              <img 
+                src="https://profilepics.nostur.com/profilepic_v1/0baa70eaac98a57a620a69d30abc0f30121c7ff06f9e60f4256840818ba63b37/profilepic.jpg?1773336418"
+                alt="Contra"
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
+                style={{ border: `3px solid ${currentTheme.accent}` }}
+              />
+              <div className="text-center md:text-left">
                 <h3 className="text-2xl md:text-3xl font-bold mb-2">Contra</h3>
                 <p className="opacity-70 mb-3">Father, Veteran, and Value-for-Value Music Producer on Nostr</p>
                 <a 
