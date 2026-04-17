@@ -106,7 +106,8 @@ const caseStudyNames = [
   'Sam Sethi',
   'Man Like Kweks',
   'Annonymal',
-  'Longy & Aaron'
+  'Longy & Aaron',
+  'Contra'
 ];
 
 const Index = () => {
@@ -3069,6 +3070,142 @@ const Index = () => {
                   The path to adoption runs through personal relationships.
                   <br />
                   <span style={{ color: currentTheme.accent }}>One conversation at a time.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      )}
+
+      {/* Case Study - Contra */}
+      {activeCaseStudy === 11 && (
+      <section className="pb-24 px-4">
+        <div className="max-w-4xl mx-auto">
+          {/* Case Study Card */}
+          <div 
+            className="rounded-2xl overflow-hidden"
+            style={{ 
+              background: `${currentTheme.accent}08`,
+              border: `1px solid ${currentTheme.accent}20`,
+              boxShadow: `0 0 60px ${currentTheme.accent}10`
+            }}
+          >
+            {/* Header with artist info */}
+            <div 
+              className="p-6 md:p-8"
+              style={{ 
+                background: `${currentTheme.accent}12`,
+                borderBottom: `1px solid ${currentTheme.accent}15`
+              }}
+            >
+              <div className="text-center">
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">Contra</h3>
+                <p className="opacity-70 mb-3">Father, Veteran, and Value-for-Value Music Producer on Nostr</p>
+                <a 
+                  href="https://ditto.pub/npub14hq5lgadtyy9dhvtszq46dnl0s0xwdddqr7e32rdqqhma8a4xhsspxjjzu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
+                  style={{ 
+                    background: currentTheme.accent,
+                    color: '#fff'
+                  }}
+                >
+                  Follow on Ditto
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Story content */}
+            <div className="p-6 md:p-8 space-y-6">
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Who He Is</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Contra is a military veteran and longtime Bitcoiner who found his way to Nostr around late 2022. He is known in the community 
+                  for philosophical, long-form posts rooted in sovereignty, family, and the Bitcoin ethos. He is not a professional musician. 
+                  He is a music fan who decided to make music anyway, and the reason why is the most interesting part of the story.
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Project</h4>
+                <p className="opacity-80 leading-relaxed">
+                  About two and a half to three years ago, Contra and his son started making music together. His son is nearly 19, has played 
+                  drums since childhood, plays multiple instruments, and has been learning Logic Pro for years. They built out a music room in 
+                  the house. The son starts with guitar or drums, records and clips pieces in Logic Pro, and they piece it together from there. 
+                  They produce mainly metalcore with some hip hop. They find a consistent voice to use across an album so the sound stays cohesive.
+                </p>
+                <p className="opacity-80 leading-relaxed mt-4">
+                  Contra uses some AI tools in the production process. His son, who is the actual musician, is not a fan of fully AI-generated 
+                  music and draws a clear line between using AI as a production aid and using it to replace the creative work. 
+                  <strong> The instruments are real. The compositions are theirs.</strong>
+                </p>
+              </div>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: `${currentTheme.accent}08` }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>How Value for Value Fits In</h4>
+                <p className="opacity-80 leading-relaxed">
+                  All sats and zaps earned from Wavlake streams and Nostr go directly to his son. <strong>Contra keeps none of it.</strong> When 
+                  his son asked what he was getting out of the time they were spending together, Contra set up a Geyser Fund under his name with 
+                  a modest goal: recoup the cost of Logic Pro. The fund has not been heavily promoted. The point was to show his son how value 
+                  for value works in practice.
+                </p>
+                <p className="opacity-80 leading-relaxed mt-4">
+                  His son also dollar cost averages Bitcoin on his own through Strike. Contra stacks Bitcoin for him separately every month. 
+                  The lesson being passed down is not just how to make music. It is how money works, why the dollar loses value, and what it 
+                  means to receive payment directly from the people who choose to support your work with no intermediary taking a cut.
+                </p>
+              </div>
+
+              <blockquote 
+                className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
+                  borderLeft: `4px solid ${currentTheme.accent}`
+                }}
+              >
+                "His son is watching all of this in real time. He understands inflation. He understands why the system is designed the way it is. 
+                And he is learning that there is another way to put something into the world and be compensated for it honestly."
+              </blockquote>
+
+              <div 
+                className="p-6 rounded-xl"
+                style={{ background: 'rgba(255,200,50,0.08)' }}
+              >
+                <h4 className="font-bold text-lg mb-3 text-yellow-400">Why It Matters</h4>
+                <p className="opacity-80 leading-relaxed">
+                  Contra is not a case study about going viral or earning a living from music on Nostr. He is a case study about what value for 
+                  value looks like at the family level. A father and son spend time together making something. People who like it send Bitcoin 
+                  directly. No label. No Spotify royalty statement arriving months later with a fraction of a cent per stream. No platform 
+                  deciding whether the music gets seen.
+                </p>
+              </div>
+
+              <div className="text-center pt-4">
+                <p className="text-lg opacity-70 mb-4">
+                  That is what this ecosystem is being built for.
+                </p>
+                <div className="text-xl font-bold mb-6">
+                  Find Contra on Nostr. Support his music on{' '}
+                  <a href="https://wavlake.com" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: currentTheme.accent }}>Wavlake</a>
+                  {' '}and{' '}
+                  <a href="https://fountain.fm" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: currentTheme.accent }}>Fountain.fm</a>.
+                </div>
+                <div className="text-2xl font-bold">
+                  A father teaching his son how to create,
+                  <br />
+                  <span style={{ color: currentTheme.accent }}>and how to be paid for it honestly.</span>
                 </div>
               </div>
             </div>
