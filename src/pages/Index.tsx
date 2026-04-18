@@ -377,7 +377,7 @@ const Index = () => {
                 >
                   1
                 </div>
-                <p className="opacity-80">Create your Nostr profile (takes 5 minutes, no email required)</p>
+                <p className="opacity-80">Create your Ditto profile (takes 5 minutes, no email required)</p>
               </div>
               <div 
                 className="p-6 rounded-xl"
