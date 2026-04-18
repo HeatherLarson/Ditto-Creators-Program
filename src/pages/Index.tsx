@@ -501,6 +501,45 @@ const Index = () => {
         </div>
       </section>
 
+      {/* For Music Fans */}
+      <section className="py-24 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div 
+            className="rounded-2xl p-8 md:p-12 text-center"
+            style={{ 
+              background: `linear-gradient(135deg, ${currentTheme.accent}15, ${currentTheme.accent}05)`,
+              border: `1px solid ${currentTheme.accent}20`
+            }}
+          >
+            <div 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+              style={{ 
+                background: `${currentTheme.accent}20`,
+                border: `1px solid ${currentTheme.accent}30`
+              }}
+            >
+              <Heart className="w-4 h-4" style={{ color: currentTheme.accent }} />
+              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+                For Music Fans
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              Not an Artist?{' '}
+              <span style={{ color: currentTheme.accent }}>You Belong Here Too.</span>
+            </h2>
+            <p className="text-lg opacity-70 leading-relaxed max-w-2xl mx-auto mb-6">
+              Ditto is the perfect place for music fans to gather and share their love of their favorite songs and artists. 
+              Discover new music through real recommendations from real people, not algorithms. Support artists directly with zaps. 
+              Be part of a community that actually cares about the music.
+            </p>
+            <p className="text-lg opacity-70 leading-relaxed max-w-2xl mx-auto">
+              When you zap an artist, they receive 100% of it instantly. No middleman. No platform fees. 
+              Just you and the music you love.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Pain Points - Scattered Cards */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
