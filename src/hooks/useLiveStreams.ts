@@ -39,6 +39,20 @@ function validateLiveStream(event: NostrEvent): boolean {
 }
 
 /**
+ * Checks if a stream has meaningful content (image or description)
+ * Filters out blank/empty streams
+ */
+function hasContent(stream: LiveStream): boolean {
+  // Must have either an image or a summary/description
+  const hasImage = !!stream.image && stream.image.trim() !== '';
+  const hasSummary = !!stream.summary && stream.summary.trim() !== '';
+  const hasTitle = stream.title && stream.title !== 'Untitled Stream' && stream.title.trim() !== '';
+  
+  // Require at least an image OR (a real title AND summary)
+  return hasImage || (hasTitle && hasSummary);
+}
+
+/**
  * Parses a NostrEvent into a LiveStream
  */
 function parseLiveStream(event: NostrEvent): LiveStream {
@@ -101,6 +115,7 @@ export function useLiveStreams(limit: number = 6) {
       const streams = events
         .filter(validateLiveStream)
         .map(parseLiveStream)
+        .filter(hasContent) // Exclude streams with blank screens and no descriptions
         // Sort: live streams first, then by start time
         .sort((a, b) => {
           // Live streams come first
@@ -144,6 +159,7 @@ export function useCurrentlyLive(limit: number = 6) {
         .filter(validateLiveStream)
         .map(parseLiveStream)
         .filter((stream) => stream.status === 'live')
+        .filter(hasContent) // Exclude streams with blank screens and no descriptions
         .sort((a, b) => {
           // Sort by current participants (most popular first), then by start time
           const aParticipants = a.currentParticipants || 0;
