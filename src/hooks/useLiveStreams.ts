@@ -39,10 +39,24 @@ function validateLiveStream(event: NostrEvent): boolean {
 }
 
 /**
+ * Blocklist of stream titles to exclude
+ */
+const BLOCKED_STREAM_TITLES = [
+  'Onaisin producciones.',
+];
+
+/**
  * Checks if a stream has meaningful content (image or description)
- * Filters out blank/empty streams
+ * Filters out blank/empty streams and blocked streams
  */
 function hasContent(stream: LiveStream): boolean {
+  // Check blocklist
+  if (BLOCKED_STREAM_TITLES.some(blocked => 
+    stream.title.toLowerCase() === blocked.toLowerCase()
+  )) {
+    return false;
+  }
+
   // Must have either an image or a summary/description
   const hasImage = !!stream.image && stream.image.trim() !== '';
   const hasSummary = !!stream.summary && stream.summary.trim() !== '';
