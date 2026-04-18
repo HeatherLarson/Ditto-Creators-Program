@@ -532,6 +532,9 @@ const Index = () => {
               Discover new music through real recommendations from real people, not algorithms. Support artists directly with zaps. 
               Be part of a community that actually cares about the music.
             </p>
+            <p className="text-lg opacity-70 leading-relaxed max-w-2xl mx-auto mb-6">
+              Ditto is where fans can interact directly, 1:1, with their favorite independent artists. You're always in a front row seat here.
+            </p>
             <p className="text-lg opacity-70 leading-relaxed max-w-2xl mx-auto">
               When you zap an artist, they receive 100% of it instantly. No middleman. No platform fees. 
               Just you and the music you love.
