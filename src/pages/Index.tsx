@@ -245,33 +245,13 @@ const Index = () => {
                 ))}
               </div>
 
-              {/* Logo */}
+              {/* Ditto Music Logo */}
               <div className="flex justify-center mb-8 relative z-10">
-                <div 
-                  className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full"
-                  style={{ 
-                    background: `${currentTheme.accent}20`,
-                    border: `1px solid ${currentTheme.accent}40`
-                  }}
-                >
-                  {/* Mini equalizer in badge */}
-                  <div className="flex items-end gap-0.5 h-4">
-                    {[...Array(4)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="w-1 rounded-sm"
-                        style={{
-                          background: currentTheme.accent,
-                          height: `${40 + i * 15}%`,
-                          animation: `equalizer ${0.3 + i * 0.1}s ease-in-out infinite alternate`
-                        }}
-                      />
-                    ))}
-                  </div>
-                  <span className="font-semibold" style={{ color: currentTheme.accent }}>
-                    For Musicians
-                  </span>
-                </div>
+                <img 
+                  src="/ditto-music-logo-dark.jpg" 
+                  alt="Ditto Music" 
+                  className="h-16 md:h-20 w-auto rounded-lg"
+                />
               </div>
 
               {/* Main Headline */}
@@ -3812,8 +3792,11 @@ const Index = () => {
       >
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <Music2 className="w-6 h-6" style={{ color: currentTheme.accent }} />
-            <span className="font-semibold">Ditto Music</span>
+            <img 
+              src="/ditto-music-logo-dark.jpg" 
+              alt="Ditto Music" 
+              className="h-8 w-auto rounded"
+            />
           </div>
           
           <div className="flex items-center gap-6 text-sm opacity-60">

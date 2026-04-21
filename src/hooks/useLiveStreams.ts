@@ -46,6 +46,22 @@ const BLOCKED_STREAM_TITLES = [
 ];
 
 /**
+ * Pinned streams that should always appear at the top (case-insensitive)
+ */
+const PINNED_STREAM_TITLES = [
+  'scardust 24/7',
+];
+
+/**
+ * Check if a stream title matches a pinned stream
+ */
+function isPinnedStream(stream: LiveStream): boolean {
+  return PINNED_STREAM_TITLES.some(pinned => 
+    stream.title.toLowerCase().includes(pinned.toLowerCase())
+  );
+}
+
+/**
  * Checks if a stream has meaningful content (image or description)
  * Filters out blank/empty streams and blocked streams
  */
@@ -130,9 +146,15 @@ export function useLiveStreams(limit: number = 6) {
         .filter(validateLiveStream)
         .map(parseLiveStream)
         .filter(hasContent) // Exclude streams with blank screens and no descriptions
-        // Sort: live streams first, then by start time
+        // Sort: pinned streams first, then live streams, then by start time
         .sort((a, b) => {
-          // Live streams come first
+          // Pinned streams always come first
+          const aIsPinned = isPinnedStream(a);
+          const bIsPinned = isPinnedStream(b);
+          if (aIsPinned && !bIsPinned) return -1;
+          if (!aIsPinned && bIsPinned) return 1;
+          
+          // Live streams come next
           if (a.status === 'live' && b.status !== 'live') return -1;
           if (a.status !== 'live' && b.status === 'live') return 1;
           // Then sort by start time (most recent first for live, soonest first for planned)
