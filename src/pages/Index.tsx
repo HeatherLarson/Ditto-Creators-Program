@@ -1,7 +1,6 @@
 import { useSeoMeta } from '@unhead/react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { 
-  Music2, 
   Zap, 
   DollarSign, 
   ExternalLink,
@@ -18,11 +17,10 @@ import {
   MessageCircle,
   Repeat2,
   MoreHorizontal,
-  Palette,
   Users,
   Star,
-  Headphones,
-  MapPin
+  MapPin,
+  Music2
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -36,37 +34,15 @@ import {
 import { UpcomingEventsSection } from '@/components/UpcomingEventsSection';
 import { LiveStreamsSection } from '@/components/LiveStreamsSection';
 
-// Theme definitions
-const themes = [
-  { 
-    name: 'Neon', 
-    bg: 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%)', 
-    accent: '#a855f7',
-    text: '#fff',
-    font: 'Space Grotesk Variable'
-  },
-  { 
-    name: 'Grunge', 
-    bg: 'linear-gradient(135deg, #1a1612 0%, #2d2420 100%)', 
-    accent: '#c4a574',
-    text: '#e8dcc8',
-    font: 'Space Grotesk Variable'
-  },
-  { 
-    name: 'Vapor', 
-    bg: 'linear-gradient(135deg, #1a0a2e 0%, #0f1a2e 100%)', 
-    accent: '#ff6ec7',
-    text: '#7fdbff',
-    font: 'Space Grotesk Variable'
-  },
-  { 
-    name: 'Punk', 
-    bg: 'linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 100%)', 
-    accent: '#ff3366',
-    text: '#fff',
-    font: 'Space Grotesk Variable'
-  },
-];
+// Ditto Music Brand Colors
+const brand = {
+  primary: '#a855f7',    // Purple
+  accent: '#7c3aed',     // Deeper purple
+  bgDark: '#0f0f23',     // Dark background
+  bgSurface: '#1a1a3e',  // Surface color
+  text: '#ffffff',
+  textMuted: 'rgba(255, 255, 255, 0.7)',
+};
 
 // Fake music posts for the mockup
 const fakePosts = [
@@ -110,9 +86,29 @@ const caseStudyNames = [
   'Contra'
 ];
 
+// Equalizer Bar Component for consistent brand element
+const EqualizerBars = ({ className = '', barCount = 4, size = 'md' }: { className?: string; barCount?: number; size?: 'sm' | 'md' | 'lg' }) => {
+  const heights = size === 'sm' ? [12, 20, 16, 24] : size === 'lg' ? [24, 40, 32, 48] : [16, 28, 22, 36];
+  const width = size === 'sm' ? 'w-1' : size === 'lg' ? 'w-2' : 'w-1.5';
+  
+  return (
+    <div className={`flex items-end gap-0.5 ${className}`}>
+      {[...Array(barCount)].map((_, i) => (
+        <div
+          key={i}
+          className={`${width} rounded-sm bg-gradient-to-t from-[#7c3aed] to-[#a855f7]`}
+          style={{
+            height: `${heights[i % heights.length]}px`,
+            animation: `equalizer ${0.4 + i * 0.1}s ease-in-out infinite alternate`,
+            boxShadow: '0 0 8px rgba(168, 85, 247, 0.5)',
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 const Index = () => {
-  const [activeTheme, setActiveTheme] = useState(0);
-  const [isThemePickerOpen, setIsThemePickerOpen] = useState(false);
   const [activeCaseStudy, setActiveCaseStudy] = useState(0);
 
   useSeoMeta({
@@ -120,215 +116,127 @@ const Index = () => {
     description: 'Join Ditto Music. Get early access, shape the future of decentralized music, and earn from the Ditto Creators Fund. No gatekeepers. No algorithms. Just your music.',
   });
 
-  // Auto-rotate themes
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (!isThemePickerOpen) {
-        setActiveTheme((prev) => (prev + 1) % themes.length);
-      }
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [isThemePickerOpen]);
-
-  const currentTheme = themes[activeTheme];
-
   return (
     <div 
-      className="min-h-screen transition-all duration-700"
+      className="min-h-screen"
       style={{ 
-        background: currentTheme.bg,
-        fontFamily: currentTheme.font,
-        color: currentTheme.text 
+        background: `linear-gradient(135deg, ${brand.bgDark} 0%, ${brand.bgSurface} 50%, ${brand.bgDark} 100%)`,
+        color: brand.text 
       }}
     >
-      {/* Theme Picker */}
-      <div className="fixed top-4 right-4 z-50">
-        <button
-          onClick={() => setIsThemePickerOpen(!isThemePickerOpen)}
-          className="p-3 rounded-full backdrop-blur-md transition-all hover:scale-110"
-          style={{ 
-            background: `${currentTheme.accent}20`,
-            border: `1px solid ${currentTheme.accent}40`
-          }}
-          aria-label="Open theme picker"
-        >
-          <Palette className="w-5 h-5" style={{ color: currentTheme.accent }} />
-        </button>
-        
-        {isThemePickerOpen && (
-          <div 
-            className="absolute top-14 right-0 p-2 rounded-xl backdrop-blur-md"
-            style={{ 
-              background: `${currentTheme.accent}10`,
-              border: `1px solid ${currentTheme.accent}30`
-            }}
+      {/* Fixed Header with Logo */}
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-purple-500/10" style={{ background: 'rgba(15, 15, 35, 0.8)' }}>
+        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+          <img 
+            src="/ditto-music-logo.svg" 
+            alt="Ditto Music" 
+            className="h-8 md:h-10"
+          />
+          <Button 
+            size="sm"
+            className="bg-gradient-to-r from-[#a855f7] to-[#7c3aed] hover:opacity-90 text-white border-0 shadow-lg shadow-purple-500/25"
+            asChild
           >
-            {themes.map((theme, i) => (
-              <button
-                key={theme.name}
-                onClick={() => {
-                  setActiveTheme(i);
-                  setIsThemePickerOpen(false);
-                }}
-                className={`block w-full px-4 py-2 text-left rounded-lg transition-all ${
-                  i === activeTheme ? 'opacity-100' : 'opacity-60 hover:opacity-100'
-                }`}
-                style={{ 
-                  background: i === activeTheme ? `${theme.accent}30` : 'transparent'
-                }}
-              >
-                <span className="flex items-center gap-2">
-                  <span 
-                    className="w-3 h-3 rounded-full"
-                    style={{ background: theme.accent }}
-                  />
-                  {theme.name}
-                </span>
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
+            <a href="https://cal.com/heather-larson-3dswg4" target="_blank" rel="noopener noreferrer">
+              Book a Call
+            </a>
+          </Button>
+        </div>
+      </header>
 
-      {/* Hero Section with Retro Window Frame */}
-      <section className="min-h-screen flex items-center justify-center p-4 md:p-8">
-        <div className="w-full max-w-6xl">
-          {/* Retro Window Frame */}
-          <div 
-            className="rounded-xl overflow-hidden shadow-2xl"
-            style={{ 
-              background: `${currentTheme.accent}10`,
-              border: `1px solid ${currentTheme.accent}30`,
-              boxShadow: `0 0 60px ${currentTheme.accent}20`
-            }}
-          >
-            {/* Window Title Bar */}
-            <div 
-              className="flex items-center justify-between px-4 py-2"
-              style={{ 
-                background: `${currentTheme.accent}15`,
-                borderBottom: `1px solid ${currentTheme.accent}20`
+      {/* Hero Section */}
+      <section className="min-h-screen flex items-center justify-center p-4 md:p-8 pt-20 relative overflow-hidden">
+        {/* Animated Equalizer Background */}
+        <div className="absolute inset-0 flex items-end justify-center gap-1 opacity-[0.07] pointer-events-none pb-32">
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className="w-2 md:w-3 rounded-t bg-gradient-to-t from-[#7c3aed] to-[#a855f7]"
+              style={{
+                height: `${20 + Math.sin(i * 0.5) * 15 + Math.random() * 30}%`,
+                animation: `equalizer ${0.5 + Math.random() * 0.5}s ease-in-out infinite alternate`,
+                animationDelay: `${i * 0.05}s`
               }}
-            >
-              <div className="flex items-center gap-3">
-                <Music2 className="w-4 h-4" style={{ color: currentTheme.accent }} />
-                <span className="text-sm opacity-70">Ditto Music</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <button className="p-1 rounded hover:bg-white/10 transition-colors">
-                  <Minus className="w-3 h-3 opacity-50" />
-                </button>
-                <button className="p-1 rounded hover:bg-white/10 transition-colors">
-                  <Square className="w-3 h-3 opacity-50" />
-                </button>
-                <button className="p-1 rounded hover:bg-white/10 transition-colors">
-                  <X className="w-3 h-3 opacity-50" />
-                </button>
-              </div>
+            />
+          ))}
+        </div>
+
+        {/* Gradient orbs for depth */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-violet-600/15 rounded-full blur-[100px] pointer-events-none" />
+
+        <div className="w-full max-w-5xl relative z-10">
+          {/* Logo Hero */}
+          <div className="flex flex-col items-center mb-8">
+            <img 
+              src="/ditto-music-logo-stacked.svg" 
+              alt="Ditto Music" 
+              className="w-48 md:w-64 lg:w-72 mb-6 drop-shadow-[0_0_30px_rgba(168,85,247,0.4)]"
+            />
+            <div className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-purple-500/10 border border-purple-500/30">
+              <EqualizerBars size="sm" barCount={4} />
+              <span className="font-semibold text-[#a855f7]">For Musicians</span>
             </div>
+          </div>
 
-            {/* Window Content */}
-            <div className="p-8 md:p-12 lg:p-16 relative overflow-hidden">
-              {/* Animated Equalizer Background */}
-              <div className="absolute inset-0 flex items-end justify-center gap-1 opacity-10 pointer-events-none pb-20">
-                {[...Array(40)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="w-2 rounded-t"
-                    style={{
-                      background: currentTheme.accent,
-                      height: `${20 + Math.sin(i * 0.5) * 15 + Math.random() * 30}%`,
-                      animation: `equalizer ${0.5 + Math.random() * 0.5}s ease-in-out infinite alternate`,
-                      animationDelay: `${i * 0.05}s`
-                    }}
-                  />
-                ))}
-              </div>
+          {/* Main Headline */}
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-center mb-6 tracking-tight">
+            <span className="block bg-gradient-to-r from-[#a855f7] to-[#c084fc] bg-clip-text text-transparent">
+              Your Music.
+            </span>
+            <span className="block">Your Platform.</span>
+          </h1>
 
-              {/* Ditto Music Logo */}
-              <div className="flex justify-center mb-8 relative z-10">
-                <img 
-                  src="/ditto-music-logo-dark.jpg" 
-                  alt="Ditto Music" 
-                  className="h-16 md:h-20 w-auto rounded-lg"
-                />
-              </div>
+          <p className="text-xl md:text-2xl text-center max-w-2xl mx-auto mb-10 text-white/70 leading-relaxed">
+            Tired of algorithms burying your sound? Tired of platforms that don't pay? 
+            Join the leading edge of decentralized music.
+          </p>
 
-              {/* Main Headline */}
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-center mb-6 tracking-tight relative z-10">
-                <span 
-                  className="block"
-                  style={{ color: currentTheme.accent }}
-                >
-                  Your Music.
-                </span>
-                <span className="block">Your Platform.</span>
-              </h1>
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <Button 
+              size="lg" 
+              className="text-lg px-8 py-6 transition-all hover:scale-105 bg-gradient-to-r from-[#a855f7] to-[#7c3aed] border-0 shadow-[0_0_30px_rgba(168,85,247,0.5)]"
+              asChild
+            >
+              <a href="https://cal.com/heather-larson-3dswg4" target="_blank" rel="noopener noreferrer">
+                Book a Call
+                <Sparkles className="ml-2 w-5 h-5" />
+              </a>
+            </Button>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="text-lg px-8 py-6 transition-all hover:scale-105 border-purple-500/50 text-white hover:bg-purple-500/10 hover:text-white"
+              asChild
+            >
+              <a href="https://ditto.pub" target="_blank" rel="noopener noreferrer">
+                Explore Ditto
+                <ExternalLink className="ml-2 w-5 h-5" />
+              </a>
+            </Button>
+          </div>
 
-              <p className="text-xl md:text-2xl text-center max-w-2xl mx-auto mb-10 opacity-70 leading-relaxed relative z-10">
-                Tired of algorithms burying your sound? Tired of platforms that don't pay? 
-                Join the leading edge of decentralized music.
-              </p>
-
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 relative z-10">
-                <Button 
-                  size="lg" 
-                  className="text-lg px-8 py-6 transition-all hover:scale-105"
-                  style={{ 
-                    background: currentTheme.accent,
-                    color: '#fff',
-                    boxShadow: `0 0 30px ${currentTheme.accent}50`
-                  }}
-                  asChild
-                >
-                  <a href="https://cal.com/heather-larson-3dswg4" target="_blank" rel="noopener noreferrer">
-                    Book a Call
-                    <Sparkles className="ml-2 w-5 h-5" />
-                  </a>
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="text-lg px-8 py-6 transition-all hover:scale-105"
-                  style={{ 
-                    borderColor: `${currentTheme.accent}50`,
-                    color: currentTheme.text
-                  }}
-                  asChild
-                >
-                  <a href="https://ditto.pub" target="_blank" rel="noopener noreferrer">
-                    Explore Ditto
-                    <ExternalLink className="ml-2 w-5 h-5" />
-                  </a>
-                </Button>
-              </div>
-
-              {/* Social proof */}
-              <div className="flex flex-wrap items-center justify-center gap-6 text-sm opacity-60 relative z-10">
-                <div className="flex items-center gap-2">
-                  <Check className="w-4 h-4" style={{ color: currentTheme.accent }} />
-                  <span>100% Free</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="w-4 h-4" style={{ color: currentTheme.accent }} />
-                  <span>Shape the Platform</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="w-4 h-4" style={{ color: currentTheme.accent }} />
-                  <span>Creators Fund</span>
-                </div>
-              </div>
+          {/* Social proof */}
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-white/60">
+            <div className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-[#a855f7]" />
+              <span>100% Free</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-[#a855f7]" />
+              <span>Shape the Platform</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-[#a855f7]" />
+              <span>Creators Fund</span>
             </div>
           </div>
 
           {/* Scroll hint */}
-          <div className="flex justify-center mt-8">
-            <div 
-              className="animate-bounce p-2 rounded-full"
-              style={{ background: `${currentTheme.accent}20` }}
-            >
-              <ChevronRight className="w-6 h-6 rotate-90" style={{ color: currentTheme.accent }} />
+          <div className="flex justify-center mt-12">
+            <div className="animate-bounce p-2 rounded-full bg-purple-500/20">
+              <ChevronRight className="w-6 h-6 rotate-90 text-[#a855f7]" />
             </div>
           </div>
         </div>
@@ -341,19 +249,19 @@ const Index = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-12">
               How It{' '}
-              <span style={{ color: currentTheme.accent }}>Works</span>
+              <span style={{ color: brand.primary }}>Works</span>
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div 
                 className="p-6 rounded-xl"
                 style={{ 
-                  background: `${currentTheme.accent}08`,
-                  border: `1px solid ${currentTheme.accent}15`
+                  background: `${brand.primary}08`,
+                  border: `1px solid ${brand.primary}15`
                 }}
               >
                 <div 
                   className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold"
-                  style={{ background: currentTheme.accent, color: '#fff' }}
+                  style={{ background: brand.primary, color: '#fff' }}
                 >
                   1
                 </div>
@@ -362,13 +270,13 @@ const Index = () => {
               <div 
                 className="p-6 rounded-xl"
                 style={{ 
-                  background: `${currentTheme.accent}08`,
-                  border: `1px solid ${currentTheme.accent}15`
+                  background: `${brand.primary}08`,
+                  border: `1px solid ${brand.primary}15`
                 }}
               >
                 <div 
                   className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold"
-                  style={{ background: currentTheme.accent, color: '#fff' }}
+                  style={{ background: brand.primary, color: '#fff' }}
                 >
                   2
                 </div>
@@ -377,13 +285,13 @@ const Index = () => {
               <div 
                 className="p-6 rounded-xl"
                 style={{ 
-                  background: `${currentTheme.accent}08`,
-                  border: `1px solid ${currentTheme.accent}15`
+                  background: `${brand.primary}08`,
+                  border: `1px solid ${brand.primary}15`
                 }}
               >
                 <div 
                   className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold"
-                  style={{ background: currentTheme.accent, color: '#fff' }}
+                  style={{ background: brand.primary, color: '#fff' }}
                 >
                   3
                 </div>
@@ -398,11 +306,11 @@ const Index = () => {
             <div 
               className="p-6 rounded-xl"
               style={{ 
-                background: `${currentTheme.accent}08`,
-                border: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}08`,
+                border: `1px solid ${brand.primary}15`
               }}
             >
-              <h3 className="text-xl font-bold mb-3" style={{ color: currentTheme.accent }}>What is a zap?</h3>
+              <h3 className="text-xl font-bold mb-3" style={{ color: brand.primary }}>What is a zap?</h3>
               <p className="opacity-80 leading-relaxed">
                 A zap is a tip sent directly from a fan to you over the Bitcoin Lightning Network. It hits your wallet instantly. No minimums. No waiting. No middleman.
               </p>
@@ -412,11 +320,11 @@ const Index = () => {
             <div 
               className="p-6 rounded-xl"
               style={{ 
-                background: `${currentTheme.accent}08`,
-                border: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}08`,
+                border: `1px solid ${brand.primary}15`
               }}
             >
-              <h3 className="text-xl font-bold mb-3" style={{ color: currentTheme.accent }}>Do I have to leave Spotify?</h3>
+              <h3 className="text-xl font-bold mb-3" style={{ color: brand.primary }}>Do I have to leave Spotify?</h3>
               <p className="opacity-80 leading-relaxed">
                 No. Keep everything you already have. This is additive. You can distribute on every platform you use today and also build here.
               </p>
@@ -426,11 +334,11 @@ const Index = () => {
             <div 
               className="p-6 rounded-xl"
               style={{ 
-                background: `${currentTheme.accent}08`,
-                border: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}08`,
+                border: `1px solid ${brand.primary}15`
               }}
             >
-              <h3 className="text-xl font-bold mb-3" style={{ color: currentTheme.accent }}>No algorithms. No gatekeeping.</h3>
+              <h3 className="text-xl font-bold mb-3" style={{ color: brand.primary }}>No algorithms. No gatekeeping.</h3>
               <p className="opacity-80 leading-relaxed">
                 Your music is not ranked, filtered, or buried based on engagement metrics. You are not competing for platform attention. Fans find you because other fans share you.
               </p>
@@ -454,11 +362,11 @@ const Index = () => {
             <div 
               className="p-6 rounded-xl"
               style={{ 
-                background: `${currentTheme.accent}08`,
-                border: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}08`,
+                border: `1px solid ${brand.primary}15`
               }}
             >
-              <h3 className="text-xl font-bold mb-3" style={{ color: currentTheme.accent }}>Why join now?</h3>
+              <h3 className="text-xl font-bold mb-3" style={{ color: brand.primary }}>Why join now?</h3>
               <p className="opacity-80 leading-relaxed">
                 The artists who show up early are the ones who shape what this becomes. There are no legacy acts with a head start. No established algorithm favorites. Everyone here is starting from the same place.
               </p>
@@ -468,11 +376,11 @@ const Index = () => {
             <div 
               className="p-6 rounded-xl"
               style={{ 
-                background: `${currentTheme.accent}08`,
-                border: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}08`,
+                border: `1px solid ${brand.primary}15`
               }}
             >
-              <h3 className="text-xl font-bold mb-3" style={{ color: currentTheme.accent }}>How you get paid.</h3>
+              <h3 className="text-xl font-bold mb-3" style={{ color: brand.primary }}>How you get paid.</h3>
               <p className="opacity-80 leading-relaxed">
                 Fans send sats (small units of Bitcoin) directly to your wallet during streams, on your profile, or attached to a post. You receive them instantly. No payment processor. No 90-day delay. No minimum payout threshold.
               </p>
@@ -486,7 +394,7 @@ const Index = () => {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-6xl font-bold text-center mb-6">
             Aren't You{' '}
-            <span style={{ color: currentTheme.accent }}>Tired</span>{' '}
+            <span style={{ color: brand.primary }}>Tired</span>{' '}
             of This?
           </h2>
           <p className="text-center opacity-60 text-lg mb-16 max-w-xl mx-auto">
@@ -538,7 +446,7 @@ const Index = () => {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-6xl font-bold text-center mb-6">
             What if There Was a{' '}
-            <span style={{ color: currentTheme.accent }}>Better Way</span>?
+            <span style={{ color: brand.primary }}>Better Way</span>?
           </h2>
           <p className="text-center opacity-60 text-lg mb-16 max-w-xl mx-auto">
             Ditto is a social platform where musicians actually thrive. No gatekeepers. Direct payments. Your audience, forever.
@@ -548,17 +456,17 @@ const Index = () => {
           <div 
             className="rounded-xl overflow-hidden shadow-2xl"
             style={{ 
-              background: `${currentTheme.accent}08`,
-              border: `1px solid ${currentTheme.accent}20`,
-              boxShadow: `0 0 80px ${currentTheme.accent}15`
+              background: `${brand.primary}08`,
+              border: `1px solid ${brand.primary}20`,
+              boxShadow: `0 0 80px ${brand.primary}15`
             }}
           >
             {/* Window Chrome */}
             <div 
               className="flex items-center justify-between px-4 py-3"
               style={{ 
-                background: `${currentTheme.accent}10`,
-                borderBottom: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}10`,
+                borderBottom: `1px solid ${brand.primary}15`
               }}
             >
               <div className="flex items-center gap-2">
@@ -574,14 +482,14 @@ const Index = () => {
               {/* Sidebar */}
               <div 
                 className="hidden md:block w-64 p-4 border-r"
-                style={{ borderColor: `${currentTheme.accent}15` }}
+                style={{ borderColor: `${brand.primary}15` }}
               >
                 <div className="flex items-center gap-3 mb-6 p-2">
                   <div 
                     className="w-10 h-10 rounded-full flex items-center justify-center text-xl"
-                    style={{ background: `${currentTheme.accent}30` }}
+                    style={{ background: `${brand.primary}30` }}
                   >
-                    <Music2 className="w-5 h-5" style={{ color: currentTheme.accent }} />
+                    <Music2 className="w-5 h-5" style={{ color: brand.primary }} />
                   </div>
                   <div>
                     <div className="font-semibold">You</div>
@@ -602,7 +510,7 @@ const Index = () => {
                       key={item.label}
                       className="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors"
                       style={{ 
-                        background: item.active ? `${currentTheme.accent}20` : 'transparent'
+                        background: item.active ? `${brand.primary}20` : 'transparent'
                       }}
                     >
                       <span>{item.icon}</span>
@@ -621,7 +529,7 @@ const Index = () => {
                   <div className="flex gap-2">
                     <span 
                       className="px-3 py-1 rounded-full text-sm"
-                      style={{ background: `${currentTheme.accent}30` }}
+                      style={{ background: `${brand.primary}30` }}
                     >
                       Following
                     </span>
@@ -636,8 +544,8 @@ const Index = () => {
                       key={i}
                       className="p-4 rounded-xl transition-all hover:scale-[1.01]"
                       style={{ 
-                        background: `${currentTheme.accent}08`,
-                        border: `1px solid ${currentTheme.accent}10`
+                        background: `${brand.primary}08`,
+                        border: `1px solid ${brand.primary}10`
                       }}
                     >
                       <div className="flex items-start gap-3">
@@ -645,7 +553,7 @@ const Index = () => {
                           src={post.avatar} 
                           alt={post.artist}
                           className="w-12 h-12 rounded-full"
-                          style={{ background: `${currentTheme.accent}20` }}
+                          style={{ background: `${brand.primary}20` }}
                         />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-1">
@@ -665,22 +573,22 @@ const Index = () => {
                           {post.hasAudio && (
                             <div 
                               className="flex items-center gap-3 p-3 rounded-lg mb-3"
-                              style={{ background: `${currentTheme.accent}15` }}
+                              style={{ background: `${brand.primary}15` }}
                             >
                               <button 
                                 className="w-10 h-10 rounded-full flex items-center justify-center"
-                                style={{ background: currentTheme.accent }}
+                                style={{ background: brand.primary }}
                               >
                                 <Play className="w-5 h-5 text-white ml-0.5" />
                               </button>
                               <div className="flex-1">
                                 <div 
                                   className="h-1 rounded-full"
-                                  style={{ background: `${currentTheme.accent}30` }}
+                                  style={{ background: `${brand.primary}30` }}
                                 >
                                   <div 
                                     className="h-full rounded-full w-1/3"
-                                    style={{ background: currentTheme.accent }}
+                                    style={{ background: brand.primary }}
                                   />
                                 </div>
                               </div>
@@ -703,7 +611,7 @@ const Index = () => {
                             </span>
                             <span 
                               className="flex items-center gap-1 hover:opacity-100 cursor-pointer"
-                              style={{ color: currentTheme.accent }}
+                              style={{ color: brand.primary }}
                             >
                               <Zap className="w-4 h-4" />
                               {post.stats.zaps}
@@ -728,9 +636,9 @@ const Index = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all hover:scale-105"
               style={{ 
-                background: currentTheme.accent,
+                background: brand.primary,
                 color: '#fff',
-                boxShadow: `0 0 30px ${currentTheme.accent}40`
+                boxShadow: `0 0 30px ${brand.primary}40`
               }}
             >
               Try Ditto Now
@@ -747,18 +655,18 @@ const Index = () => {
             <div 
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
               style={{ 
-                background: `${currentTheme.accent}20`,
-                border: `1px solid ${currentTheme.accent}30`
+                background: `${brand.primary}20`,
+                border: `1px solid ${brand.primary}30`
               }}
             >
-              <Music2 className="w-4 h-4" style={{ color: currentTheme.accent }} />
-              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+              <Music2 className="w-4 h-4" style={{ color: brand.primary }} />
+              <span className="text-sm font-medium" style={{ color: brand.primary }}>
                 Real Events, Real Artists
               </span>
             </div>
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
               We're Not Just{' '}
-              <span style={{ color: currentTheme.accent }}>Talking</span>
+              <span style={{ color: brand.primary }}>Talking</span>
               <br />
               About It
             </h2>
@@ -773,8 +681,8 @@ const Index = () => {
             <div 
               className="rounded-2xl overflow-hidden"
               style={{ 
-                background: `${currentTheme.accent}10`,
-                border: `1px solid ${currentTheme.accent}20`
+                background: `${brand.primary}10`,
+                border: `1px solid ${brand.primary}20`
               }}
             >
               <img 
@@ -792,24 +700,24 @@ const Index = () => {
           <div 
             className="mt-8 p-6 rounded-2xl grid grid-cols-2 md:grid-cols-4 gap-6 text-center"
             style={{ 
-              background: `${currentTheme.accent}08`,
-              border: `1px solid ${currentTheme.accent}15`
+              background: `${brand.primary}08`,
+              border: `1px solid ${brand.primary}15`
             }}
           >
             <div>
-              <div className="text-3xl font-bold" style={{ color: currentTheme.accent }}>Nashville</div>
+              <div className="text-3xl font-bold" style={{ color: brand.primary }}>Nashville</div>
               <div className="text-sm opacity-60">Music Row & Vinyl Lounge</div>
             </div>
             <div>
-              <div className="text-3xl font-bold" style={{ color: currentTheme.accent }}>Austin</div>
+              <div className="text-3xl font-bold" style={{ color: brand.primary }}>Austin</div>
               <div className="text-sm opacity-60">The Legendary Antone's Nightclub</div>
             </div>
             <div>
-              <div className="text-3xl font-bold" style={{ color: currentTheme.accent }}>Phoenix</div>
+              <div className="text-3xl font-bold" style={{ color: brand.primary }}>Phoenix</div>
               <div className="text-sm opacity-60">Culture Shock at Hello, Lincoln</div>
             </div>
             <div>
-              <div className="text-3xl font-bold" style={{ color: currentTheme.accent }}>Minneapolis</div>
+              <div className="text-3xl font-bold" style={{ color: brand.primary }}>Minneapolis</div>
               <div className="text-sm opacity-60">Indie Venues</div>
             </div>
           </div>
@@ -826,17 +734,17 @@ const Index = () => {
               disabled={activeCaseStudy === 0}
               className="flex items-center gap-2 px-4 py-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed hover:scale-105"
               style={{ 
-                background: `${currentTheme.accent}20`,
-                border: `1px solid ${currentTheme.accent}30`
+                background: `${brand.primary}20`,
+                border: `1px solid ${brand.primary}30`
               }}
             >
-              <ChevronLeft className="w-5 h-5" style={{ color: currentTheme.accent }} />
-              <span className="hidden sm:inline" style={{ color: currentTheme.accent }}>Previous</span>
+              <ChevronLeft className="w-5 h-5" style={{ color: brand.primary }} />
+              <span className="hidden sm:inline" style={{ color: brand.primary }}>Previous</span>
             </button>
             
             <div className="text-center">
               <div className="text-sm opacity-60 mb-1">Case Study {activeCaseStudy + 1} of {caseStudyNames.length}</div>
-              <div className="font-bold text-lg" style={{ color: currentTheme.accent }}>{caseStudyNames[activeCaseStudy]}</div>
+              <div className="font-bold text-lg" style={{ color: brand.primary }}>{caseStudyNames[activeCaseStudy]}</div>
             </div>
             
             <button
@@ -844,12 +752,12 @@ const Index = () => {
               disabled={activeCaseStudy === caseStudyNames.length - 1}
               className="flex items-center gap-2 px-4 py-2 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed hover:scale-105"
               style={{ 
-                background: `${currentTheme.accent}20`,
-                border: `1px solid ${currentTheme.accent}30`
+                background: `${brand.primary}20`,
+                border: `1px solid ${brand.primary}30`
               }}
             >
-              <span className="hidden sm:inline" style={{ color: currentTheme.accent }}>Next</span>
-              <ChevronRight className="w-5 h-5" style={{ color: currentTheme.accent }} />
+              <span className="hidden sm:inline" style={{ color: brand.primary }}>Next</span>
+              <ChevronRight className="w-5 h-5" style={{ color: brand.primary }} />
             </button>
           </div>
 
@@ -861,7 +769,7 @@ const Index = () => {
                 onClick={() => setActiveCaseStudy(index)}
                 className="w-3 h-3 rounded-full transition-all hover:scale-125"
                 style={{ 
-                  background: index === activeCaseStudy ? currentTheme.accent : `${currentTheme.accent}30`,
+                  background: index === activeCaseStudy ? brand.primary : `${brand.primary}30`,
                 }}
                 aria-label={`Go to case study ${index + 1}: ${caseStudyNames[index]}`}
               />
@@ -878,12 +786,12 @@ const Index = () => {
             <div 
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
               style={{ 
-                background: `${currentTheme.accent}20`,
-                border: `1px solid ${currentTheme.accent}30`
+                background: `${brand.primary}20`,
+                border: `1px solid ${brand.primary}30`
               }}
             >
-              <Zap className="w-4 h-4" style={{ color: currentTheme.accent }} />
-              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+              <Zap className="w-4 h-4" style={{ color: brand.primary }} />
+              <span className="text-sm font-medium" style={{ color: brand.primary }}>
                 Real Results
               </span>
             </div>
@@ -892,7 +800,7 @@ const Index = () => {
               <span className="text-red-400">$700 in Five Years</span>
               <br />
               to{' '}
-              <span style={{ color: currentTheme.accent }}>$10,000 in One</span>
+              <span style={{ color: brand.primary }}>$10,000 in One</span>
             </h2>
           </div>
 
@@ -900,24 +808,24 @@ const Index = () => {
           <div 
             className="rounded-2xl overflow-hidden"
             style={{ 
-              background: `${currentTheme.accent}08`,
-              border: `1px solid ${currentTheme.accent}20`,
-              boxShadow: `0 0 60px ${currentTheme.accent}10`
+              background: `${brand.primary}08`,
+              border: `1px solid ${brand.primary}20`,
+              boxShadow: `0 0 60px ${brand.primary}10`
             }}
           >
             {/* Header with artist info */}
             <div 
               className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
               style={{ 
-                background: `${currentTheme.accent}12`,
-                borderBottom: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}12`,
+                borderBottom: `1px solid ${brand.primary}15`
               }}
             >
               <img 
                 src="https://blossom.primal.net/509972f9fdd371b7348f8dcf23876f49ef4fb5b71e0e8c270fecf508abc7b684.png"
                 alt="Ainsley Costello"
                 className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
-                style={{ border: `3px solid ${currentTheme.accent}` }}
+                style={{ border: `3px solid ${brand.primary}` }}
               />
               <div className="text-center md:text-left">
                 <h3 className="text-2xl md:text-3xl font-bold mb-2">Ainsley Costello</h3>
@@ -928,7 +836,7 @@ const Index = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
                   style={{ 
-                    background: currentTheme.accent,
+                    background: brand.primary,
                     color: '#fff'
                   }}
                 >
@@ -942,7 +850,7 @@ const Index = () => {
             <div className="grid md:grid-cols-2">
               <div 
                 className="p-8 text-center"
-                style={{ borderRight: `1px solid ${currentTheme.accent}15` }}
+                style={{ borderRight: `1px solid ${brand.primary}15` }}
               >
                 <div className="text-red-400 text-sm font-medium mb-2 uppercase tracking-wider">Traditional Platforms</div>
                 <div className="text-5xl md:text-6xl font-bold text-red-400 mb-2">$700</div>
@@ -950,8 +858,8 @@ const Index = () => {
                 <div className="text-sm opacity-50 mt-2">25 songs on Spotify, Apple Music, Amazon</div>
               </div>
               <div className="p-8 text-center">
-                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Bitcoin + Lightning</div>
-                <div className="text-5xl md:text-6xl font-bold mb-2" style={{ color: currentTheme.accent }}>$10,000+</div>
+                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: brand.primary }}>Bitcoin + Lightning</div>
+                <div className="text-5xl md:text-6xl font-bold mb-2" style={{ color: brand.primary }}>$10,000+</div>
                 <div className="opacity-60">in just 1 year</div>
                 <div className="text-sm opacity-50 mt-2">Via Wavlake, Fountain, and value-for-value</div>
               </div>
@@ -961,9 +869,9 @@ const Index = () => {
             <div className="p-6 md:p-8 space-y-6">
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Breaking Point</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Breaking Point</h4>
                 <p className="opacity-80 leading-relaxed">
                   Ainsley did everything the traditional industry told her to do. Posted on TikTok three times a day. 
                   Released new songs every six weeks. Had 25 songs in distribution and written over 300. 
@@ -974,9 +882,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Turning Point</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Turning Point</h4>
                 <p className="opacity-80 leading-relaxed">
                   In July 2023, Ainsley attended a Wavlake demo at Bitcoin Park in Nashville. 
                   She uploaded "Cherry on Top" - a song that had been out for months on traditional platforms with no traction. 
@@ -988,8 +896,8 @@ const Index = () => {
               <blockquote 
                 className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                  borderLeft: `4px solid ${currentTheme.accent}`
+                  background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                  borderLeft: `4px solid ${brand.primary}`
                 }}
               >
                 "Every zap is a direct signal from a listener who chose to send value because they felt they received value."
@@ -997,24 +905,24 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>What Changed</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>What Changed</h4>
                 <ul className="space-y-3 opacity-80">
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span><strong>Direct payments</strong> - No label taking a cut, no playlist gatekeepers with undisclosed relationships</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span><strong>Real community</strong> - Fans who actually care, not algorithm-driven passive listeners</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span><strong>Complete artistic control</strong> - No label telling her what to look like or how to be marketed</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span><strong>Portable relationships</strong> - If a platform disappears, the zaps are in her wallet, the connections remain</span>
                   </li>
                 </ul>
@@ -1027,7 +935,7 @@ const Index = () => {
                 </p>
                 <div className="text-2xl font-bold">
                   Five years, $700. One year,{' '}
-                  <span style={{ color: currentTheme.accent }}>$10,000</span>.
+                  <span style={{ color: brand.primary }}>$10,000</span>.
                   <br />
                   <span className="text-lg opacity-70 font-normal">That's what value for value looks like.</span>
                 </div>
@@ -1048,7 +956,7 @@ const Index = () => {
               <span className="text-red-400">complaining about Spotify</span>
               <br />
               than I ever made{' '}
-              <span style={{ color: currentTheme.accent }}>on Spotify</span>"
+              <span style={{ color: brand.primary }}>on Spotify</span>"
             </h2>
           </div>
 
@@ -1056,24 +964,24 @@ const Index = () => {
           <div 
             className="rounded-2xl overflow-hidden"
             style={{ 
-              background: `${currentTheme.accent}08`,
-              border: `1px solid ${currentTheme.accent}20`,
-              boxShadow: `0 0 60px ${currentTheme.accent}10`
+              background: `${brand.primary}08`,
+              border: `1px solid ${brand.primary}20`,
+              boxShadow: `0 0 60px ${brand.primary}10`
             }}
           >
             {/* Header with artist info */}
             <div 
               className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
               style={{ 
-                background: `${currentTheme.accent}12`,
-                borderBottom: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}12`,
+                borderBottom: `1px solid ${brand.primary}15`
               }}
             >
               <img 
                 src="https://blossom.primal.net/7cba8d3f7c74855b83800b36e107997dbfaca14501ad494ac49eb33e7864fe41.jpg"
                 alt="Sara Jade"
                 className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
-                style={{ border: `3px solid ${currentTheme.accent}` }}
+                style={{ border: `3px solid ${brand.primary}` }}
               />
               <div className="text-center md:text-left">
                 <h3 className="text-2xl md:text-3xl font-bold mb-2">Sara Jade</h3>
@@ -1084,7 +992,7 @@ const Index = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
                   style={{ 
-                    background: currentTheme.accent,
+                    background: brand.primary,
                     color: '#fff'
                   }}
                 >
@@ -1098,7 +1006,7 @@ const Index = () => {
             <div className="grid md:grid-cols-3">
               <div 
                 className="p-6 text-center"
-                style={{ borderRight: `1px solid ${currentTheme.accent}15` }}
+                style={{ borderRight: `1px solid ${brand.primary}15` }}
               >
                 <div className="text-red-400 text-sm font-medium mb-2 uppercase tracking-wider">PRO Royalty Check</div>
                 <div className="text-4xl md:text-5xl font-bold text-red-400 mb-1">$1.27</div>
@@ -1106,15 +1014,15 @@ const Index = () => {
               </div>
               <div 
                 className="p-6 text-center"
-                style={{ borderRight: `1px solid ${currentTheme.accent}15` }}
+                style={{ borderRight: `1px solid ${brand.primary}15` }}
               >
-                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>30-Min Live Stream</div>
-                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: currentTheme.accent }}>$700</div>
+                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: brand.primary }}>30-Min Live Stream</div>
+                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: brand.primary }}>$700</div>
                 <div className="text-sm opacity-50">Nostr Phoenix show on Toonstr</div>
               </div>
               <div className="p-6 text-center">
-                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Post-Nashville Growth</div>
-                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: currentTheme.accent }}>+600%</div>
+                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: brand.primary }}>Post-Nashville Growth</div>
+                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: brand.primary }}>+600%</div>
                 <div className="text-sm opacity-50">Apple Music plays</div>
               </div>
             </div>
@@ -1135,9 +1043,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Response</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Response</h4>
                 <p className="opacity-80 leading-relaxed">
                   She posted about it on Nostr. The zaps came flooding in. By the end of the day she told her husband: 
                   "I think I just made more money complaining about Spotify than I ever made on Spotify." 
@@ -1148,8 +1056,8 @@ const Index = () => {
               <blockquote 
                 className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                  borderLeft: `4px solid ${currentTheme.accent}`
+                  background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                  borderLeft: `4px solid ${brand.primary}`
                 }}
               >
                 "$700 for a 30-minute set — more than most independent artists make for a full three-hour bar gig. 
@@ -1158,20 +1066,20 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Ripple Effect</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Ripple Effect</h4>
                 <ul className="space-y-3 opacity-80">
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span>After the Phoenix stream, a stranger in Palm Springs recognized her name at a hotel bar</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span>After Nashville, Apple Music plays jumped <strong>600%</strong> with listeners spread across the country</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span>Measurable audience growth in cities and states where she has never performed</span>
                   </li>
                 </ul>
@@ -1183,7 +1091,7 @@ const Index = () => {
                 </p>
                 <div className="text-2xl font-bold">
                   "The first part of my business plan that has{' '}
-                  <span style={{ color: currentTheme.accent }}>actually changed the math</span>."
+                  <span style={{ color: brand.primary }}>actually changed the math</span>."
                 </div>
               </div>
             </div>
@@ -1200,19 +1108,19 @@ const Index = () => {
             <div 
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
               style={{ 
-                background: `${currentTheme.accent}20`,
-                border: `1px solid ${currentTheme.accent}30`
+                background: `${brand.primary}20`,
+                border: `1px solid ${brand.primary}30`
               }}
             >
-              <Zap className="w-4 h-4" style={{ color: currentTheme.accent }} />
-              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+              <Zap className="w-4 h-4" style={{ color: brand.primary }} />
+              <span className="text-sm font-medium" style={{ color: brand.primary }}>
                 Industry Insider
               </span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
               What Happens When a Venue CFO{' '}
               <br />
-              <span style={{ color: currentTheme.accent }}>Goes All-In on Value-for-Value</span>
+              <span style={{ color: brand.primary }}>Goes All-In on Value-for-Value</span>
             </h2>
           </div>
 
@@ -1220,24 +1128,24 @@ const Index = () => {
           <div 
             className="rounded-2xl overflow-hidden"
             style={{ 
-              background: `${currentTheme.accent}08`,
-              border: `1px solid ${currentTheme.accent}20`,
-              boxShadow: `0 0 60px ${currentTheme.accent}10`
+              background: `${brand.primary}08`,
+              border: `1px solid ${brand.primary}20`,
+              boxShadow: `0 0 60px ${brand.primary}10`
             }}
           >
             {/* Header with profile info */}
             <div 
               className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
               style={{ 
-                background: `${currentTheme.accent}12`,
-                borderBottom: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}12`,
+                borderBottom: `1px solid ${brand.primary}15`
               }}
             >
               <img 
                 src="https://image.nostr.build/eba711a14a30726d5dd454b802d343bb17d8b0db7e477eed9eef7d4b8d65ef7a.jpg"
                 alt="OpenMike"
                 className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
-                style={{ border: `3px solid ${currentTheme.accent}` }}
+                style={{ border: `3px solid ${brand.primary}` }}
               />
               <div className="text-center md:text-left">
                 <h3 className="text-2xl md:text-3xl font-bold mb-2">OpenMike</h3>
@@ -1248,7 +1156,7 @@ const Index = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
                   style={{ 
-                    background: currentTheme.accent,
+                    background: brand.primary,
                     color: '#fff'
                   }}
                 >
@@ -1262,24 +1170,24 @@ const Index = () => {
             <div className="grid md:grid-cols-3">
               <div 
                 className="p-6 text-center"
-                style={{ borderRight: `1px solid ${currentTheme.accent}15` }}
+                style={{ borderRight: `1px solid ${brand.primary}15` }}
               >
-                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Debut Tunestr Show</div>
-                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: currentTheme.accent }}>20M*</div>
+                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: brand.primary }}>Debut Tunestr Show</div>
+                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: brand.primary }}>20M*</div>
                 <div className="text-sm opacity-50">sats over two nights (~$8,400)</div>
                 <div className="text-xs opacity-40 mt-1">*BTC price ~$42K at time</div>
               </div>
               <div 
                 className="p-6 text-center"
-                style={{ borderRight: `1px solid ${currentTheme.accent}15` }}
+                style={{ borderRight: `1px solid ${brand.primary}15` }}
               >
-                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Nashville Week</div>
-                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: currentTheme.accent }}>4M</div>
+                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: brand.primary }}>Nashville Week</div>
+                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: brand.primary }}>4M</div>
                 <div className="text-sm opacity-50">sats across the event (~$1,680)</div>
               </div>
               <div className="p-6 text-center">
-                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Monday Night Average</div>
-                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: currentTheme.accent }}>450-780K</div>
+                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: brand.primary }}>Monday Night Average</div>
+                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: brand.primary }}>450-780K</div>
                 <div className="text-sm opacity-50">sats at Vinyl Lounge (~$189-$328)</div>
               </div>
             </div>
@@ -1288,9 +1196,9 @@ const Index = () => {
             <div className="p-6 md:p-8 space-y-6">
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Insight</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Insight</h4>
                 <p className="opacity-80 leading-relaxed">
                   OpenMike spent more than a decade watching the economics of independent music from the inside. 
                   He became convinced that the problems in music and the problems in money were the same problem: 
@@ -1300,13 +1208,13 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>What He Built</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>What He Built</h4>
                 <p className="opacity-80 leading-relaxed">
                   Tunestr is a live streaming platform forked from ZapStream, built specifically for musicians and artists. 
                   Every show streams live to a Nostr audience that can send Bitcoin micropayments directly to the artists performing in real time. 
-                  <strong style={{ color: currentTheme.accent }}> OpenMike takes none of it.</strong> He has not accepted a single sat from any zap that has come through Tunestr. 
+                  <strong style={{ color: brand.primary }}> OpenMike takes none of it.</strong> He has not accepted a single sat from any zap that has come through Tunestr. 
                   Every penny goes to the artists.
                 </p>
               </div>
@@ -1314,8 +1222,8 @@ const Index = () => {
               <blockquote 
                 className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                  borderLeft: `4px solid ${currentTheme.accent}`
+                  background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                  borderLeft: `4px solid ${brand.primary}`
                 }}
               >
                 "When artists at the Vinyl Lounge watched zaps come in on a big screen during the Bands of Bitcoin residency, 
@@ -1324,9 +1232,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Strategy</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Strategy</h4>
                 <p className="opacity-80 leading-relaxed mb-4">
                   His approach for getting musicians to care is simple: <strong>don't lead with Bitcoin. Bury it.</strong> Show artists a streaming setup, 
                   a live audience, and money appearing in real time while they play. Then show them how to get a wallet.
@@ -1334,26 +1242,26 @@ const Index = () => {
                 <p className="opacity-80 leading-relaxed">
                   His competitive advantage is that Tunestr doesn't need to make money — his day job funds it. 
                   That lets him make a promise to artists that no platform with investors or payroll can make: 
-                  <strong style={{ color: currentTheme.accent }}> every penny of what the audience sends goes to whoever was on stage when it arrived.</strong>
+                  <strong style={{ color: brand.primary }}> every penny of what the audience sends goes to whoever was on stage when it arrived.</strong>
                 </p>
               </div>
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Pitch to Venues</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Pitch to Venues</h4>
                 <ul className="space-y-3 opacity-80">
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span>If value-for-value streaming makes an independent venue more attractive to artists, the venue wins</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span>If artists earn more at an independent venue than a corporate one, the decision makes itself</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span>Live Nation will never offer this. They have no reason to. Independent venues do.</span>
                   </li>
                 </ul>
@@ -1367,7 +1275,7 @@ const Index = () => {
                 </p>
                 <div className="text-2xl font-bold">
                   This is what{' '}
-                  <span style={{ color: currentTheme.accent }}>infrastructure for independent music</span>{' '}
+                  <span style={{ color: brand.primary }}>infrastructure for independent music</span>{' '}
                   looks like.
                 </div>
               </div>
@@ -1383,7 +1291,7 @@ const Index = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              <span style={{ color: currentTheme.accent }}>60 Real Fans</span>
+              <span style={{ color: brand.primary }}>60 Real Fans</span>
               {' '}Beat{' '}
               <span className="text-red-400">28,000 Followers</span>
             </h2>
@@ -1393,24 +1301,24 @@ const Index = () => {
           <div 
             className="rounded-2xl overflow-hidden"
             style={{ 
-              background: `${currentTheme.accent}08`,
-              border: `1px solid ${currentTheme.accent}20`,
-              boxShadow: `0 0 60px ${currentTheme.accent}10`
+              background: `${brand.primary}08`,
+              border: `1px solid ${brand.primary}20`,
+              boxShadow: `0 0 60px ${brand.primary}10`
             }}
           >
             {/* Header with profile info */}
             <div 
               className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
               style={{ 
-                background: `${currentTheme.accent}12`,
-                borderBottom: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}12`,
+                borderBottom: `1px solid ${brand.primary}15`
               }}
             >
               <img 
                 src="https://ik.imagekit.io/pnbizia3c/nostr/profiles/npub1ucgf8qyuxpqrkap_26jRmH0H5t"
                 alt="Abel James"
                 className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
-                style={{ border: `3px solid ${currentTheme.accent}` }}
+                style={{ border: `3px solid ${brand.primary}` }}
               />
               <div className="text-center md:text-left">
                 <h3 className="text-2xl md:text-3xl font-bold mb-2">Abel James</h3>
@@ -1421,7 +1329,7 @@ const Index = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
                   style={{ 
-                    background: currentTheme.accent,
+                    background: brand.primary,
                     color: '#fff'
                   }}
                 >
@@ -1435,15 +1343,15 @@ const Index = () => {
             <div className="grid md:grid-cols-2">
               <div 
                 className="p-8 text-center"
-                style={{ borderRight: `1px solid ${currentTheme.accent}15` }}
+                style={{ borderRight: `1px solid ${brand.primary}15` }}
               >
                 <div className="text-red-400 text-sm font-medium mb-2 uppercase tracking-wider">Twitter Post</div>
                 <div className="text-5xl md:text-6xl font-bold text-red-400 mb-2">12</div>
                 <div className="opacity-60">likes from 28,000 followers</div>
               </div>
               <div className="p-8 text-center">
-                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Nostr Post</div>
-                <div className="text-5xl md:text-6xl font-bold mb-2" style={{ color: currentTheme.accent }}>20+</div>
+                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: brand.primary }}>Nostr Post</div>
+                <div className="text-5xl md:text-6xl font-bold mb-2" style={{ color: brand.primary }}>20+</div>
                 <div className="opacity-60">reposts, zaps & real conversation from 60 followers</div>
               </div>
             </div>
@@ -1452,9 +1360,9 @@ const Index = () => {
             <div className="p-6 md:p-8 space-y-6">
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Background</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Background</h4>
                 <p className="opacity-80 leading-relaxed">
                   Abel played 100 to 150 shows a year for years before burning out. He eventually realized that 
                   putting his music on the internet through his podcast reached more people with less grind than 
@@ -1465,13 +1373,13 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Moment</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Moment</h4>
                 <p className="opacity-80 leading-relaxed">
                   "Swamp Thing" — a New Orleans-style blues track he co-wrote with Denny Hemmingson, lead musician for the Tim McGraw band — 
                   was uploaded to Wavlake with no promotion, no newsletter blast, no social push. A few days later, 
-                  friends sent screenshots: <strong style={{ color: currentTheme.accent }}>Swamp Thing was sitting at #2 on the Wavlake top 40.</strong> 
+                  friends sent screenshots: <strong style={{ color: brand.primary }}>Swamp Thing was sitting at #2 on the Wavlake top 40.</strong> 
                   He had no idea there was a top 40.
                 </p>
               </div>
@@ -1479,8 +1387,8 @@ const Index = () => {
               <blockquote 
                 className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                  borderLeft: `4px solid ${currentTheme.accent}`
+                  background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                  borderLeft: `4px solid ${brand.primary}`
                 }}
               >
                 "60 real people who actually see your posts beat 28,000 followers on a platform that buries your content."
@@ -1501,24 +1409,24 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Ripple Effect</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Ripple Effect</h4>
                 <p className="opacity-80 leading-relaxed mb-4">
                   Abel's most useful contribution may be onboarding other artists. He got Stacey from SOB and the Dangs 
                   to upload her music to Wavlake while she was still uncertain about the Bitcoin angle.
                 </p>
                 <ul className="space-y-3 opacity-80">
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span>Two of her songs hit the top 40 quickly</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span>She learned to use her wallet</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span>She immediately started boosting other artists</span>
                   </li>
                 </ul>
@@ -1534,7 +1442,7 @@ const Index = () => {
                 </p>
                 <div className="text-2xl font-bold">
                   "The math already works. It just needs{' '}
-                  <span style={{ color: currentTheme.accent }}>more people</span>."
+                  <span style={{ color: brand.primary }}>more people</span>."
                 </div>
               </div>
             </div>
@@ -1551,17 +1459,17 @@ const Index = () => {
             <div 
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
               style={{ 
-                background: `${currentTheme.accent}20`,
-                border: `1px solid ${currentTheme.accent}30`
+                background: `${brand.primary}20`,
+                border: `1px solid ${brand.primary}30`
               }}
             >
-              <Zap className="w-4 h-4" style={{ color: currentTheme.accent }} />
-              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+              <Zap className="w-4 h-4" style={{ color: brand.primary }} />
+              <span className="text-sm font-medium" style={{ color: brand.primary }}>
                 Gen Z Artist
               </span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              <span style={{ color: currentTheme.accent }}>$40 in Four Days</span>
+              <span style={{ color: brand.primary }}>$40 in Four Days</span>
               <br />
               And Her Producer Got Half
             </h2>
@@ -1571,24 +1479,24 @@ const Index = () => {
           <div 
             className="rounded-2xl overflow-hidden"
             style={{ 
-              background: `${currentTheme.accent}08`,
-              border: `1px solid ${currentTheme.accent}20`,
-              boxShadow: `0 0 60px ${currentTheme.accent}10`
+              background: `${brand.primary}08`,
+              border: `1px solid ${brand.primary}20`,
+              boxShadow: `0 0 60px ${brand.primary}10`
             }}
           >
             {/* Header with profile info */}
             <div 
               className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
               style={{ 
-                background: `${currentTheme.accent}12`,
-                borderBottom: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}12`,
+                borderBottom: `1px solid ${brand.primary}15`
               }}
             >
               <img 
                 src="https://image.nostr.build/31e231245a511101817e4e861e6280e90d2994ae23d6c69fe4d45e46231af24c.jpg"
                 alt="Kathryn"
                 className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
-                style={{ border: `3px solid ${currentTheme.accent}` }}
+                style={{ border: `3px solid ${brand.primary}` }}
               />
               <div className="text-center md:text-left">
                 <h3 className="text-2xl md:text-3xl font-bold mb-2">Kathryn</h3>
@@ -1599,7 +1507,7 @@ const Index = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
                   style={{ 
-                    background: currentTheme.accent,
+                    background: brand.primary,
                     color: '#fff'
                   }}
                 >
@@ -1613,7 +1521,7 @@ const Index = () => {
             <div className="grid md:grid-cols-3">
               <div 
                 className="p-6 text-center"
-                style={{ borderRight: `1px solid ${currentTheme.accent}15` }}
+                style={{ borderRight: `1px solid ${brand.primary}15` }}
               >
                 <div className="text-red-400 text-sm font-medium mb-2 uppercase tracking-wider">Traditional Streaming</div>
                 <div className="text-4xl md:text-5xl font-bold text-red-400 mb-1">$0</div>
@@ -1621,15 +1529,15 @@ const Index = () => {
               </div>
               <div 
                 className="p-6 text-center"
-                style={{ borderRight: `1px solid ${currentTheme.accent}15` }}
+                style={{ borderRight: `1px solid ${brand.primary}15` }}
               >
-                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Fountain FM</div>
-                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: currentTheme.accent }}>~$40</div>
+                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: brand.primary }}>Fountain FM</div>
+                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: brand.primary }}>~$40</div>
                 <div className="text-sm opacity-50">In just 4 days</div>
               </div>
               <div className="p-6 text-center">
-                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: currentTheme.accent }}>Producer Split</div>
-                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: currentTheme.accent }}>50%</div>
+                <div className="text-sm font-medium mb-2 uppercase tracking-wider" style={{ color: brand.primary }}>Producer Split</div>
+                <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: brand.primary }}>50%</div>
                 <div className="text-sm opacity-50">Automatic, real-time</div>
               </div>
             </div>
@@ -1651,9 +1559,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Discovery</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Discovery</h4>
                 <p className="opacity-80 leading-relaxed">
                   She came to value-for-value through someone she trusted. She had been doing social media content for Ainsley Costello, 
                   volunteering her time to get a foot in the door, when she overheard Ainsley and her mother talking about Bitcoin and sats and zaps. 
@@ -1665,8 +1573,8 @@ const Index = () => {
               <blockquote 
                 className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                  borderLeft: `4px solid ${currentTheme.accent}`
+                  background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                  borderLeft: `4px solid ${brand.primary}`
                 }}
               >
                 "Everybody eats." — She set the wallet split to 50/50 when she uploaded the song. 
@@ -1675,20 +1583,20 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Why It's Different</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>Why It's Different</h4>
                 <ul className="space-y-3 opacity-80">
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span>No label, no distributor, no ASCAP filing, no check in the mail six months later</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span>Her first song hit the Fountain trending charts within days — with zero promotion</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span>On Spotify, 150 songs get released every minute and the algorithm decides who exists. On Fountain, people are actively looking for something new.</span>
                   </li>
                 </ul>
@@ -1696,9 +1604,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Gen Z Perspective</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Gen Z Perspective</h4>
                 <p className="opacity-80 leading-relaxed">
                   Her read on why more Gen Z artists haven't made the jump: <strong>it's a marketing problem, not an ideology problem.</strong> 
                   Gen Z is already punk, already skeptical of centralized institutions, already inclined toward owning their own tools and money. 
@@ -1714,7 +1622,7 @@ const Index = () => {
                 </p>
                 <div className="text-2xl font-bold">
                   She is{' '}
-                  <span style={{ color: currentTheme.accent }}>building anyway</span>.
+                  <span style={{ color: brand.primary }}>building anyway</span>.
                   <br />
                   <span className="text-lg opacity-70 font-normal">That's the whole point.</span>
                 </div>
@@ -1733,18 +1641,18 @@ const Index = () => {
             <div 
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
               style={{ 
-                background: `${currentTheme.accent}20`,
-                border: `1px solid ${currentTheme.accent}30`
+                background: `${brand.primary}20`,
+                border: `1px solid ${brand.primary}30`
               }}
             >
-              <Sparkles className="w-4 h-4" style={{ color: currentTheme.accent }} />
-              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+              <Sparkles className="w-4 h-4" style={{ color: brand.primary }} />
+              <span className="text-sm font-medium" style={{ color: brand.primary }}>
                 Bitcoin-Native Artist
               </span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
               How Bitcoin{' '}
-              <span style={{ color: currentTheme.accent }}>Unlocked a Musician</span>
+              <span style={{ color: brand.primary }}>Unlocked a Musician</span>
               <br />
               Who Didn't Know She Was One
             </h2>
@@ -1754,24 +1662,24 @@ const Index = () => {
           <div 
             className="rounded-2xl overflow-hidden"
             style={{ 
-              background: `${currentTheme.accent}08`,
-              border: `1px solid ${currentTheme.accent}20`,
-              boxShadow: `0 0 60px ${currentTheme.accent}10`
+              background: `${brand.primary}08`,
+              border: `1px solid ${brand.primary}20`,
+              boxShadow: `0 0 60px ${brand.primary}10`
             }}
           >
             {/* Header with profile info */}
             <div 
               className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
               style={{ 
-                background: `${currentTheme.accent}12`,
-                borderBottom: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}12`,
+                borderBottom: `1px solid ${brand.primary}15`
               }}
             >
               <img 
                 src="https://blossom.primal.net/cfb660cca6a624c03a59aa7e03fb5896095263d5e583f898023694dcc8d11f69.jpg"
                 alt="Ivy Lumi"
                 className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
-                style={{ border: `3px solid ${currentTheme.accent}` }}
+                style={{ border: `3px solid ${brand.primary}` }}
               />
               <div className="text-center md:text-left">
                 <h3 className="text-2xl md:text-3xl font-bold mb-2">Ivy Lumi</h3>
@@ -1782,7 +1690,7 @@ const Index = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
                   style={{ 
-                    background: currentTheme.accent,
+                    background: brand.primary,
                     color: '#fff'
                   }}
                 >
@@ -1796,9 +1704,9 @@ const Index = () => {
             <div className="p-6 md:p-8 space-y-6">
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Origin</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Origin</h4>
                 <p className="opacity-80 leading-relaxed">
                   Ivy didn't come to Bitcoin as a musician. She came as an employee, landing a job in the industry without prior knowledge 
                   and getting orange-pilled within three to six months. For years she worked in Bitcoin as a podcaster, interviewing guests, 
@@ -1821,8 +1729,8 @@ const Index = () => {
               <blockquote 
                 className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                  borderLeft: `4px solid ${currentTheme.accent}`
+                  background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                  borderLeft: `4px solid ${brand.primary}`
                 }}
               >
                 "She had melodies in her head she would rush to write down before forgetting them. 
@@ -1831,9 +1739,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The EP: Cure</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The EP: Cure</h4>
                 <p className="opacity-80 leading-relaxed mb-4">
                   Each song on her EP draws from a different period of travel for work: <strong>Berlin, Amsterdam, Madeira, Prague</strong>. 
                   She describes them as time capsules. If you've been to those cities for Bitcoin conferences, she says, 
@@ -1843,30 +1751,30 @@ const Index = () => {
                   The pin collection she released alongside the EP takes this further — six collectible pins, each designed to capture 
                   the essence of a specific song. The pin with a clock where every number is replaced by the word "now" comes from 
                   "Follow the Wise Rabbit," written after Prague, with the clock face modeled on the city's historical astronomical clock. 
-                  <strong style={{ color: currentTheme.accent }}> These aren't merchandise. They're artifacts of a creative process.</strong>
+                  <strong style={{ color: brand.primary }}> These aren't merchandise. They're artifacts of a creative process.</strong>
                 </p>
               </div>
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The <a href="https://geyser.fund/" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">Geyser Fund</a> Campaign</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The <a href="https://geyser.fund/" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">Geyser Fund</a> Campaign</h4>
                 <ul className="space-y-3 opacity-80">
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span>Asked for 500,000 sats (~$357 at the time) — intentionally small and transparent</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span>Met and exceeded her goal through her fan base and her appearance on the <a href="https://fountain.fm/show/IgdKDWtHpDc67T0wqqoO" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">Radio Detox "V4V" podcast</a></span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span>Contributors received pins, the CD, and a Nostr badge</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent }} />
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: brand.primary }} />
                     <span>Kept music on traditional platforms too — "not interested in purity tests"</span>
                   </li>
                 </ul>
@@ -1886,9 +1794,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Built by the Community</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>Built by the Community</h4>
                 <p className="opacity-80 leading-relaxed">
                   Her creative director is AvZero, a Bitcoiner. Her collaborators are people from the Bitcoin community. 
                   The music video for "Wawawa," her first ever, was shot in Hong Kong after Bitcoin Asia and built around a storyboard 
@@ -1905,7 +1813,7 @@ const Index = () => {
                 <div className="text-2xl font-bold">
                   She didn't bring a music career into Bitcoin.
                   <br />
-                  <span style={{ color: currentTheme.accent }}>Bitcoin gave her the conditions to become a musician.</span>
+                  <span style={{ color: brand.primary }}>Bitcoin gave her the conditions to become a musician.</span>
                 </div>
               </div>
             </div>
@@ -1922,18 +1830,18 @@ const Index = () => {
             <div 
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
               style={{ 
-                background: `${currentTheme.accent}20`,
-                border: `1px solid ${currentTheme.accent}30`
+                background: `${brand.primary}20`,
+                border: `1px solid ${brand.primary}30`
               }}
             >
-              <MapPin className="w-4 h-4" style={{ color: currentTheme.accent }} />
-              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+              <MapPin className="w-4 h-4" style={{ color: brand.primary }} />
+              <span className="text-sm font-medium" style={{ color: brand.primary }}>
                 Community Builder
               </span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
               The Bitcoin Party{' '}
-              <span style={{ color: currentTheme.accent }}>That Crossed</span>
+              <span style={{ color: brand.primary }}>That Crossed</span>
               <br />
               State Lines
             </h2>
@@ -1943,24 +1851,24 @@ const Index = () => {
           <div 
             className="rounded-2xl overflow-hidden"
             style={{ 
-              background: `${currentTheme.accent}08`,
-              border: `1px solid ${currentTheme.accent}20`,
-              boxShadow: `0 0 60px ${currentTheme.accent}10`
+              background: `${brand.primary}08`,
+              border: `1px solid ${brand.primary}20`,
+              boxShadow: `0 0 60px ${brand.primary}10`
             }}
           >
             {/* Header with profile info */}
             <div 
               className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
               style={{ 
-                background: `${currentTheme.accent}12`,
-                borderBottom: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}12`,
+                borderBottom: `1px solid ${brand.primary}15`
               }}
             >
               <img 
                 src="https://blossom.primal.net/7e35f562debf108194b91cec389e4a52138f6ea6e6e4224b3cf3e5d19826e007.jpg"
                 alt="Chris Wenske"
                 className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
-                style={{ border: `3px solid ${currentTheme.accent}` }}
+                style={{ border: `3px solid ${brand.primary}` }}
               />
               <div className="text-center md:text-left">
                 <h3 className="text-2xl md:text-3xl font-bold mb-2">Chris Wenske</h3>
@@ -1971,7 +1879,7 @@ const Index = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
                   style={{ 
-                    background: currentTheme.accent,
+                    background: brand.primary,
                     color: '#fff'
                   }}
                 >
@@ -1985,9 +1893,9 @@ const Index = () => {
             <div className="p-6 md:p-8 space-y-6">
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Breaking Point</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Breaking Point</h4>
                 <p className="opacity-80 leading-relaxed">
                   Chris Wenske did not start Bitcoin Party KC because he was a Bitcoin ideologue. He started it because Spotify owes him money 
                   he will never see, DistroKid trapped him in a $5.99 monthly fee he cannot cancel without pulling all his music from every platform, 
@@ -1998,9 +1906,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Music</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Music</h4>
                 <p className="opacity-80 leading-relaxed">
                   He is a working musician from Kansas City, Missouri, ten blocks from the Kansas state line. His songs include 
                   <strong> Burning Down the Cornfield</strong>, which is exactly as Kansas as it sounds, a double entendre about burning fields 
@@ -2013,9 +1921,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Technical Problem</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Technical Problem</h4>
                 <p className="opacity-80 leading-relaxed">
                   What pulled him into Bitcoin was a specific technical problem: <strong>he wanted to split royalty payments automatically 
                   between co-writers</strong>. He found Ibex Pay before it was forced out of the United States by regulatory pressure, started 
@@ -2029,8 +1937,8 @@ const Index = () => {
               <blockquote 
                 className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                  borderLeft: `4px solid ${currentTheme.accent}`
+                  background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                  borderLeft: `4px solid ${brand.primary}`
                 }}
               >
                 "Someone in Africa can send him whatever a song is worth to them, directly, with no mechanical royalty rate governing the 
@@ -2039,9 +1947,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Bitcoin Party KC</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>Bitcoin Party KC</h4>
                 <p className="opacity-80 leading-relaxed mb-4">
                   Bitcoin Party KC grew out of that same frustration channeled into community. He has organized four Bitcoin block parties 
                   in Kansas City, the first of which was <strong>Bitcoin only, no other currency accepted</strong>. They used Phoenix, Blue Wallet, 
@@ -2052,9 +1960,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>South by Southwest Export</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>South by Southwest Export</h4>
                 <p className="opacity-80 leading-relaxed">
                   The South by Southwest export party was the next logical move. He played a show Friday night at Austin Body Works on 6th Street, 
                   then the following afternoon ran a Bitcoin education event at Licha's Cantina at 1306 East 6th Street. The lineup included 
@@ -2067,9 +1975,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Real Point</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Real Point</h4>
                 <p className="opacity-80 leading-relaxed">
                   The thing he keeps coming back to is not ideology. It is the practical reality of peer-to-peer value. He is not against 
                   DistroKid or Spotify as companies. He is tired of features that cannot be undone, dark funds that accrue from inactivity, 
@@ -2084,7 +1992,7 @@ const Index = () => {
                 <div className="text-2xl font-bold">
                   He didn't wait for the music industry to change.
                   <br />
-                  <span style={{ color: currentTheme.accent }}>He threw a party and built his own.</span>
+                  <span style={{ color: brand.primary }}>He threw a party and built his own.</span>
                 </div>
               </div>
             </div>
@@ -2101,18 +2009,18 @@ const Index = () => {
             <div 
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
               style={{ 
-                background: `${currentTheme.accent}20`,
-                border: `1px solid ${currentTheme.accent}30`
+                background: `${brand.primary}20`,
+                border: `1px solid ${brand.primary}30`
               }}
             >
-              <Zap className="w-4 h-4" style={{ color: currentTheme.accent }} />
-              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+              <Zap className="w-4 h-4" style={{ color: brand.primary }} />
+              <span className="text-sm font-medium" style={{ color: brand.primary }}>
                 Podcasting 2.0 Pioneer
               </span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
               The Man Who Watched{' '}
-              <span style={{ color: currentTheme.accent }}>Microsoft Win</span>
+              <span style={{ color: brand.primary }}>Microsoft Win</span>
               <br />
               Is Not Making the Same Mistake Twice
             </h2>
@@ -2122,24 +2030,24 @@ const Index = () => {
           <div 
             className="rounded-2xl overflow-hidden"
             style={{ 
-              background: `${currentTheme.accent}08`,
-              border: `1px solid ${currentTheme.accent}20`,
-              boxShadow: `0 0 60px ${currentTheme.accent}10`
+              background: `${brand.primary}08`,
+              border: `1px solid ${brand.primary}20`,
+              boxShadow: `0 0 60px ${brand.primary}10`
             }}
           >
             {/* Header with profile info */}
             <div 
               className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
               style={{ 
-                background: `${currentTheme.accent}12`,
-                borderBottom: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}12`,
+                borderBottom: `1px solid ${brand.primary}15`
               }}
             >
               <img 
                 src="https://cdn.masto.host/podcastindexsocial/accounts/avatars/000/003/709/original/081f4d3c40f34d24.jpeg"
                 alt="Sam Sethi"
                 className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
-                style={{ border: `3px solid ${currentTheme.accent}` }}
+                style={{ border: `3px solid ${brand.primary}` }}
               />
               <div className="text-center md:text-left">
                 <h3 className="text-2xl md:text-3xl font-bold mb-2">Sam Sethi</h3>
@@ -2150,7 +2058,7 @@ const Index = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
                   style={{ 
-                    background: currentTheme.accent,
+                    background: brand.primary,
                     color: '#fff'
                   }}
                 >
@@ -2164,9 +2072,9 @@ const Index = () => {
             <div className="p-6 md:p-8 space-y-6">
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Browser Wars Survivor</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Browser Wars Survivor</h4>
                 <p className="opacity-80 leading-relaxed">
                   Sam Sethi was the product manager at Netscape. He was there when the browser wars happened, when the floppy disks from AOL 
                   and CompuServe arrived in the mail, when getting online meant loading TCP/IP manually and hunting for pages because search 
@@ -2178,9 +2086,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>TrueFans.fm</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>TrueFans.fm</h4>
                 <p className="opacity-80 leading-relaxed">
                   He is the CEO of <a href="https://truefans.fm" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">TrueFans.fm</a>, 
                   a podcasting 2.0 RSS marketplace for podcasts, music, audiobooks, courses, films, and live events, where fans support creators 
@@ -2191,8 +2099,8 @@ const Index = () => {
               <blockquote 
                 className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                  borderLeft: `4px solid ${currentTheme.accent}`
+                  background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                  borderLeft: `4px solid ${brand.primary}`
                 }}
               >
                 "When you sign up for TrueFans, it asks you to top up your wallet in dollars. There is no mention of Bitcoin. 
@@ -2201,9 +2109,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Strategic Simplicity</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Strategic Simplicity</h4>
                 <p className="opacity-80 leading-relaxed">
                   There is no KYC onboarding quiz, which Sam attempted on Strike and failed despite knowing more about Bitcoin than almost anyone. 
                   There is no explanation of what a sat is. Sam nearly went further and called them TrueFans tokens to strip out the word Bitcoin 
@@ -2214,9 +2122,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Desktop-First Was Not a Mistake</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>Desktop-First Was Not a Mistake</h4>
                 <p className="opacity-80 leading-relaxed">
                   TrueFans was built desktop-first, which sounds like a mistake and was not. Building on a small screen while simultaneously 
                   figuring out wallet switching, live item tags, boost architecture, and remote payment splits would have slowed everything down 
@@ -2227,9 +2135,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Platform Play</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Platform Play</h4>
                 <p className="opacity-80 leading-relaxed">
                   Now TrueFans is in the middle of a mobile-first UI rebuild. After that, the plan is to follow Spotify's distribution model: 
                   web, mobile, iOS, Android, CarPlay, Android Auto, Apple Watch, TV. Because TrueFans is a progressive web app, it already works 
@@ -2240,9 +2148,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Wallet Switching</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>Wallet Switching</h4>
                 <p className="opacity-80 leading-relaxed">
                   The technology underneath TrueFans does something that did not exist before podcasting 2.0. When a listener streams to a show 
                   like Radio Detox, their sats flow to the host. The moment a song plays, <strong>the wallet switches and the sats flow to the 
@@ -2254,9 +2162,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Ainsley Costello Model</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Ainsley Costello Model</h4>
                 <p className="opacity-80 leading-relaxed">
                   The Ainsley Costello X-List album release worked this way. Fans subscribed to a feed of trailers and received the album one 
                   track at a time as each one dropped, with sats flowing to Ainsley at every play.
@@ -2280,9 +2188,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The First Sat</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The First Sat</h4>
                 <p className="opacity-80 leading-relaxed">
                   Sam co-hosts <a href="https://weekly.podnews.net" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">Pod News Weekly</a> with 
                   James Cridland. He remembers the first sat they received. Someone sent one sat and typed: <em>"did you get it"</em>. 
@@ -2293,9 +2201,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Mainstream Moment</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Mainstream Moment</h4>
                 <p className="opacity-80 leading-relaxed">
                   He has watched the Forbes article land on October 1, 2024 naming Ainsley, Joe Martin, RSS Blue, Manlike Quex, Domus, and Primal. 
                   He knows what early adoption looks like from the inside, and he knows what it takes to cross the line into mainstream. His read 
@@ -2307,8 +2215,8 @@ const Index = () => {
               <blockquote 
                 className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                  borderLeft: `4px solid ${currentTheme.accent}`
+                  background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                  borderLeft: `4px solid ${brand.primary}`
                 }}
               >
                 "Jack Dorsey built micropayments into Twitter and Elon Musk deprecated them. Apple Pay proved the infrastructure for 
@@ -2317,9 +2225,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>London: The Center of Gravity</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>London: The Center of Gravity</h4>
                 <p className="opacity-80 leading-relaxed">
                   TrueFans.fm is based in London. So is Fountain. So is Oscar Merry, who built the other major podcasting 2.0 app independently, 
                   without coordinating with Sam. <strong>London is, as of this recording, the center of gravity for podcasting 2.0 infrastructure.</strong>
@@ -2333,7 +2241,7 @@ const Index = () => {
                 <div className="text-2xl font-bold">
                   He has been this early before.
                   <br />
-                  <span style={{ color: currentTheme.accent }}>He knows how it ends.</span>
+                  <span style={{ color: brand.primary }}>He knows how it ends.</span>
                 </div>
               </div>
             </div>
@@ -2350,17 +2258,17 @@ const Index = () => {
             <div 
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
               style={{ 
-                background: `${currentTheme.accent}20`,
-                border: `1px solid ${currentTheme.accent}30`
+                background: `${brand.primary}20`,
+                border: `1px solid ${brand.primary}30`
               }}
             >
-              <Music2 className="w-4 h-4" style={{ color: currentTheme.accent }} />
-              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+              <Music2 className="w-4 h-4" style={{ color: brand.primary }} />
+              <span className="text-sm font-medium" style={{ color: brand.primary }}>
                 Bitcoin Music from Tanzania
               </span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              <span style={{ color: currentTheme.accent }}>Zapped</span> to the Top
+              <span style={{ color: brand.primary }}>Zapped</span> to the Top
               <br />
               of Kilimanjaro
             </h2>
@@ -2370,24 +2278,24 @@ const Index = () => {
           <div 
             className="rounded-2xl overflow-hidden"
             style={{ 
-              background: `${currentTheme.accent}08`,
-              border: `1px solid ${currentTheme.accent}20`,
-              boxShadow: `0 0 60px ${currentTheme.accent}10`
+              background: `${brand.primary}08`,
+              border: `1px solid ${brand.primary}20`,
+              boxShadow: `0 0 60px ${brand.primary}10`
             }}
           >
             {/* Header with profile info */}
             <div 
               className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
               style={{ 
-                background: `${currentTheme.accent}12`,
-                borderBottom: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}12`,
+                borderBottom: `1px solid ${brand.primary}15`
               }}
             >
               <img 
                 src="https://cdn.nostrcheck.me/4ce6abbd68dab6e9fdf6e8e9912a8e12f9b539e078c634c55a9bff2994a514dd/611e8b1949f67548d63c77fe65d889a2da14b02d9fa9eeff1db26a65c25fa030.webp"
                 alt="Man Like Kweks"
                 className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
-                style={{ border: `3px solid ${currentTheme.accent}` }}
+                style={{ border: `3px solid ${brand.primary}` }}
               />
               <div className="text-center md:text-left">
                 <h3 className="text-2xl md:text-3xl font-bold mb-2">Man Like Kweks</h3>
@@ -2398,7 +2306,7 @@ const Index = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
                   style={{ 
-                    background: currentTheme.accent,
+                    background: brand.primary,
                     color: '#fff'
                   }}
                 >
@@ -2412,9 +2320,9 @@ const Index = () => {
             <div className="p-6 md:p-8 space-y-6">
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Origin</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Origin</h4>
                 <p className="opacity-80 leading-relaxed">
                   Man Like Kweks did not set out to be a musician. He set out to help Tanzania. When he moved back to Arusha in September 2013 
                   after growing up in the UK, he was trying to figure out how Bitcoin could benefit his community in practical terms: wallets, 
@@ -2425,9 +2333,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>DCA to BTC</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>DCA to BTC</h4>
                 <p className="opacity-80 leading-relaxed">
                   That first song was <strong>DCA to BTC</strong>. He shared it with the Bitcoin community on Twitter, where it bounced its way 
                   to a weekly show called Bitcoin Beats run by Phil at Neat Creations. Phil played it live, asked questions, and encouraged him 
@@ -2439,8 +2347,8 @@ const Index = () => {
               <blockquote 
                 className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                  borderLeft: `4px solid ${currentTheme.accent}`
+                  background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                  borderLeft: `4px solid ${brand.primary}`
                 }}
               >
                 "He used sats to pay his electricity bill. His monthly electric bill in Arusha runs about 100,000 Tanzanian shillings, 
@@ -2449,9 +2357,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Tanzanian Shilling Context</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Tanzanian Shilling Context</h4>
                 <p className="opacity-80 leading-relaxed">
                   When Kweks moved back in 2013, one US dollar bought 1,500 shillings. By 2024 it bought 2,700. His mother bought a piece of land 
                   in the 1980s for 30,000 shillings, which was roughly $10 at the time. That same land is now worth approximately 200 million shillings, 
@@ -2463,9 +2371,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Mobile Money Infrastructure</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>Mobile Money Infrastructure</h4>
                 <p className="opacity-80 leading-relaxed">
                   Tanzania already has mobile money infrastructure that makes this intuitive. Through services like M-Pesa, a phone number is a wallet. 
                   You can send money to someone's number and they can walk to a corner shop called a Wakala and cash it out. Kweks does not need to 
@@ -2476,9 +2384,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Songs for Specific Communities</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>Songs for Specific Communities</h4>
                 <p className="opacity-80 leading-relaxed">
                   His songs are not about Bitcoin in the abstract. They are about specific people and specific communities. <strong>Bitcoin Dada</strong> 
                   (which means Bitcoin Sister in Swahili) was written for Marcel Guantai's women's Bitcoin education project in Nairobi. 
@@ -2501,9 +2409,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Relay Rider</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>Relay Rider</h4>
                 <p className="opacity-80 leading-relaxed">
                   <strong>Relay Rider</strong> came out of a four-hour window at night, recorded on an iPhone using an app his nephew told him about. 
                   Joe Martin heard the hook idea, went into a studio two days before a tour, and sent back harmonies and multiple versions in the morning. 
@@ -2513,9 +2421,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Dance Battle Festival</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Dance Battle Festival</h4>
                 <p className="opacity-80 leading-relaxed">
                   The Dance Battle Festival in Arusha came from the same logic as everything else: he saw what OpenMike built with Tunestr, asked 
                   whether he could apply it to his community, and found a colleague named Amani who had been running a local dance competition where 
@@ -2540,8 +2448,8 @@ const Index = () => {
               <blockquote 
                 className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                  borderLeft: `4px solid ${currentTheme.accent}`
+                  background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                  borderLeft: `4px solid ${brand.primary}`
                 }}
               >
                 "He works full-time at an international school in Arusha. He stopped drinking in December 2022. He has a wife and young children. 
@@ -2550,9 +2458,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Network</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Network</h4>
                 <p className="opacity-80 leading-relaxed">
                   In under two years of that window, he built a catalog of more than 60 tracks, a Bitcoin education space, a dance competition on a 
                   Bitcoin payment rail, and a network that runs from <strong>Tanzania to Uganda to Kenya to Manchester to Arizona</strong>, all of it 
@@ -2567,7 +2475,7 @@ const Index = () => {
                 <div className="text-2xl font-bold">
                   He just found out he didn't need to be a developer to do it.
                   <br />
-                  <span style={{ color: currentTheme.accent }}>He made a song instead.</span>
+                  <span style={{ color: brand.primary }}>He made a song instead.</span>
                 </div>
               </div>
             </div>
@@ -2584,18 +2492,18 @@ const Index = () => {
             <div 
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
               style={{ 
-                background: `${currentTheme.accent}20`,
-                border: `1px solid ${currentTheme.accent}30`
+                background: `${brand.primary}20`,
+                border: `1px solid ${brand.primary}30`
               }}
             >
-              <Volume2 className="w-4 h-4" style={{ color: currentTheme.accent }} />
-              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+              <Volume2 className="w-4 h-4" style={{ color: brand.primary }} />
+              <span className="text-sm font-medium" style={{ color: brand.primary }}>
                 Anonymous Heavy Metal
               </span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
               How Can I Be{' '}
-              <span style={{ color: currentTheme.accent }}>Scarce?</span>
+              <span style={{ color: brand.primary }}>Scarce?</span>
             </h2>
           </div>
 
@@ -2603,24 +2511,24 @@ const Index = () => {
           <div 
             className="rounded-2xl overflow-hidden"
             style={{ 
-              background: `${currentTheme.accent}08`,
-              border: `1px solid ${currentTheme.accent}20`,
-              boxShadow: `0 0 60px ${currentTheme.accent}10`
+              background: `${brand.primary}08`,
+              border: `1px solid ${brand.primary}20`,
+              boxShadow: `0 0 60px ${brand.primary}10`
             }}
           >
             {/* Header with profile info */}
             <div 
               className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
               style={{ 
-                background: `${currentTheme.accent}12`,
-                borderBottom: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}12`,
+                borderBottom: `1px solid ${brand.primary}15`
               }}
             >
               <img 
                 src="https://pbs.twimg.com/profile_images/1540754363337039872/d5qySxbT_400x400.jpg"
                 alt="Annonymal"
                 className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
-                style={{ border: `3px solid ${currentTheme.accent}` }}
+                style={{ border: `3px solid ${brand.primary}` }}
               />
               <div className="text-center md:text-left">
                 <h3 className="text-2xl md:text-3xl font-bold mb-2">Annonymal</h3>
@@ -2631,7 +2539,7 @@ const Index = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
                   style={{ 
-                    background: currentTheme.accent,
+                    background: brand.primary,
                     color: '#fff'
                   }}
                 >
@@ -2645,9 +2553,9 @@ const Index = () => {
             <div className="p-6 md:p-8 space-y-6">
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Question</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Question</h4>
                 <p className="opacity-80 leading-relaxed">
                   Annonymal is a six-piece heavy metal band whose members are anonymous. No names, no faces, no location disclosed. They are 
                   journalists by trade, covering Bitcoin and blockchain as a day job. When they looked around at the Bitcoin space and saw people 
@@ -2658,9 +2566,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Why Metal</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>Why Metal</h4>
                 <p className="opacity-80 leading-relaxed">
                   Their reasoning is not aesthetic. Metal is the genre of anti-establishment aggression. Bitcoin is anti-establishment by design. 
                   The aggression of punk gave way to metal, which gave way to a music industry that was deliberately defanged when it became 
@@ -2673,8 +2581,8 @@ const Index = () => {
               <blockquote 
                 className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                  borderLeft: `4px solid ${currentTheme.accent}`
+                  background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                  borderLeft: `4px solid ${brand.primary}`
                 }}
               >
                 "They describe their first encounter as being possessed by the idea that Bitcoin is organizing a political riot."
@@ -2682,9 +2590,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Discovery</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Discovery</h4>
                 <p className="opacity-80 leading-relaxed">
                   They came to Bitcoin not through number go up or investment thesis but through a 10-minute YouTube video from a girl running an 
                   Austrian economics channel who called it the money of the future. They consumed everything Andreas Antonopoulos ever said.
@@ -2704,9 +2612,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Catalog</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Catalog</h4>
                 <p className="opacity-80 leading-relaxed">
                   <strong>War Strategy</strong> was written when Russia invaded Ukraine. It preaches against war and argues that Bitcoin is the solution, 
                   that governments only seek power and control, that fixing the money makes war unaffordable. They have a song called 
@@ -2732,9 +2640,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>First Week on Nostr</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>First Week on Nostr</h4>
                 <p className="opacity-80 leading-relaxed">
                   Annonymal was on Nostr in the first week. They launched a hashtag called <strong>#HornsUpForSatoshi</strong> and it was one of the 
                   most used tags on the platform, which at the time had almost no one on it. They now have nearly 5,000 notes and almost 100 pieces 
@@ -2745,8 +2653,8 @@ const Index = () => {
               <blockquote 
                 className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                  borderLeft: `4px solid ${currentTheme.accent}`
+                  background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                  borderLeft: `4px solid ${brand.primary}`
                 }}
               >
                 "They prefer being shared to being zapped. A share means the music reached someone new. A zap means someone who already found 
@@ -2755,9 +2663,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>killswitch.gov.exe</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>killswitch.gov.exe</h4>
                 <p className="opacity-80 leading-relaxed">
                   They ran a Geyser Fund campaign asking for $7,000 to fund the recording of their second album. It did not reach the goal. 
                   OpenMike donated. The album is being recorded anyway. It is called <strong>killswitch.gov.exe</strong>. An executable file. 
@@ -2782,9 +2690,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Live Show</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Live Show</h4>
                 <p className="opacity-80 leading-relaxed">
                   Their band has six members traveling together, which is expensive and logistically complicated. Their goal is to play Bitcoin 
                   conferences. They have a live show recording in the can, approximately 40 minutes, about to be released. When they get to a 
@@ -2794,9 +2702,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Given Bitcoin, I Have a Metal Voice</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>Given Bitcoin, I Have a Metal Voice</h4>
                 <p className="opacity-80 leading-relaxed">
                   They wrote an article about the band called <em>Given Bitcoin, I Have a Metal Voice</em>, which traces the lineage from the Beatles 
                   through punk through metal and argues that the same anti-establishment impulse runs through all of it. Bitcoin, in their view, is 
@@ -2807,8 +2715,8 @@ const Index = () => {
               <blockquote 
                 className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                  borderLeft: `4px solid ${currentTheme.accent}`
+                  background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                  borderLeft: `4px solid ${brand.primary}`
                 }}
               >
                 "In an era when AI is uploading music by the thousands every day, only what is genuinely human and genuinely meaningful will 
@@ -2823,7 +2731,7 @@ const Index = () => {
                 <div className="text-2xl font-bold">
                   Be true to yourself.
                   <br />
-                  <span style={{ color: currentTheme.accent }}>The internal motivation is the only thing that survives.</span>
+                  <span style={{ color: brand.primary }}>The internal motivation is the only thing that survives.</span>
                 </div>
               </div>
             </div>
@@ -2840,18 +2748,18 @@ const Index = () => {
             <div 
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
               style={{ 
-                background: `${currentTheme.accent}20`,
-                border: `1px solid ${currentTheme.accent}30`
+                background: `${brand.primary}20`,
+                border: `1px solid ${brand.primary}30`
               }}
             >
-              <Users className="w-4 h-4" style={{ color: currentTheme.accent }} />
-              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+              <Users className="w-4 h-4" style={{ color: brand.primary }} />
+              <span className="text-sm font-medium" style={{ color: brand.primary }}>
                 Radio Detox Case Study
               </span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
               How One Friendship{' '}
-              <span style={{ color: currentTheme.accent }}>Brought a British Musician</span>
+              <span style={{ color: brand.primary }}>Brought a British Musician</span>
               <br />
               into Value-for-Value
             </h2>
@@ -2861,17 +2769,17 @@ const Index = () => {
           <div 
             className="rounded-2xl overflow-hidden"
             style={{ 
-              background: `${currentTheme.accent}08`,
-              border: `1px solid ${currentTheme.accent}20`,
-              boxShadow: `0 0 60px ${currentTheme.accent}10`
+              background: `${brand.primary}08`,
+              border: `1px solid ${brand.primary}20`,
+              boxShadow: `0 0 60px ${brand.primary}10`
             }}
           >
             {/* Header with profile info - Two profiles */}
             <div 
               className="p-6 md:p-8"
               style={{ 
-                background: `${currentTheme.accent}12`,
-                borderBottom: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}12`,
+                borderBottom: `1px solid ${brand.primary}15`
               }}
             >
               <div className="flex flex-col md:flex-row items-center justify-center gap-8">
@@ -2880,7 +2788,7 @@ const Index = () => {
                     src="https://image.nostr.build/a424d08de684200b7f6bbb270e0c3849219dd4afc926b2ae149d5038e0d7cb3f.jpg"
                     alt="Longy"
                     className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover mb-3"
-                    style={{ border: `3px solid ${currentTheme.accent}` }}
+                    style={{ border: `3px solid ${brand.primary}` }}
                   />
                   <h3 className="text-xl font-bold">Longy</h3>
                   <p className="opacity-70 text-sm mb-2">International musical streetbrawler</p>
@@ -2890,7 +2798,7 @@ const Index = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium transition-all hover:scale-105"
                     style={{ 
-                      background: currentTheme.accent,
+                      background: brand.primary,
                       color: '#fff'
                     }}
                   >
@@ -2906,7 +2814,7 @@ const Index = () => {
                     src="https://image.nostr.build/8b5334beac3710b9433371ffd95cc4a7b6829868b218861c8ec48631cb9bece6.jpg"
                     alt="Aaron of Essex"
                     className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover mb-3"
-                    style={{ border: `3px solid ${currentTheme.accent}` }}
+                    style={{ border: `3px solid ${brand.primary}` }}
                   />
                   <h3 className="text-xl font-bold">Aaron of Essex</h3>
                   <p className="opacity-70 text-sm mb-2">Bitcoin advocate, Salonomics podcast</p>
@@ -2916,7 +2824,7 @@ const Index = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium transition-all hover:scale-105"
                     style={{ 
-                      background: currentTheme.accent,
+                      background: brand.primary,
                       color: '#fff'
                     }}
                   >
@@ -2949,9 +2857,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>How It Happened</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>How It Happened</h4>
                 <p className="opacity-80 leading-relaxed">
                   Aaron did not walk up to Longy with a Bitcoin pitch. He asked one question: <em>what do you know about Bitcoin?</em> When Longy 
                   mentioned NFTs and Ethereum, Aaron redirected him away from that immediately and focused the conversation on Bitcoin specifically. 
@@ -2979,8 +2887,8 @@ const Index = () => {
               <blockquote 
                 className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                  borderLeft: `4px solid ${currentTheme.accent}`
+                  background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                  borderLeft: `4px solid ${brand.primary}`
                 }}
               >
                 "Fans sent boosts and zaps with messages attached, something that simply does not happen on Spotify. 
@@ -3001,9 +2909,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Ongoing Challenge</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Ongoing Challenge</h4>
                 <p className="opacity-80 leading-relaxed">
                   Longy is still operating in two worlds. He still needs traditional distribution to reach the audience he already has in the fiat 
                   music system. Other artists around him remain skeptical or afraid, some worried that mentioning Bitcoin publicly will trigger 
@@ -3016,9 +2924,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>What the Case Study Demonstrates</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>What the Case Study Demonstrates</h4>
                 <p className="opacity-80 leading-relaxed">
                   <strong>Artists do not discover value-for-value through cold outreach or conference panels. They come in through people they trust.</strong> 
                   Aaron reaching Longy directly, one conversation at a time, is how this ecosystem actually grows. The technology works. The community 
@@ -3031,8 +2939,8 @@ const Index = () => {
               <blockquote 
                 className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                  borderLeft: `4px solid ${currentTheme.accent}`
+                  background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                  borderLeft: `4px solid ${brand.primary}`
                 }}
               >
                 "The value-for-value model is not a niche experiment anymore. It is a functioning alternative to a broken system, 
@@ -3046,7 +2954,7 @@ const Index = () => {
                 <div className="text-2xl font-bold">
                   The path to adoption runs through personal relationships.
                   <br />
-                  <span style={{ color: currentTheme.accent }}>One conversation at a time.</span>
+                  <span style={{ color: brand.primary }}>One conversation at a time.</span>
                 </div>
               </div>
             </div>
@@ -3063,24 +2971,24 @@ const Index = () => {
           <div 
             className="rounded-2xl overflow-hidden"
             style={{ 
-              background: `${currentTheme.accent}08`,
-              border: `1px solid ${currentTheme.accent}20`,
-              boxShadow: `0 0 60px ${currentTheme.accent}10`
+              background: `${brand.primary}08`,
+              border: `1px solid ${brand.primary}20`,
+              boxShadow: `0 0 60px ${brand.primary}10`
             }}
           >
             {/* Header with artist info */}
             <div 
               className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
               style={{ 
-                background: `${currentTheme.accent}12`,
-                borderBottom: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}12`,
+                borderBottom: `1px solid ${brand.primary}15`
               }}
             >
               <img 
                 src="https://profilepics.nostur.com/profilepic_v1/0baa70eaac98a57a620a69d30abc0f30121c7ff06f9e60f4256840818ba63b37/profilepic.jpg?1773336418"
                 alt="Contra"
                 className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
-                style={{ border: `3px solid ${currentTheme.accent}` }}
+                style={{ border: `3px solid ${brand.primary}` }}
               />
               <div className="text-center md:text-left">
                 <h3 className="text-2xl md:text-3xl font-bold mb-2">Contra</h3>
@@ -3091,7 +2999,7 @@ const Index = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
                   style={{ 
-                    background: currentTheme.accent,
+                    background: brand.primary,
                     color: '#fff'
                   }}
                 >
@@ -3105,9 +3013,9 @@ const Index = () => {
             <div className="p-6 md:p-8 space-y-6">
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Who He Is</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>Who He Is</h4>
                 <p className="opacity-80 leading-relaxed">
                   Contra is a military veteran and longtime Bitcoiner who found his way to Nostr around late 2022. He is known in the community 
                   for philosophical, long-form posts rooted in sovereignty, family, and the Bitcoin ethos. He is not a professional musician. 
@@ -3117,9 +3025,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Project</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Project</h4>
                 <p className="opacity-80 leading-relaxed">
                   About two and a half to three years ago, Contra and his son started making music together. His son is nearly 19, has played 
                   drums since childhood, plays multiple instruments, and has been learning Logic Pro for years. They built out a music room in 
@@ -3135,9 +3043,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>How Value for Value Fits In</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>How Value for Value Fits In</h4>
                 <p className="opacity-80 leading-relaxed">
                   All sats and zaps earned from Wavlake streams and Nostr go directly to his son. <strong>Contra keeps none of it.</strong> When 
                   his son asked what he was getting out of the time they were spending together, Contra set up a Geyser Fund under his name with 
@@ -3154,8 +3062,8 @@ const Index = () => {
               <blockquote 
                 className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                  borderLeft: `4px solid ${currentTheme.accent}`
+                  background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                  borderLeft: `4px solid ${brand.primary}`
                 }}
               >
                 "His son is watching all of this in real time. He understands inflation. He understands why the system is designed the way it is. 
@@ -3181,14 +3089,14 @@ const Index = () => {
                 </p>
                 <div className="text-xl font-bold mb-6">
                   Find Contra on Nostr. Support his music on{' '}
-                  <a href="https://wavlake.com" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: currentTheme.accent }}>Wavlake</a>
+                  <a href="https://wavlake.com" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: brand.primary }}>Wavlake</a>
                   {' '}and{' '}
-                  <a href="https://fountain.fm" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: currentTheme.accent }}>Fountain.fm</a>.
+                  <a href="https://fountain.fm" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: brand.primary }}>Fountain.fm</a>.
                 </div>
                 <div className="text-2xl font-bold">
                   A father teaching his son how to create,
                   <br />
-                  <span style={{ color: currentTheme.accent }}>and how to be paid for it honestly.</span>
+                  <span style={{ color: brand.primary }}>and how to be paid for it honestly.</span>
                 </div>
               </div>
             </div>
@@ -3198,7 +3106,7 @@ const Index = () => {
       )}
 
       {/* Live Streams from Nostr (NIP-53) */}
-      <LiveStreamsSection accentColor={currentTheme.accent} textColor={currentTheme.text} />
+      <LiveStreamsSection accentColor={brand.primary} textColor={brand.text} />
 
       {/* For Music Fans */}
       <section className="py-24 px-4">
@@ -3206,25 +3114,25 @@ const Index = () => {
           <div 
             className="rounded-2xl p-8 md:p-12 text-center"
             style={{ 
-              background: `linear-gradient(135deg, ${currentTheme.accent}15, ${currentTheme.accent}05)`,
-              border: `1px solid ${currentTheme.accent}20`
+              background: `linear-gradient(135deg, ${brand.primary}15, ${brand.primary}05)`,
+              border: `1px solid ${brand.primary}20`
             }}
           >
             <div 
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
               style={{ 
-                background: `${currentTheme.accent}20`,
-                border: `1px solid ${currentTheme.accent}30`
+                background: `${brand.primary}20`,
+                border: `1px solid ${brand.primary}30`
               }}
             >
-              <Heart className="w-4 h-4" style={{ color: currentTheme.accent }} />
-              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+              <Heart className="w-4 h-4" style={{ color: brand.primary }} />
+              <span className="text-sm font-medium" style={{ color: brand.primary }}>
                 For Music Fans
               </span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
               Not an Artist?{' '}
-              <span style={{ color: currentTheme.accent }}>You Belong Here Too.</span>
+              <span style={{ color: brand.primary }}>You Belong Here Too.</span>
             </h2>
             <p className="text-lg opacity-70 leading-relaxed max-w-2xl mx-auto mb-6">
               Ditto is the perfect place for music fans to gather and share their love of their favorite songs and artists. 
@@ -3243,7 +3151,7 @@ const Index = () => {
       </section>
 
       {/* Upcoming Events from Plektos */}
-      <UpcomingEventsSection accentColor={currentTheme.accent} textColor={currentTheme.text} />
+      <UpcomingEventsSection accentColor={brand.primary} textColor={brand.text} />
 
       {/* Benefits Grid */}
       <section className="py-24 px-4">
@@ -3252,18 +3160,18 @@ const Index = () => {
             <div 
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
               style={{ 
-                background: `${currentTheme.accent}20`,
-                border: `1px solid ${currentTheme.accent}30`
+                background: `${brand.primary}20`,
+                border: `1px solid ${brand.primary}30`
               }}
             >
-              <Sparkles className="w-4 h-4" style={{ color: currentTheme.accent }} />
-              <span className="text-sm font-medium" style={{ color: currentTheme.accent }}>
+              <Sparkles className="w-4 h-4" style={{ color: brand.primary }} />
+              <span className="text-sm font-medium" style={{ color: brand.primary }}>
                 Join the Community
               </span>
             </div>
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
               Benefits of Joining{' '}
-              <span style={{ color: currentTheme.accent }}>Ditto Music</span>
+              <span style={{ color: brand.primary }}>Ditto Music</span>
             </h2>
           </div>
 
@@ -3314,13 +3222,13 @@ const Index = () => {
                 key={i}
                 className="flex items-start gap-4 p-6 rounded-xl transition-all hover:scale-[1.01]"
                 style={{ 
-                  background: `${currentTheme.accent}08`,
-                  border: `1px solid ${currentTheme.accent}15`
+                  background: `${brand.primary}08`,
+                  border: `1px solid ${brand.primary}15`
                 }}
               >
                 <benefit.icon 
                   className="w-8 h-8 flex-shrink-0 mt-1" 
-                  style={{ color: currentTheme.accent }} 
+                  style={{ color: brand.primary }} 
                 />
                 <div>
                   <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
@@ -3338,14 +3246,14 @@ const Index = () => {
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Why{' '}
-              <span style={{ color: currentTheme.accent }}>Join Us?</span>
+              <span style={{ color: brand.primary }}>Join Us?</span>
             </h2>
           </div>
 
           <div className="space-y-6">
             <div 
               className="p-6 rounded-xl"
-              style={{ background: `${currentTheme.accent}08` }}
+              style={{ background: `${brand.primary}08` }}
             >
               <p className="opacity-80 leading-relaxed text-lg">
                 You'll be onboarded to Ditto for the purpose of music discovery; we want to populate this new form of Internet with 
@@ -3357,7 +3265,7 @@ const Index = () => {
 
             <div 
               className="p-6 rounded-xl"
-              style={{ background: `${currentTheme.accent}08` }}
+              style={{ background: `${brand.primary}08` }}
             >
               <p className="opacity-80 leading-relaxed text-lg">
                 We're not going to tell you what to do to succeed; that is up to you! We are here for feedback so we can create the features 
@@ -3368,9 +3276,9 @@ const Index = () => {
 
             <div 
               className="p-6 rounded-xl"
-              style={{ background: `${currentTheme.accent}08` }}
+              style={{ background: `${brand.primary}08` }}
             >
-              <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Our Partners & Community</h4>
+              <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>Our Partners & Community</h4>
               <p className="opacity-80 leading-relaxed">
                 If you want to learn more about putting your music onto indie platforms that harness Bitcoin & Nostr, we will refer you to our 
                 partners at <strong>Wavlake, Fountain, Tunestr, & Epoch Music (Phantom Power Music)</strong>, where we've been building trust 
@@ -3383,9 +3291,9 @@ const Index = () => {
 
             <div 
               className="p-6 rounded-xl"
-              style={{ background: `${currentTheme.accent}08` }}
+              style={{ background: `${brand.primary}08` }}
             >
-              <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>What You Can Do on Ditto</h4>
+              <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>What You Can Do on Ditto</h4>
               <p className="opacity-80 leading-relaxed">
                 The Ditto platform is where you'll be able to promote your music, tour, events, lives, and more. If a way to promote it the way 
                 you want to doesn't exist, we want to know so we can explore building it for you. We want to help you with posting video, podcasts, 
@@ -3412,8 +3320,8 @@ const Index = () => {
             <blockquote 
               className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
               style={{ 
-                background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                borderLeft: `4px solid ${currentTheme.accent}`
+                background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                borderLeft: `4px solid ${brand.primary}`
               }}
             >
               The Ditto audience LOVES music and staying off Big Tech, closed source, controlled platforms. 
@@ -3428,7 +3336,7 @@ const Index = () => {
         <div className="max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
             Questions?{' '}
-            <span style={{ color: currentTheme.accent }}>Answers.</span>
+            <span style={{ color: brand.primary }}>Answers.</span>
           </h2>
 
           <Accordion type="single" collapsible className="space-y-4">
@@ -3436,8 +3344,8 @@ const Index = () => {
               value="item-0"
               className="rounded-xl px-6 transition-colors"
               style={{ 
-                background: `${currentTheme.accent}08`,
-                border: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}08`,
+                border: `1px solid ${brand.primary}15`
               }}
             >
               <AccordionTrigger className="text-left hover:no-underline py-6">
@@ -3451,7 +3359,7 @@ const Index = () => {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 hover:opacity-80 transition-opacity"
-                  style={{ color: currentTheme.accent }}
+                  style={{ color: brand.primary }}
                 >
                   Learn more about Nostr
                   <ExternalLink className="w-3 h-3" />
@@ -3462,8 +3370,8 @@ const Index = () => {
               value="item-1"
               className="rounded-xl px-6 transition-colors"
               style={{ 
-                background: `${currentTheme.accent}08`,
-                border: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}08`,
+                border: `1px solid ${brand.primary}15`
               }}
             >
               <AccordionTrigger className="text-left hover:no-underline py-6">
@@ -3478,8 +3386,8 @@ const Index = () => {
               value="item-2"
               className="rounded-xl px-6 transition-colors"
               style={{ 
-                background: `${currentTheme.accent}08`,
-                border: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}08`,
+                border: `1px solid ${brand.primary}15`
               }}
             >
               <AccordionTrigger className="text-left hover:no-underline py-6">
@@ -3494,8 +3402,8 @@ const Index = () => {
               value="item-3"
               className="rounded-xl px-6 transition-colors"
               style={{ 
-                background: `${currentTheme.accent}08`,
-                border: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}08`,
+                border: `1px solid ${brand.primary}15`
               }}
             >
               <AccordionTrigger className="text-left hover:no-underline py-6">
@@ -3506,26 +3414,26 @@ const Index = () => {
                   No. Ditto is more than just another social app because it brings together all the content forms that make Nostr great into one simple place. Nostr is a protocol rather than a platform or a company. So there's no incentive to do anything but free you to unleash your creativity across an ecosystem of apps.
                 </p>
                 
-                <p className="mb-2 font-semibold" style={{ color: currentTheme.accent }}>Our Soapbox Ecosystem Includes:</p>
+                <p className="mb-2 font-semibold" style={{ color: brand.primary }}>Our Soapbox Ecosystem Includes:</p>
                 <ul className="list-disc list-inside space-y-1 mb-4 opacity-70">
-                  <li><a href="https://shakespeare.diy" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Shakespeare.diy</a> for GenAI</li>
-                  <li><a href="https://agora.space" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Agora.space</a> to allow activists to organize in countries with limited access to Internet and big name platforms like X (Twitter)</li>
-                  <li><a href="https://divine.video" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>diVine video</a> (reboot of Vine)</li>
-                  <li><a href="https://plektos.app" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Plektos</a> for events</li>
-                  <li><a href="https://zaplytics.ditto.pub" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Zaplytics</a> to see metrics on your Ditto earnings</li>
-                  <li><a href="https://linkbio.at" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>LinkBio</a> for a "link in bio" that's interoperable with Ditto</li>
-                  <li><a href="https://inkwell.social" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Inkwell</a> for long-form articles</li>
-                  <li><a href="https://letters.ditto.pub" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Letters</a> for fan DMs</li>
-                  <li><a href="https://blobbi.com" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Blobbi</a> for virtual pets online</li>
-                  <li><a href="https://bitchat.mesh" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Bitchat mesh</a> for off-grid communication</li>
-                  <li><a href="https://whitenoise.chat" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>WhiteNoise</a> for secure messaging</li>
+                  <li><a href="https://shakespeare.diy" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: brand.primary }}>Shakespeare.diy</a> for GenAI</li>
+                  <li><a href="https://agora.space" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: brand.primary }}>Agora.space</a> to allow activists to organize in countries with limited access to Internet and big name platforms like X (Twitter)</li>
+                  <li><a href="https://divine.video" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: brand.primary }}>diVine video</a> (reboot of Vine)</li>
+                  <li><a href="https://plektos.app" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: brand.primary }}>Plektos</a> for events</li>
+                  <li><a href="https://zaplytics.ditto.pub" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: brand.primary }}>Zaplytics</a> to see metrics on your Ditto earnings</li>
+                  <li><a href="https://linkbio.at" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: brand.primary }}>LinkBio</a> for a "link in bio" that's interoperable with Ditto</li>
+                  <li><a href="https://inkwell.social" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: brand.primary }}>Inkwell</a> for long-form articles</li>
+                  <li><a href="https://letters.ditto.pub" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: brand.primary }}>Letters</a> for fan DMs</li>
+                  <li><a href="https://blobbi.com" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: brand.primary }}>Blobbi</a> for virtual pets online</li>
+                  <li><a href="https://bitchat.mesh" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: brand.primary }}>Bitchat mesh</a> for off-grid communication</li>
+                  <li><a href="https://whitenoise.chat" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: brand.primary }}>WhiteNoise</a> for secure messaging</li>
                 </ul>
 
-                <p className="mb-2 font-semibold" style={{ color: currentTheme.accent }}>And other interesting apps like:</p>
+                <p className="mb-2 font-semibold" style={{ color: brand.primary }}>And other interesting apps like:</p>
                 <ul className="list-disc list-inside space-y-1 mb-4 opacity-70">
-                  <li><a href="https://espy.app" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Espy</a> for color moments</li>
-                  <li><a href="https://mi.soapbox.pub" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Mi</a> - backup your profile</li>
-                  <li><a href="https://treasures.app" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: currentTheme.accent }}>Treasures</a> for geocaching</li>
+                  <li><a href="https://espy.app" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: brand.primary }}>Espy</a> for color moments</li>
+                  <li><a href="https://mi.soapbox.pub" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: brand.primary }}>Mi</a> - backup your profile</li>
+                  <li><a href="https://treasures.app" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80" style={{ color: brand.primary }}>Treasures</a> for geocaching</li>
                 </ul>
 
                 <p className="opacity-70">
@@ -3538,8 +3446,8 @@ const Index = () => {
               value="item-4"
               className="rounded-xl px-6 transition-colors"
               style={{ 
-                background: `${currentTheme.accent}08`,
-                border: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}08`,
+                border: `1px solid ${brand.primary}15`
               }}
             >
               <AccordionTrigger className="text-left hover:no-underline py-6">
@@ -3554,8 +3462,8 @@ const Index = () => {
               value="item-5"
               className="rounded-xl px-6 transition-colors"
               style={{ 
-                background: `${currentTheme.accent}08`,
-                border: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}08`,
+                border: `1px solid ${brand.primary}15`
               }}
             >
               <AccordionTrigger className="text-left hover:no-underline py-6">
@@ -3570,8 +3478,8 @@ const Index = () => {
               value="item-6"
               className="rounded-xl px-6 transition-colors"
               style={{ 
-                background: `${currentTheme.accent}08`,
-                border: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}08`,
+                border: `1px solid ${brand.primary}15`
               }}
             >
               <AccordionTrigger className="text-left hover:no-underline py-6">
@@ -3591,7 +3499,7 @@ const Index = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
               Who's in charge around here?{' '}
-              <span style={{ color: currentTheme.accent }}>YOU ARE.</span>
+              <span style={{ color: brand.primary }}>YOU ARE.</span>
             </h2>
             <p className="text-lg opacity-70">
               But we also have someone running the program. Learn more about Ditto Music's HBIC.
@@ -3601,24 +3509,24 @@ const Index = () => {
           <div 
             className="rounded-2xl overflow-hidden"
             style={{ 
-              background: `${currentTheme.accent}08`,
-              border: `1px solid ${currentTheme.accent}20`,
-              boxShadow: `0 0 60px ${currentTheme.accent}10`
+              background: `${brand.primary}08`,
+              border: `1px solid ${brand.primary}20`,
+              boxShadow: `0 0 60px ${brand.primary}10`
             }}
           >
             {/* Header with profile info */}
             <div 
               className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6"
               style={{ 
-                background: `${currentTheme.accent}12`,
-                borderBottom: `1px solid ${currentTheme.accent}15`
+                background: `${brand.primary}12`,
+                borderBottom: `1px solid ${brand.primary}15`
               }}
             >
               <img 
                 src="https://blossom.dreamith.to/158492b76b461a445ce7a2b58805fc10f94d90fedaca52443464775d1e4d606d.jpeg"
                 alt="Heather Larson"
                 className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
-                style={{ border: `3px solid ${currentTheme.accent}` }}
+                style={{ border: `3px solid ${brand.primary}` }}
               />
               <div className="text-center md:text-left">
                 <h3 className="text-2xl md:text-3xl font-bold mb-2">Heather Larson</h3>
@@ -3630,7 +3538,7 @@ const Index = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
                     style={{ 
-                      background: currentTheme.accent,
+                      background: brand.primary,
                       color: '#fff'
                     }}
                   >
@@ -3643,9 +3551,9 @@ const Index = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105"
                     style={{ 
-                      background: `${currentTheme.accent}20`,
-                      color: currentTheme.accent,
-                      border: `1px solid ${currentTheme.accent}40`
+                      background: `${brand.primary}20`,
+                      color: brand.primary,
+                      border: `1px solid ${brand.primary}40`
                     }}
                   >
                     Follow on Ditto
@@ -3659,9 +3567,9 @@ const Index = () => {
             <div className="p-6 md:p-8 space-y-6">
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>The Radio Years</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>The Radio Years</h4>
                 <p className="opacity-80 leading-relaxed">
                   Heather Larson is the HBIC of Ditto Music, the independent musicians' program at Ditto, Soapbox's Nostr-native everything app. 
                   She started in radio in the late 1990s and spent decades doing what the industry always claimed to care about: 
@@ -3675,8 +3583,8 @@ const Index = () => {
               <blockquote 
                 className="p-6 rounded-xl text-xl md:text-2xl font-medium italic text-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${currentTheme.accent}15, transparent)`,
-                  borderLeft: `4px solid ${currentTheme.accent}`
+                  background: `linear-gradient(135deg, ${brand.primary}15, transparent)`,
+                  borderLeft: `4px solid ${brand.primary}`
                 }}
               >
                 "She left traditional broadcasting after watching it fail artists, audiences, and itself in sequence. 
@@ -3685,9 +3593,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>Radio Detox & Soapbox Sessions</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>Radio Detox & Soapbox Sessions</h4>
                 <p className="opacity-80 leading-relaxed">
                   Since 2024, Heather has hosted <a href="https://fountain.fm/show/IgdKDWtHpDc67T0wqqoO" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">Radio Detox</a>, 
                   a podcast that highlights independent artists & builders in the "value-for-value" music ecosystem, an innovative, open source 
@@ -3700,9 +3608,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>In the Space</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>In the Space</h4>
                 <p className="opacity-80 leading-relaxed">
                   She has been active in the Bitcoin and Nostr space for more than two years, a Bitcoiner since 2020, and has established 
                   relationships at Wavlake, Fountain, Tunestr, Epoch Music, and more. She has spoken at Nostr Valley on Nostr for Content Creators, 
@@ -3724,9 +3632,9 @@ const Index = () => {
 
               <div 
                 className="p-6 rounded-xl"
-                style={{ background: `${currentTheme.accent}08` }}
+                style={{ background: `${brand.primary}08` }}
               >
-                <h4 className="font-bold text-lg mb-3" style={{ color: currentTheme.accent }}>First Yoga Class on Nostr</h4>
+                <h4 className="font-bold text-lg mb-3" style={{ color: brand.primary }}>First Yoga Class on Nostr</h4>
                 <p className="opacity-80 leading-relaxed">
                   She is also, somewhat improbably, the person who taught the first yoga class on Nostr. This allowed her to experience "V4V" 
                   in action despite the fact that she can hardly carry a tune as a singer.
@@ -3740,7 +3648,7 @@ const Index = () => {
                 <div className="text-xl font-bold">
                   She'll even roadie for you, work a nightclub door,
                   <br />
-                  <span style={{ color: currentTheme.accent }}>and tell you what year she played that old ass song on the radio.</span>
+                  <span style={{ color: brand.primary }}>and tell you what year she played that old ass song on the radio.</span>
                 </div>
               </div>
             </div>
@@ -3749,31 +3657,44 @@ const Index = () => {
       </section>
 
       {/* Book a Call CTA */}
-      <section className="py-24 px-4">
-        <div className="max-w-2xl mx-auto">
+      <section className="py-24 px-4 relative overflow-hidden">
+        {/* Background glow */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-[600px] h-[400px] bg-purple-500/10 rounded-full blur-[100px]" />
+        </div>
+        
+        <div className="max-w-2xl mx-auto relative z-10">
           <div 
-            className="rounded-2xl p-12 text-center"
+            className="rounded-2xl p-12 text-center relative overflow-hidden"
             style={{ 
-              background: `${currentTheme.accent}10`,
-              border: `1px solid ${currentTheme.accent}20`
+              background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(124, 58, 237, 0.1))',
+              border: '1px solid rgba(168, 85, 247, 0.3)',
+              boxShadow: '0 0 60px rgba(168, 85, 247, 0.15)'
             }}
           >
-            <Music2 className="w-16 h-16 mx-auto mb-6" style={{ color: currentTheme.accent }} />
+            {/* Decorative equalizer bars */}
+            <div className="absolute top-4 left-4 opacity-30">
+              <EqualizerBars size="sm" barCount={3} />
+            </div>
+            <div className="absolute top-4 right-4 opacity-30">
+              <EqualizerBars size="sm" barCount={3} />
+            </div>
+            
+            <img 
+              src="/ditto-music-logo-stacked.svg" 
+              alt="Ditto Music" 
+              className="w-32 mx-auto mb-6 drop-shadow-[0_0_20px_rgba(168,85,247,0.4)]"
+            />
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Ready to{' '}
-              <span style={{ color: currentTheme.accent }}>Get Started</span>?
+              <span className="bg-gradient-to-r from-[#a855f7] to-[#c084fc] bg-clip-text text-transparent">Get Started</span>?
             </h2>
-            <p className="opacity-60 mb-8 max-w-md mx-auto">
+            <p className="text-white/60 mb-8 max-w-md mx-auto">
               Book a call with Heather to learn more about Ditto Music and how you can be part of the decentralized music revolution.
             </p>
             <Button 
               size="lg" 
-              className="text-lg px-8 py-6 transition-all hover:scale-105"
-              style={{ 
-                background: currentTheme.accent,
-                color: '#fff',
-                boxShadow: `0 0 30px ${currentTheme.accent}50`
-              }}
+              className="text-lg px-8 py-6 transition-all hover:scale-105 bg-gradient-to-r from-[#a855f7] to-[#7c3aed] border-0 shadow-[0_0_30px_rgba(168,85,247,0.5)]"
               asChild
             >
               <a href="https://cal.com/heather-larson-3dswg4" target="_blank" rel="noopener noreferrer">
@@ -3786,25 +3707,22 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer 
-        className="py-12 px-4"
-        style={{ borderTop: `1px solid ${currentTheme.accent}15` }}
-      >
+      <footer className="py-12 px-4 border-t border-purple-500/10">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <img 
-              src="/ditto-music-logo-dark.jpg" 
+              src="/ditto-music-logo.svg" 
               alt="Ditto Music" 
-              className="h-8 w-auto rounded"
+              className="h-8"
             />
           </div>
           
-          <div className="flex items-center gap-6 text-sm opacity-60">
+          <div className="flex items-center gap-6 text-sm text-white/60">
             <a 
               href="https://ditto.pub" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="hover:opacity-100 transition-opacity"
+              className="hover:text-[#a855f7] transition-colors"
             >
               Ditto.pub
             </a>
@@ -3812,7 +3730,7 @@ const Index = () => {
               href="https://soapbox.pub" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="hover:opacity-100 transition-opacity"
+              className="hover:text-[#a855f7] transition-colors"
             >
               Soapbox
             </a>
@@ -3820,20 +3738,19 @@ const Index = () => {
               href="https://about.ditto.pub" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="hover:opacity-100 transition-opacity"
+              className="hover:text-[#a855f7] transition-colors"
             >
               About
             </a>
           </div>
 
-          <div className="text-sm opacity-60">
+          <div className="text-sm text-white/60">
             Vibed with{' '}
             <a 
               href="https://shakespeare.diy" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="hover:opacity-100 transition-opacity"
-              style={{ color: currentTheme.accent }}
+              className="text-[#a855f7] hover:text-[#c084fc] transition-colors"
             >
               Shakespeare
             </a>
