@@ -189,7 +189,7 @@ const Index = () => {
 
           <p className="text-xl md:text-2xl text-center max-w-2xl mx-auto mb-10 text-white/70 leading-relaxed">
             Tired of algorithms burying your sound? Tired of platforms that don't pay? 
-            Join the leading edge of decentralized music.
+            Join the leading edge of independent music.
           </p>
 
           {/* CTAs */}
